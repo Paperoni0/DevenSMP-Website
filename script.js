@@ -1,4 +1,6 @@
+// Initialize vote counts for each option
 let votes = [0, 0, 0];
+let hasVoted = false;
 
 // Function to update the poll results
 function updateResults() {
@@ -15,6 +17,15 @@ function updateResults() {
 
 // Function to handle voting
 function vote(optionIndex) {
-    votes[optionIndex]++;
-    updateResults();
+    if (!hasVoted) {
+        votes[optionIndex]++;
+        updateResults();
+        hasVoted = true;
+
+        // Disable all options after voting
+        const options = document.querySelectorAll('.poll .options .answer');
+        options.forEach((option) => {
+            option.classList.add('disabled');
+        });
+    }
 }
