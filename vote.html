@@ -1,31 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon" href="assets/image/favicons/favicon.ico" type="image/png"/>
+    <link rel="icon" href="assets/image/favicons/favicon.ico" type="image/png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DevenSMP Mob Vote</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Poll System</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <h1>Which mob would you like to be added to Minecraft?</h1>
     <form id="pollForm">
         <label>
-            <input type="radio" name="color" value="red"> Crab
+            <input type="radio" name="mob" value="crab"> Crab
         </label>
         <label>
-            <input type="radio" name="color" value="blue"> Armadillo
+            <input type="radio" name="mob" value="armadillo"> Armadillo
         </label>
         <label>
-            <input type="radio" name="color" value="green"> Penguin
+            <input type="radio" name="mob" value="penguin"> Penguin
         </label>
         <button type="submit">Vote</button>
     </form>
     <div id="results" class="hidden">
         <h2>Results:</h2>
-        <div id="redResult">Red: <span id="redPercentage">0%</span></div>
-        <div id="blueResult">Blue: <span id="bluePercentage">0%</span></div>
-        <div id="greenResult">Green: <span id="greenPercentage">0%</span></div>
+        <div id="crabResult">Crab: <span id="crabPercentage">0%</span></div>
+        <div id="armadilloResult">Armadillo: <span id="armadilloPercentage">0%</span></div>
+        <div id="penguinResult">Penguin: <span id="penguinPercentage">0%</span></div>
     </div>
     <script src="script.js"></script>
 </body>
