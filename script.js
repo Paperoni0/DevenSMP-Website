@@ -11,7 +11,11 @@ function updateResults() {
     options.forEach((option, index) => {
         const percentage = totalVotes === 0 ? 0 : (votes[index] / totalVotes) * 100;
         option.querySelector('.percentage-value').textContent = percentage.toFixed(1) + '%';
-        option.querySelector('.percentage-bar').style.width = percentage.toFixed(1) + '%';
+
+        // Update the percentage bar width and color
+        const percentageBar = option.querySelector('.percentage-bar');
+        percentageBar.style.width = percentage.toFixed(1) + '%';
+        percentageBar.style.backgroundColor = '#8f9fe8'; // Change the color as desired
     });
 }
 
