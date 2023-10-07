@@ -1,3 +1,12 @@
+function markAnswer(i){
+    poll.selectedAnswer = +i;
+    try {
+      document.querySelector(".poll .answers .answer.selected").classList.remove("selected");
+    } catch(msg){}
+    document.querySelectorAll(".poll .answers .answer")[+i].classList.add("selected");
+    showResults();
+  }
+
 document.addEventListener("DOMContentLoaded", function(){
   let poll = {
   question: "Minecraft Mob Vote For DevenSMP",
@@ -27,15 +36,6 @@ document.addEventListener("DOMContentLoaded", function(){
       `
     );
   }).join("");
-
-  function markAnswer(i){
-    poll.selectedAnswer = +i;
-    try {
-      document.querySelector(".poll .answers .answer.selected").classList.remove("selected");
-    } catch(msg){}
-    document.querySelectorAll(".poll .answers .answer")[+i].classList.add("selected");
-    showResults();
-  }
 
   function showResults(){
     let answers = document.querySelectorAll(".poll .answers .answer");
