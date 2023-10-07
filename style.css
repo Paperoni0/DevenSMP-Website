@@ -67,3 +67,14 @@ body {
     z-index: -1;
     transition: width 300ms ease-in-out;
 }
+
+.poll .options .answer .percentage-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%; /* Initially set to 0% */
+    height: 100%;
+    background: #ccd8f1; /* Set the background color of the percentage bar */
+    z-index: -1;
+    transition: width 300ms ease-in-out;
+}
