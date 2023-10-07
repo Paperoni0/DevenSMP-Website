@@ -61,7 +61,7 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    width: 50%;
+    width: 0%; /* Initially set to 0% */
     height: 100%;
     background: #ccd8f1;
     z-index: -1;
