@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function(){
       document.querySelector(".poll .answers .answer.selected").classList.remove("selected");
     } catch(msg){}
     document.querySelectorAll(".poll .answers .answer")[+i].classList.add("selected");
-    showresults();
+    showResults();
   }
 
   function showResults(){
