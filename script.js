@@ -1,4 +1,3 @@
-// Initialize vote counts for each option
 let votes = [0, 0, 0];
 
 // Function to update the poll results
