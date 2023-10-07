@@ -1,39 +1,60 @@
-document.addEventListener("DOMContentLoaded", function () {
-    let poll = {
-        question: "Minecraft Mob Vote For DevenSMP",
-        answers: ["Crab", "Armadillo", "Penguin"],
-        pollCount: 20,
-        answersWeight: [4, 4, 2],
-        selectedAnswer: -1,
-    };
+const pollForm = document.getElementById("pollForm");
+const resultsContainer = document.getElementById("results");
+const crabResult = document.getElementById("crabResult");
+const armadilloResult = document.getElementById("armadilloResult");
+const penguinResult = document.getElementById("penguinResult");
+const crabPercentage = document.getElementById("crabPercentage");
+const armadilloPercentage = document.getElementById("armadilloPercentage");
+const penguinPercentage = document.getElementById("penguinPercentage");
 
-    let pollDOM = {
-        question: document.querySelector(".poll .question"),
-        answers: document.querySelectorAll(".poll .answers .answer"),
-    };
+pollForm.addEventListener("submit", function (e) {
+    e.preventDefault();
 
-    pollDOM.question.innerText = poll.question;
-
-    function vote(index) {
-        poll.selectedAnswer = index;
-        pollDOM.answers.forEach((answer, i) => {
-            answer.classList.remove("selected");
-            if (i === index) {
-                answer.classList.add("selected");
-            }
-        });
-        showResults();
+    const selectedOption = document.querySelector('input[name="mob"]:checked');
+    if (!selectedOption) {
+        alert("Please select a mob.");
+        return;
     }
 
-    function showResults() {
-        pollDOM.answers.forEach((answer, i) => {
-            let percentage = 0;
-            if (i === poll.selectedAnswer) {
-                percentage = Math.round((poll.answersWeight[i] + 1) * 100 / (poll.pollCount + 1));
-            }
+    const selectedValue = selectedOption.value;
 
-            answer.querySelector(".percentage-bar").style.width = percentage + "%";
-            answer.querySelector(".percentage-value").innerText = percentage + "%";
-        });
-    }
+    // Simulate sending data to a server (you would use AJAX in a real application).
+    // For this example, we'll use localStorage to store and retrieve results.
+    const storedResults = JSON.parse(localStorage.getItem("pollResults")) || {
+        crab: 0,
+        armadillo: 0,
+        penguin: 0,
+    };
+
+    storedResults[selectedValue]++;
+    localStorage.setItem("pollResults", JSON.stringify(storedResults));
+
+    displayResults();
 });
+
+function displayResults() {
+    const storedResults = JSON.parse(localStorage.getItem("pollResults"));
+
+    const totalVotes = storedResults.crab + storedResults.armadillo + storedResults.penguin;
+
+    const crabPercent = ((storedResults.crab / totalVotes) * 100).toFixed(2);
+    const armadilloPercent = ((storedResults.armadillo / totalVotes) * 100).toFixed(2);
+    const penguinPercent = ((storedResults.penguin / totalVotes) * 100).toFixed(2);
+
+    crabResult.textContent = `Crab: ${crabPercent}%`;
+    armadilloResult.textContent = `Armadillo: ${armadilloPercent}%`;
+    penguinResult.textContent = `Penguin: ${penguinPercent}%`;
+
+    crabPercentage.textContent = `${crabPercent}%`;
+    armadilloPercentage.textContent = `${armadilloPercent}%`;
+    penguinPercentage.textContent = `${penguinPercent}%`;
+
+    resultsContainer.style.display = "block";
+    pollForm.style.display = "none";
+}
+
+// Check if the user has voted before
+const storedResults = JSON.parse(localStorage.getItem("pollResults"));
+if (storedResults && (storedResults.crab > 0 || storedResults.armadillo > 0 || storedResults.penguin > 0)) {
+    displayResults();
+}
