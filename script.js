@@ -46,8 +46,9 @@ document.addEventListener("DOMContentLoaded", function(){
           (poll.answersWeight[i]+1) * 100 / (poll.pollCount+1)
         );
       }
-    }};
-    
-  answers[i].querySelector(".percentage-bar").style.width = percentage + "%";
-  answers[i].querySelector(".percentage-value").innerText = percentage + "%";
+
+      answers[i].querySelector(".percentage-bar").style.width = percentage + "%";
+      answers[i].querySelector(".percentage-value").innerText = percentage + "%";
+    }
+  }
 });
