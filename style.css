@@ -1,66 +1,76 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 body {
-    font-family: "Raleway", sans-serif;
-    background: #f0f5ff;
+    background-color: lightblue;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    color: #111;
 }
 
-.poll {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 400px;
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0px 0px 20px 5px rgba(35, 30, 128, 0.05);
+h1 {
+    color: #333;
 }
 
-.poll .question {
+form {
+    background-color: #f0f5ff;
+    margin: 20px auto;
     padding: 20px;
-    color: #111;
-    font-size: 18px;
-    border-bottom: 1px solid #eee;
-}
-
-.poll .answers .answer {
-    position: relative;
-    width: 100%;
-    height: 40px;
-    padding: 0px 10px;
-    line-height: 40px;
-    color: #111;
-    margin-bottom: 10px;
-    border: 1px solid #d4d4d4;
     border-radius: 10px;
-    cursor: pointer;
-    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-.poll .answers .answer.selected {
-    border: 2px solid #8f9fe8;
+label {
+    display: block;
+    margin: 10px;
+    position: relative;
 }
 
-.poll .answers .answer .percentage-bar {
-    position: absolute;
-    top: 0;
-    left: 0;
+/* Custom radio button style */
+input[type="radio"] {
+    opacity: 0;
     width: 0;
-    height: 100%;
-    background: #ccd8f1;
-    z-index: -1;
-    transition: width 300ms ease-in-out;
+    height: 0;
 }
 
-.poll .answers .answer .percentage-value {
+label::before {
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #111;
+    border-radius: 50%;
     position: absolute;
+    left: -30px;
     top: 50%;
-    right: 10px;
     transform: translateY(-50%);
-    color: #111;
-    font-size: 15px;
+    background-color: white;
+    cursor: pointer;
+}
+
+/* Change the color of the radio button when selected */
+input[type="radio"]:checked + label::before {
+    background-color: #111;
+}
+
+button {
+    display: block;
+    margin: 10px auto;
+    background-color: #111;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#results {
+    background-color: #111;
+    color: white;
+    display: none;
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.hidden {
+    display: none;
 }
