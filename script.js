@@ -48,7 +48,6 @@ document.addEventListener("DOMContentLoaded", function(){
       }
     }};
     
-    answers[i].querySelector(".percentage-bar").style.width = percentage + "%";
-    answers[i].querySelector(".percentage-value").innerText = percentage + "%";
-  }
+  answers[i].querySelector(".percentage-bar").style.width = percentage + "%";
+  answers[i].querySelector(".percentage-value").innerText = percentage + "%";
 });
