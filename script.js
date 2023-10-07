@@ -1,22 +1,22 @@
 document.addEventListener("DOMContentLoaded", function(){
   let poll = {
   question: "Minecraft Mob Vote For DevenSMP",
-  options:[
+  answers:[
     "Crab", "Armadillo", "Penguin"
   ],
   pollCOunt:20,
-  optionsWeight:[4, 4, 2, 10],
+  answersWeight:[4, 4, 2, 10],
   selectedOption:-1
 };
 
   let pollDOM = {
     question:document.querySelector(".poll .question"),
 
-    options:document.querySelector(".poll .options")
+    options:document.querySelector(".poll .answers")
   };
 
   pollDOM.question.innerText = poll.question;
-  poll.options.map(function(answer,i){
+  poll.answers.map(function(answer,i){
     return (
       `
       <div class = "answer" onclick="markAnswer('${i}')">
@@ -31,19 +31,19 @@ document.addEventListener("DOMContentLoaded", function(){
   function markAnswer(i){
     poll.selectedAnswer = +i;
     try {
-      document.querySelector(".poll .options.answer.selected").classList.remove("selected");
+      document.querySelector(".poll .answers .answer.selected").classList.remove("selected");
     } catch(msg){}
-    document.querySelectorAll(".poll .options .answer")[+i].classList.add("selected");
+    document.querySelectorAll(".poll .answers .answer")[+i].classList.add("selected");
     showresults();
   }
 
   function showResults(){
-    let answers = document.querySelectorAll(".poll .options .answer");
+    let answers = document.querySelectorAll(".poll .answers .answer");
     for(let i=0;i<answers.length;i++){
       let percentage = 0;
       if (i == poll.selectedAnswer){
         percentage = Math.round(
-          (poll.optionsWeight[i]+1) * 100 / (poll.pollCount+1)
+          (poll.answersWeight[i]+1) * 100 / (poll.pollCount+1)
         );
       }
     });
