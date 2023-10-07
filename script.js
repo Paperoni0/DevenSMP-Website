@@ -1,37 +1,51 @@
-const options = document.querySelectorAll("label");
-for (let i = 0; i < options.length; i++) {
-  options[i].addEventListener("click", ()=>{
-    for (let j = 0; j < options.length; j++) {
-      if(options[j].classList.contains("selected")){
-        options[j].classList.remove("selected");
-      }
-    }
+let poll = {
+  question: "Minecraft Mob Vote For DevenSMP",
+  options:[
+    "Crab", "Armadillo", "Penguin"
+  ],
+  pollCOunt:20,
+  optionsWeight:[4, 4, 2, 10],
+  selectedOption:-1
+};
 
-    options[i].classList.add("selected");
-    for (let k = 0; k < options.length; k++) {
-      options[k].classList.add("selectall");
-    }
+let pollDOM = {
+  question:document.querySelector(".poll .question"),
+  options:document.querySelector(".poll .options")
+};
 
-    let forVal = options[i].getAttribute("for");
-    let selectInput = document.querySelector("#"+forVal);
-    let getAtt = selectInput.getAttribute("type");
-    if(getAtt == "checkbox"){
-      selectInput.setAttribute("type", "radio");
-    }else if(selectInput.checked == true){
-      options[i].classList.remove("selected");
-      selectInput.setAttribute("type", "checkbox");
-    }
+pollDOM.question.innerText = poll.question;
+poll.options.map(function(answer,i){
+  return (
+    `
+      <div class = "answer" onclick="markAnswer('${i}')">
+        ${answer}
+        <span class = "percentage-bar"></span>
+        <span class = "percentage-value"></span>
+      </div>
+    `
+  );
+}).join("");
 
-    let array = [];
-    for (let l = 0; l < options.length; l++) {
-      if(options[l].classList.contains("selected")){
-        array.push(l);
-      }
+function markAnswer(i){
+  poll.selectedAnswer = +i;
+  try {
+    document.querySelector(".poll .options.answer.selected").classList.remove("selected");
+  } catch(msg){}
+  document.querySelectorAll(".poll .options .answer")[+i].classList.add("selected");
+  showresults();
+}
+
+function showResults(){
+  let answers = document.querySelectorAll(".poll .options .answer");
+  for(let i=0;i<answers.length;i++){
+    let percentage = 0;
+    if (i == poll.selectedAnswer){
+      percentage = Math.round(
+        (poll.optionsWeight[i]+1) * 100 / (poll.pollCount+1)
+      );
     }
-    if(array.length == 0){
-      for (let m = 0; m < options.length; m++) {
-        options[m].removeAttribute("class");
-      }
-    }
-  });
+    
+    answers[i].querySelector(".percentage-bar").style.width = percentage + "%";
+    answers[i].querySelector(".percentage-value").innerText = percentage + "%";
+  }
 }
