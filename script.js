@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function(){
   answers:[
     "Crab", "Armadillo", "Penguin"
   ],
-  pollCOunt:20,
+  pollCount:20,
   answersWeight:[4, 4, 2, 10],
   selectedOption:-1
 };
