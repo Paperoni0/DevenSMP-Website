@@ -12,10 +12,12 @@ header {
   width: 100%;
   left: 0;
   top: 0;
+  padding: 0 10px;
 }
 
 .navbar {
   display: flex;
+  padding: 22px 0;
   align-items: center;
   max-width: 1200px;
   margin: 0 auto;
@@ -51,3 +53,8 @@ header {
   text-decoration: none;
   font-size: 1.1rem;
   font-weight: 500;
+}
+
+.navbar .links a:hover {
+  color: #19e8ff;
+}
