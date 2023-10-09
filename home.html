@@ -3,19 +3,6 @@
   <head>
     <link rel="icon" href="images/favicons/favicon.ico" type="image/png">
     <title>DevenSMP</title>
+    <link rel="stylesheet" href="style.css">
   </head>
-  <body>
-    <button onclick="openFullScreen()">Do Not Click</button>
-    <img src="images/secret.gif" class="hide" id="secret">
-    
-    <script>
-      var elem = document.getElementbyId("secret");
-      function openFullScreen() {
-        if (elem.requestFullscreen) {
-          elem.classList.remove("hide");
-          elem.requestFullscreen();
-        }
-      }
-    </script>
-  </body>
 </html>
