@@ -6,12 +6,13 @@
   </head>
   <body>
     <button onclick="openFullScreen()">Do Not Click</button>
-    <img src="images/secret.gif">
+    <img src="images/secret.gif" class="hide" id="secret">
     
     <script>
       var elem = document.getElementbyId("secret");
       function openFullScreen() {
         if (elem.requestFullscreen) {
+          elem.classList.remove("hide");
           elem.requestFullscreen();
         }
       }
