@@ -8,28 +8,40 @@
     <link rel="icon" href="images/icons/favicon.ico" type="image/png"/>
     <title>Home | DevenSMP</title>
     <style text="text/css">
-      
+       body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        header {
+            background-color: rgba(255, 255, 255, 0.75);
+            padding: 15px;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+        }
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
     </style>
   </head>
   <body>
     <header>
-      <nav class="navbar">
-        <a href="" class="logo">
-          <img src="images/logo.png" alt="logo">
-          <h2>DevenSMP</h2>
-        </a>
-        <div class="navigation">
-          <a href="">Home</a>
-          <a href="store">Store</a>
-          <a href="tos">Terms Of Services</a>
-          <a href="about-us">About Us</a>
-          <a href="contact-us">Contact Us</a>
-        </div>
-      </nav>
+       <nav>
+            <a href="#">Home</a>
+            <a href="store">Store</a>
+            <a href="terms">Terms of Service</a>
+            <a href="about">About Us</a>
+            <a href="contact">Contact Us</a>
+        </nav>
     </header>
-
-    <script text="text/javascript">
-      const a = test;
-    </script>
   </body>
 </html>
