@@ -10,6 +10,7 @@
             font-family: Arial, sans-serif;
             margin: 20px;
             background-color: #f4f4f4;
+            position: relative;
         }
 
         .poll-container {
@@ -37,6 +38,20 @@
         #successMessage {
             margin-top: 10px;
         }
+
+        #resetButton {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px;
+            background-color: #dc3545;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            display: block;
+        }
     </style>
 </head>
 <body>
@@ -60,13 +75,19 @@
         <button type="button" onclick="submitVote()" id="submitButton">Submit Vote</button>
         <p id="successMessage"></p>
     </form>
+
+    <button type="button" id="resetButton" onclick="resetLocalStorage()">Reset Local Storage</button>
 </div>
 
 <script>
+    // Check if the user has already voted on page load
     window.onload = function () {
         if (hasVoted()) {
             disableButton();
-        }
+        };
+        if (localStorage.getItem('hasReset') === true) {
+            document.getElementById('resetButton').style.display = 'none';
+        };
     };
 
     function submitVote() {
@@ -121,6 +142,12 @@
     function disableButton() {
         const submitButton = document.getElementById('submitButton');
         submitButton.disabled = true;
+    }
+
+    function resetLocalStorage() {
+        localStorage.removeItem('hasVoted');
+        localStorage.setItem('hasReset', 'true');
+        document.getElementById('resetButton').style.display = 'none';
     }
 </script>
 </body>
