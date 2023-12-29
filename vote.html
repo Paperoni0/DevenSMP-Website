@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Poll</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        .poll-container {
+            max-width: 400px;
+            margin: auto;
+        }
+
+        .option {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="poll-container">
+    <h2>Vote for Your Favorite Option</h2>
+    <form id="pollForm">
+        <div class="option">
+            <label>
+                <input type="radio" name="vote" value="option1"> Option 1
+            </label>
+        </div>
+        <div class="option">
+            <label>
+                <input type="radio" name="vote" value="option2"> Option 2
+            </label>
+        </div>
+        <button type="button" onclick="submitVote()">Submit Vote</button>
+    </form>
+</div>
+
+<script>
+    function submitVote() {
+        var selectedOption = document.querySelector('input[name="vote"]:checked');
+      
+        if (selectedOption) {
+            var formData = new FormData();
+            formData.append('vote', selectedOption.value);
+            var apiEndpoint = 'YOUR_API_ENDPOINT';
+
+            fetch(apiEndpoint, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+            });
+        } else {
+            alert('Please select an option before submitting your vote.');
+        }
+    }
+</script>
+</body>
+</html>
