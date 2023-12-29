@@ -125,7 +125,6 @@
                 successMessage.style.color = 'green';
                 successMessage.textContent = 'Your vote has been sent! You can only vote once.';
                 localStorage.setItem('hasVoted', 'true');
-                hideResetButton();
             })
             .catch(error => {
                 console.error('There was a problem with the fetch operation:', error);
