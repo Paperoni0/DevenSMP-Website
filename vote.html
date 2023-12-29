@@ -93,6 +93,7 @@
             })
             .catch(error => {
                 console.error('There was a problem with the fetch operation:', error);
+                successMessage.textContent = 'An error occured while trying to request your vote, please try again later.'
             });
         } else {
             alert('Please enter your username and select an option before submitting your vote.');
