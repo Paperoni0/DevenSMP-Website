@@ -35,7 +35,6 @@
         }
 
         #successMessage {
-            color: green;
             margin-top: 10px;
         }
     </style>
@@ -91,11 +90,13 @@
             })
             .then(data => {
                 console.log('Vote submitted successfully', data);
+                successMessage.style.color = 'green';
                 successMessage.textContent = 'Your vote has been sent! You can only vote once.';
             })
             .catch(error => {
                 console.error('There was a problem with the fetch operation:', error);
-                successMessage.textContent = 'An error occured while trying to request your vote, please try again later.'
+                successMessage.style.color = 'red';
+                successMessage.textContent = 'An error occured while trying to request your vote, please try again later.';
             });
         } else {
             alert('Please enter your username and select an option before submitting your vote.');
