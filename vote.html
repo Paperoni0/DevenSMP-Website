@@ -9,15 +9,29 @@
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
+            background-color: #f4f4f4;
         }
 
         .poll-container {
             max-width: 400px;
             margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
         .option {
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -26,14 +40,17 @@
 <div class="poll-container">
     <h2>Vote for who will be the new Owner Of DevenSMP</h2>
     <form id="pollForm">
+        <label for="username">Your Minecraft Username:</label>
+        <input type="text" id="username" name="username" required style="width: 100%; padding: 8px; margin-bottom: 15px;">
+
         <div class="option">
             <label>
-                <input type="radio" name="vote" value="option1"> Jivakabp
+                <input type="radio" name="vote" value="Jivakabp"> Jivakabp
             </label>
         </div>
         <div class="option">
             <label>
-                <input type="radio" name="vote" value="option2"> MuchNo0nehas
+                <input type="radio" name="vote" value="MuchNo0nehas"> MuchNo0nehas
             </label>
         </div>
         <button type="button" onclick="submitVote()">Submit Vote</button>
@@ -42,10 +59,12 @@
 
 <script>
     function submitVote() {
+        var username = document.getElementById('username').value;
         var selectedOption = document.querySelector('input[name="vote"]:checked');
       
-        if (selectedOption) {
+        if (username && selectedOption) {
             var formData = new FormData();
+            formData.append('username', username);
             formData.append('vote', selectedOption.value);
             var apiEndpoint = 'YOUR_API_ENDPOINT';
 
@@ -59,11 +78,14 @@
                 }
                 return response.json();
             })
+            .then(data => {
+                console.log('Vote submitted successfully', data);
+            })
             .catch(error => {
                 console.error('There was a problem with the fetch operation:', error);
             });
         } else {
-            alert('Please select an option before submitting your vote.');
+            alert('Please enter your username and select an option before submitting your vote.');
         }
     }
 </script>
