@@ -65,18 +65,20 @@
 
 <script>
     function submitVote() {
-        var username = document.getElementById('username').value;
-        var selectedOption = document.querySelector('input[name="vote"]:checked');
-        var successMessage = document.getElementById('successMessage');
-        var submitButton = document.getElementById('submitButton');
+        const username = document.getElementById('username').value;
+        const selectedOption = document.querySelector('input[name="vote"]:checked');
+        const successMessage = document.getElementById('successMessage');
+        const submitButton = document.getElementById('submitButton');
 
         if (username && selectedOption) {
             submitButton.disabled = true;
-            var apiEndpoint = 'https://devensmp-website.paperoni0.repl.co/vote';
-
-            fetch(apiEndpoint, {
+            let formData = new FormData();
+            formData.append('username', username);
+            formData.append('vote', selectedOption.value);
+            
+            fetch('https://devensmp-website.paperoni0.repl.co/vote', {
                 method: 'POST',
-                body: JSON.stringify({ username, selectionOption.value }),
+                body: formData,
                 headers: {
                     'Content-Type': 'application/json',
                 },
