@@ -72,13 +72,13 @@
 
         if (username && selectedOption) {
             submitButton.disabled = true;
-            let formData = new FormData();
-            formData.append('username', username);
-            formData.append('vote', selectedOption.value);
             
             fetch('https://devensmp-website.paperoni0.repl.co/vote', {
                 method: 'POST',
-                body: formData,
+                body: JSON.stringify({
+                    username: username,
+                    vote: selectedOption,
+                }),
                 headers: {
                     'Content-Type': 'application/json',
                 },
