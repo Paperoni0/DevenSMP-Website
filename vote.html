@@ -68,8 +68,10 @@
         var username = document.getElementById('username').value;
         var selectedOption = document.querySelector('input[name="vote"]:checked');
         var successMessage = document.getElementById('successMessage');
+        var submitButton = document.getElementById('submitButton');
 
         if (username && selectedOption) {
+            submitButton.disabled = true;
             var apiEndpoint = 'https://devensmp-website.paperoni0.repl.co/vote';
 
             fetch(apiEndpoint, {
