@@ -33,6 +33,11 @@
             border-radius: 4px;
             cursor: pointer;
         }
+
+        #successMessage {
+            color: green;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
@@ -54,6 +59,7 @@
             </label>
         </div>
         <button type="button" onclick="submitVote()">Submit Vote</button>
+        <p id="successMessage">Your vote has been sent! Do not vote again because you can only vote once.</p>
     </form>
 </div>
 
@@ -61,7 +67,8 @@
     function submitVote() {
         var username = document.getElementById('username').value;
         var selectedOption = document.querySelector('input[name="vote"]:checked');
-      
+        var successMessage = document.getElementById('successMessage');
+
         if (username && selectedOption) {
             var formData = new FormData();
             formData.append('username', username);
@@ -80,6 +87,7 @@
             })
             .then(data => {
                 console.log('Vote submitted successfully', data);
+                successMessage.textContent = 'Your vote is successful!';
             })
             .catch(error => {
                 console.error('There was a problem with the fetch operation:', error);
