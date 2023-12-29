@@ -69,6 +69,11 @@
         const successMessage = document.getElementById('successMessage');
         const submitButton = document.getElementById('submitButton');
 
+        if (localStorage.getItem('hasVoted') === true) {
+            alert('You have already voted! You cannon vote anymore.');
+            return;
+        };
+
         if (username && selectedOption) {
             fetch('https://devensmp-website.paperoni0.repl.co/vote', {
                 method: 'POST',
@@ -91,6 +96,7 @@
                 submitButton.disabled = true;
                 successMessage.style.color = 'green';
                 successMessage.textContent = 'Your vote has been sent! You can only vote once.';
+                localStorage.setItem('hasVoted', 'true');
             })
             .catch(error => {
                 console.error('There was a problem with the fetch operation:', error);
