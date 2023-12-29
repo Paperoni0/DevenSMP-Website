@@ -70,14 +70,14 @@
         var successMessage = document.getElementById('successMessage');
 
         if (username && selectedOption) {
-            var formData = new FormData();
-            formData.append('username', username);
-            formData.append('vote', selectedOption.value);
             var apiEndpoint = 'https://devensmp-website.paperoni0.repl.co/vote';
 
             fetch(apiEndpoint, {
                 method: 'POST',
-                body: formData
+                body: JSON.stringify({ username, selectionOption.value }),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
             })
             .then(response => {
                 if (!response.ok) {
