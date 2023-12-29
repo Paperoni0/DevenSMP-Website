@@ -76,17 +76,16 @@
         <p id="successMessage"></p>
     </form>
 
-    <button type="button" id="resetButton" onclick="resetLocalStorage()">Click this button to vote again if you have already voted and vote again</button>
+    <button type="button" id="resetButton" onclick="resetLocalStorage()">Reset Button</button>
 </div>
 
 <script>
-    // Check if the user has already voted on page load
     window.onload = function () {
         if (hasVoted()) {
             disableButton();
         };
-        if (localStorage.getItem('hasReset') === true) {
-            document.getElementById('resetButton').style.display = 'none';
+        if (hasResetLocalStorage()) {
+            hideResetButton();
         };
     };
 
@@ -139,15 +138,24 @@
         return localStorage.getItem('hasVoted') === 'true';
     }
 
+    function hasResetLocalStorage() {
+        return localStorage.getItem('hasResetLocalStorage') === 'true';
+    }
+
     function disableButton() {
         const submitButton = document.getElementById('submitButton');
         submitButton.disabled = true;
     }
-    
+
+    function hideResetButton() {
+        const resetButton = document.getElementById('resetButton');
+        resetButton.style.display = 'none';
+        localStorage.setItem('hasResetLocalStorage', 'true');
+    }
+
     function resetLocalStorage() {
         localStorage.removeItem('hasVoted');
-        localStorage.setItem('hasReset', 'true');
-        document.getElementById('resetButton').style.display = 'none';
+        hideResetButton();
     }
 </script>
 </body>
