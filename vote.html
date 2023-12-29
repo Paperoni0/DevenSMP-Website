@@ -83,6 +83,8 @@
     window.onload = function () {
         if (hasVoted()) {
             disableButton();
+        } else {
+            hideResetButton();
         };
         if (hasResetLocalStorage()) {
             hideResetButton();
