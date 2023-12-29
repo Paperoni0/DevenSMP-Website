@@ -63,6 +63,13 @@
 </div>
 
 <script>
+    window.onload = function() {
+        if (localStorage.getItem('hasVoted') === true) {
+            const submitButton = document.getElementById('submitButton');
+            submitButton.disabled = true;
+        };
+    };
+    
     function submitVote() {
         const username = document.getElementById('username').value;
         const selectedOption = document.querySelector('input[name="vote"]:checked');
