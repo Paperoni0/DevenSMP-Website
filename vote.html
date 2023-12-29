@@ -63,23 +63,22 @@
 </div>
 
 <script>
-    window.onload = function() {
-        if (localStorage.getItem('hasVoted') === true) {
-            const submitButton = document.getElementById('submitButton');
-            submitButton.disabled = true;
-        };
+    window.onload = function () {
+        if (hasVoted()) {
+            disableButton();
+        }
     };
-    
+
     function submitVote() {
         const username = document.getElementById('username').value;
         const selectedOption = document.querySelector('input[name="vote"]:checked');
         const successMessage = document.getElementById('successMessage');
         const submitButton = document.getElementById('submitButton');
 
-        if (localStorage.getItem('hasVoted') === true) {
-            alert('You have already voted! You cannon vote anymore.');
+        if (hasVoted()) {
+            alert('You have already voted! You cannot vote anymore.');
             return;
-        };
+        }
 
         if (username && selectedOption) {
             fetch('https://devensmp-website.paperoni0.repl.co/vote', {
@@ -108,11 +107,20 @@
             .catch(error => {
                 console.error('There was a problem with the fetch operation:', error);
                 successMessage.style.color = 'red';
-                successMessage.textContent = 'An error occured while trying to request your vote, please try again later.';
+                successMessage.textContent = 'An error occurred while trying to submit your vote. Please try again later.';
             });
         } else {
             alert('Please enter your username and select an option before submitting your vote.');
         }
+    }
+
+    function hasVoted() {
+        return localStorage.getItem('hasVoted') === 'true';
+    }
+
+    function disableButton() {
+        const submitButton = document.getElementById('submitButton');
+        submitButton.disabled = true;
     }
 </script>
 </body>
