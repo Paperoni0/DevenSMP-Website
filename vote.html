@@ -56,6 +56,8 @@
 </head>
 <body>
 
+<h1>Vote has ended, thank you for voting! :)</h1>
+
 <div class="poll-container">
     <h2>Vote for who will be the new Owner Of DevenSMP</h2>
     <form id="pollForm">
@@ -81,14 +83,8 @@
 
 <script>
     window.onload = function () {
-        if (hasVoted()) {
-            disableButton();
-        } else {
-            hideResetButton();
-        };
-        if (hasResetLocalStorage()) {
-            hideResetButton();
-        };
+        disableButton();
+        hideResetButton();
     };
 
     function submitVote() {
