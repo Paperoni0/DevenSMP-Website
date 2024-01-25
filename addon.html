@@ -7,6 +7,23 @@
   <title>Download Addon | DevenSMP</title>
   <style>
     body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    header {
+      background-color: rgba(255, 255, 255, 0.75);
+      padding: 15px;
+      text-align: center;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+    }
+
+    .main {
       display: flex;
       align-items: center;
       justify-content: center;
@@ -22,12 +39,12 @@
       background-color: lightcyan;
     }
 
-    img {
+    .main .container img {
       max-width: 100%;
       height: auto;
     }
 
-    button {
+    .main button {
       padding: 10px 20px;
       background-color: #4CAF50;
       color: white;
@@ -39,11 +56,36 @@
   </style>
 </head>
 <body>
-  <div class="container">
-    <img src="images/dlc.png" alt="Reload If You See This">
-    <p>Special DevenSMP Exclusive Addon</p>
+  <header>
+    <nav class="topNav">
+      <a href="#">
+        <div class="topNavLogo">
+          <img src="images/logo.png">
+        </div>
+        <div class="topNavText">DevenSMP</div>
+      </a>
+      <img src="images/main_menu.png" alt="Main Menu">
+    </nav>
+    <nav class="sideNav">
+      <a href="#">
+        <div class="sideNavLogo">
+          <img src="images/logo.png" alt="Logo">
+        </div>
+        <div class="sideNavText">DevenSMP</div>
+      </a>
+      <a href="store">Store</a>
+      <a href="terms">Terms Of Service</a>
+      <a href="about">About Us</a>
+      <a href="contact">Contact Us</a>
+    </nav>
+  </header>
+  <div class="main">
+    <div class="container">
+      <img src="images/addon.png" alt="Reload The Page If You See This">
+      <p>Special DevenSMP Exclusive Addon</p>
+    </div>
+    <button onClick="buttonClicked()">Download</button>
   </div>
-  <button onClick="buttonClicked()">Download</button>
   <script>
     document.addEventListener('contextmenu', event => event.preventDefault());
 
