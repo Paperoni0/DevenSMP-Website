@@ -26,7 +26,6 @@
         }
 
         #navTop {
-           display: none;
            position: fixed;
            top: 0;
            height: 50px;
@@ -110,8 +109,8 @@
 
     <script>
         document.getElementById('toggleButton').addEventListener('click', function() {
-            var nav = document.querySelector('nav');
-            nav.style.display = (nav.style.display === 'flex') ? 'none' : 'flex';
+            var navSide = document.getElementById('navSide');
+            navSide.style.display = (navSide.style.display === 'flex') ? 'none' : 'flex';
         });
     </script>
 </body>
