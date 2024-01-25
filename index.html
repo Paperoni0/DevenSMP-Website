@@ -34,6 +34,14 @@
            box-sizing: border-box;
         }
 
+        #navTop #logoTop {
+           position: absolute;
+           top: 10px;
+           left: 10px;
+           height: 35px;
+           width: 35px;
+        }
+
         #navSide {
             display: none;
             position: fixed;
@@ -93,6 +101,12 @@
 <body>
     <header>
         <nav id="navTop">
+            <div id="logoTop">
+               <a href="#">
+                  <img src="images/logo.png">
+                  <div id="logoTopText">DevenSMP</div>
+               </a>
+            </div>
             <img src="images/main_menu.png" alt="Main Menu" id="toggleButton">
         </nav>
         <nav id="navSide">
