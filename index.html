@@ -25,7 +25,17 @@
             justify-content: center;
         }
 
-        nav {
+        #navTop {
+           display: none;
+           position: fixed;
+           top: 0;
+           height: 50px;
+           width: 100%
+           border-bottom: 1px solid #808080;
+           box-sizing: border-box;
+        }
+
+        #navSide {
             display: none;
             position: fixed;
             top: 0;
@@ -51,9 +61,6 @@
             right: 40px;
             height: 45px;
             width: 45px;
-            border-bottom: 5px solid #333;
-            width: 100%;
-            box-sizing: border-box;
         }
 
         #logo {
@@ -84,8 +91,10 @@
 </head>
 <body>
     <header>
-        <img src="images/main_menu.png" alt="Main Menu" id="toggleButton">
-        <nav>
+        <nav id="navTop">
+            <img src="images/main_menu.png" alt="Main Menu" id="toggleButton">
+        </nav>
+        <nav id="navSide">
             <div id="logoSidebar">
                 <a href="#">
                     <img src="images/logo.png" alt="Logo">
