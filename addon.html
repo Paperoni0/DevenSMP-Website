@@ -21,9 +21,69 @@
       z-index: 1000;
       display: flex;
       align-items: center;
+      justify-content: center;
     }
 
-    .main {
+    #topNav {
+      position: fixed;
+      top: 0;
+      height: 50px;
+      width: 100%;
+      border-bottom: 1px solid #808080;
+      box-sizing: border-box;
+    }
+
+    #topNavLogo {
+      position: absolute;
+      top: 10px;
+      left: 0px;
+      width: 40px;
+      height: 40px;
+      margon-right: 5px;
+      display: flex;
+      align-items: center;
+    }
+
+    #topNavText {
+      font-size: 20px;
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+    }
+
+    #sideNav {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 175px;
+      background-color: rgba(100, 215, 235, 0.75);
+      flex-direction: column;
+      align-items: center;
+      padding: 15px;
+      border-right: 2px solid #333;
+      box-sizing: border-box;
+    }
+
+    #sideNavLogo {
+      width: 50px;
+      height: 50px;
+      margin-bottom: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    #sideNavText {
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+    }
+
+    #main {
       display: flex;
       align-items: center;
       justify-content: center;
@@ -32,19 +92,19 @@
       flex-direction: column;
     }
 
-    .container {
+    #box {
       text-align: center;
       margin-bottom: 20px;
       font-weight: bold;
       background-color: lightcyan;
     }
 
-    .main .container img {
+    #box img {
       max-width: 100%;
       height: auto;
     }
 
-    .main button {
+    #main button {
       padding: 10px 20px;
       background-color: #4CAF50;
       color: white;
@@ -57,21 +117,21 @@
 </head>
 <body>
   <header>
-    <nav class="topNav">
+    <nav id="topNav">
       <a href="#">
-        <div class="topNavLogo">
+        <div id="topNavLogo">
           <img src="images/logo.png">
         </div>
-        <div class="topNavText">DevenSMP</div>
+        <div id="topNavText">DevenSMP</div>
       </a>
       <img src="images/main_menu.png" alt="Main Menu">
     </nav>
-    <nav class="sideNav">
+    <nav id="sideNav">
       <a href="#">
-        <div class="sideNavLogo">
+        <div id="sideNavLogo">
           <img src="images/logo.png" alt="Logo">
         </div>
-        <div class="sideNavText">DevenSMP</div>
+        <div id="sideNavText">DevenSMP</div>
       </a>
       <a href="store">Store</a>
       <a href="terms">Terms Of Service</a>
@@ -79,8 +139,8 @@
       <a href="contact">Contact Us</a>
     </nav>
   </header>
-  <div class="main">
-    <div class="container">
+  <div id="main">
+    <div id="box">
       <img src="images/addon.png" alt="Reload The Page If You See This">
       <p>Special DevenSMP Exclusive Addon</p>
     </div>
