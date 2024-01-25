@@ -56,17 +56,6 @@
            margin-right: 5px;
         }
 
-        .overlay {
-           position: fixed;
-           display: flex;
-           width: 100vw;
-           height: 100vh;
-           align-items: center;
-           justify-content: center;
-           background: rgba(255, 255, 255, 0);
-           pointer-events: none;
-        }
-
         #logoTopText {
            font-size: 20px;
         }
@@ -129,7 +118,6 @@
 </head>
 <body>
     <header>
-        <div class="overlay"></div>
         <nav id="navTop">
             <div id="logoTop">
                <a href="#">
@@ -154,6 +142,9 @@
     </header>
 
     <script>
+            document.addEventListener('contextmenu', function (e) => {
+e.preventDefault();
+}
         document.getElementById('toggleButton').addEventListener('click', function() {
             var navSide = document.getElementById('navSide');
             navSide.style.display = (navSide.style.display === 'flex') ? 'none' : 'flex';
