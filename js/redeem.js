@@ -6,7 +6,7 @@ document.getElementById('toggleButton').addEventListener('click', function() {
 document.getElementById('codeForm').addEventListener('submit', (event) => {
     event.preventDefault();
     const code = document.getElementById('code').value.toLowerCase();
-    const invalid = document.getElementById('invalid').style.display;
+    let invalid = document.getElementById('invalid').style.display;
     switch(code) {
         case 'freegift69':
             invalid = 'none';
