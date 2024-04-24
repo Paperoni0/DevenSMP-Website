@@ -9,6 +9,7 @@ document.getElementById('codeForm').addEventListener('submit', (event) => {
     switch(code) {
         case 'freegift69':
             document.getElementById('invalid').style.display = 'none';
+            document.getElementById('rickroll').style.display = 'block';
             const rickroll = document.getElementById('rickrollVideo');
             rickroll.requestFullscreen().catch(error => {
                 console.error(`Error attempting to request fullscreen mode for rickroll video: ${error}`);
