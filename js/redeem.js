@@ -6,17 +6,16 @@ document.getElementById('toggleButton').addEventListener('click', function() {
 document.getElementById('codeForm').addEventListener('submit', (event) => {
     event.preventDefault();
     const code = document.getElementById('code').value.toLowerCase();
-    let invalid = document.getElementById('invalid').style.display;
     switch(code) {
         case 'freegift69':
-            invalid = 'none';
+            document.getElementById('invalid').style.display = 'none';
             const rickroll = document.getElementById('rickrollVideo');
             rickroll.requestFullscreen().catch(error => {
                 console.error(`Error attempting to request fullscreen mode for rickroll video: ${error}`);
             });
             break;
         default:
-            invalid = 'block';
+            document.getElementById('invalid').style.display = 'block';
     }
 });
 
