@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width initial-scale=1.0">
+  <link rel="icon" href="assets/images/icons/favicon.ico" type="image/png">
+  <title>Code Redemption | DevenSMP</title>
+  <link rel="stylesheet" href="css/redeem.css">
+</head>
+<body>
+  <header>
+    <nav id="navTop">
+      <div id="logoTop">
+        <a href="#">
+          <img src="assets/images/logo.png">
+          <div id="logoTopText">DevenSMP</div>
+        </a>
+      </div>
+      <img src="assets/images/main_menu.png" alt="Main Menu" id="toggleButton">
+    </nav>
+    <nav id="navSide">
+      <div id="logoSidebar">
+        <a href="#">
+          <img src="assets/images/logo.png" alt="Logo">
+          <div id="logoText">DevenSMP</div>
+        </a>
+      </div>
+      <a href="store">Store</a>
+      <a href="terms">Terms of Service</a>
+      <a href="about">About Us</a>
+      <a href="contact">Contact Us</a>
+    </nav>
+  </header>
+  <div id="container">
+    <h2>Redeem a Code</h2>
+    <form id="codeForm">
+      <label for="code">Enter The Code:</label>
+      <input type="text" id="code" name="code" required>
+      <button type="submit">Redeem</button>
+    </form>
+    <div id="invalid">
+      <button id="close" onclick="closeErrorPopUp()">X</button>
+      <h3>Error!</h3>
+      <p>The code that you entered is invalid or expired. Please try again!</p>
+    </div>
+    <div id="rickroll">
+      <video id="rickrollVideo" controls autoplay src="assets/videos/rickroll.mp4"></video>
+    </div>
+  </div>
+  <script type="module" src="js/redeem.js"></script>
+</body>
