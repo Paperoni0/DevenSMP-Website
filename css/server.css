@@ -1,0 +1,23 @@
+@font-face {
+    font-family: Minecraft;
+    src: url('../assets/fonts/minecraft.ttf');
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+    font-family: Minecraft, sans-serif;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+#comingSoonText {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #000;
+    font-size: 30px;
+    text-align: center;
+}
