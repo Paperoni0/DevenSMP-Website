@@ -1,0 +1,26 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Minecraft, sans-serif;
+    background-image: url('../assets/images/backgrounds/light/credit.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+body.light {
+    background-image: url('../assets/images/backgrounds/light/credit.jpg');
+}
+
+body.dark {
+    background-image: url('../assets/images/backgrounds/dark/credit.jpg');
+}
+
+main {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+}

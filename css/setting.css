@@ -1,0 +1,140 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Minecraft, sans-serif;
+    background-image: url('../assets/images/backgrounds/light/setting.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+body.light {
+    background-image: url('../assets/images/backgrounds/light/setting.jpg');
+}
+
+body.dark {
+    background-image: url('../assets/images/backgrounds/dark/setting.jpg');
+}
+
+#container {
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    gap: 10px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    justify-content: center;
+    align-items: center;
+}
+
+#container button {
+    width: 300px;
+    height: 50px;
+    border: none;
+    border-radius: 25px;
+    background-color: #007BFF;
+    color: #000;
+    font-size: 16px;
+    font-family: Minecraft, sans-serif;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+#container button:hover {
+    background-color: #0056b3;
+}
+
+#overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, .7);
+    z-index: 9998;
+}
+
+#themeContainer {
+    display: none;
+    position: absolute;
+    padding: 10px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 100px;
+    width: 200px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+#theme {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+#themeToggle {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+#themeSlider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+#themeSlider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: #fff;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+#themeToggle:checked + #themeSlider {
+    background-color: #000;
+}
+
+#themeToggle:checked + #themeSlider:before {
+    transform: translate(26px);
+}
+
+#light, #dark {
+    font-size: 20px;
+    color: #000;
+}
+
+#themeClose {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 20px;
+    color: #333;
+    cursor: pointer;
+}
+
+#themeClose:hover {
+    color: #FF0000;
+}
