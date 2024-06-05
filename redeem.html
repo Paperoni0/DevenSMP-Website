@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="icon" href="assets/images/icons/favicon.ico" type="image/x-icon">
+    <title>Code Redemption | DevenSMP</title>
+    <link rel="stylesheet" href="css/redeem.css">
+    <link rel="stylesheet" href="css/all.css">
+</head>
+<body>
+    <header>
+        <nav id="topBar">
+            <img src="assets/images/main_menu.png" alt="Main Menu" id="menuToggle">
+            <a href="home">
+                <img id="topLogo" src="assets/images/logo.png" alt="Logo">
+            </a>
+        </nav>
+        <nav id="menu">
+            <a href="home">
+                <img id="menuLogo" src="assets/images/logo.png" alt="Logo">
+            </a>
+            <div id="links">
+                <a href="about">About Us</a>
+                <a href="login">Login/Sign Up</a>
+                <a href="terms">Terms of Services</a>
+                <a href="redeem">Redeem a Code</a>
+                <a href="project">Projects</a>
+                <a href="server">Server</a>
+                <a href="setting">Settings</a>
+            </div>
+        </nav>
+    </header>
+    <div id="overlay"></div>
+    <div id="container">
+        <h2>Redeem a Code</h2>
+        <form id="codeForm">
+            <label for="code">Enter The Code:</label>
+            <input type="text" id="code" name="code" required>
+            <button type="submit">Redeem</button>
+        </form>
+    </div>
+    <div id="rickroll">
+        <video id="rickrollVideo" controls autoplay src="assets/videos/rickroll.mp4"></video>
+    </div>
+    <div id="invalid">
+        <button id="close" onclick="closeErrorPopUp()">X</button>
+        <h3>Error!</h3>
+        <p>The code that you entered is either invalid or expired, please try again!</p>
+    </div>
+    <div id="recaptcha">
+        <div class="g-recaptcha" data-callback="captchaCompleted" data-sitekey="6LcZ3sopAAAAAC7oBE1ZZVrcg-Rtk42VeVI2zwRv"></div>
+    </div>
+    <script src="js/redeem.js"></script>
+    <script src="js/all.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script>
+        function closeErrorPopUp() {
+            document.getElementById('invalid').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+        }
+
+        function captchaCompleted() {
+            window.location.href = 'https://youtu.be/KJ18cB2RzQw?si=V-Oyd7fcG9ms_Xuk';
+        }
+    </script>
+</body>

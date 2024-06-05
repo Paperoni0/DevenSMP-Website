@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="icon" href="assets/images/icons/favicon.ico" type="image/x-icon">
+    <title>404 | DevenSMP</title>
+    <link rel="stylesheet" href="css/404.css">
+    <link rel="stylesheet" href="css/all.css">
+</head>
+<body>
+    <header>
+        <nav id="topBar">
+            <img src="assets/images/main_menu.png" alt="Main Menu" id="menuToggle">
+            <a href="home">
+                <img id="topLogo" src="assets/images/logo.png" alt="Logo">
+            </a>
+        </nav>
+        <nav id="menu">
+            <a href="home">
+                <img id="menuLogo" src="assets/images/logo.png" alt="Logo">
+            </a>
+            <div id="links">
+                <a href="about">About Us</a>
+                <a href="login">Login/Sign Up</a>
+                <a href="terms">Terms of Services</a>
+                <a href="project">Projects</a>
+                <a href="server">Server</a>
+                <a href="setting">Settings</a>
+            </div>
+        </nav>
+    </header>
+    <h2>404</h2>
+    <h3>Page Not Found</h3>
+    <p>The requested page is not found, please check if you entered the correct path!</p>
+    <button id="back" onclick="backHome()">Go Back</button>
+    <script src="js/all.js"></script>
+    <script>
+        function backHome() {
+            window.location.href = '/home';
+        }
+    </script>
+</body>
+</html>
