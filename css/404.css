@@ -1,5 +1,9 @@
 body.light {
-    background-image: url('../assets/images/backgrounds/light/404.jpeg');
+    background-image: url('../assets/images/backgrounds/light/404.jpg');
+}
+
+body.dark {
+    background-image: url('../assets/images/backgrounds/dark/404.jpg');
 }
 
 h2 {
