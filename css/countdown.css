@@ -53,3 +53,16 @@ main {
     font-size: 1.5em;
     font-weight: bold;
 }
+
+#reminder {
+    font-size: 20px;
+    color: #FFFF00;
+    border: none;
+    border-radius: 8px;
+    transition: .4s;
+    curson: pointer;
+}
+
+#reminder:hover {
+    font-size: 25px;
+}
