@@ -49,6 +49,7 @@ body.dark {
     top: 75%;
     left: 50%;
     transform: translate(-50%, -50%);
+    font-family: Minecraft, sans-serif;
     font-size: 30px;
     background-color: #0cc0df;
     border: none;
