@@ -56,10 +56,10 @@ main {
 
 #reminder {
     font-size: 20px;
-    color: #FFFF00;
+    background-color: #FFFF00;
     border: none;
     border-radius: 8px;
-    transition: .4s;
+    transition-duration: .4s;
     curson: pointer;
 }
 
