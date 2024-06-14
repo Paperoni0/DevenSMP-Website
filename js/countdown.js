@@ -12,5 +12,29 @@ const x = setInterval(() => {
     document.getElementById("seconds").innerHTML = seconds + "s";
     if (distance < 0) {
         clearInterval(x);
+        document.getElementById('reminder').disabled = true;
     }
 }, 1000);
+
+document.getElementById('reminder').addEventListener('click', () => {
+    if (Notification.permission === 'granted') {
+        scheduleReminder();
+    } else if (Notification.permission !== 'denied') {
+        Notification.requestPermission().then(permission => {
+            if (permission === 'granted') {
+                scheduleReminder();
+            }
+        });
+    }
+});
+
+function scheduleReminder() {
+    const now = new Date().getTime();
+    const distance = countdownDate - now;
+    setTimeout(() => {
+        new Notification('Server Release', {
+            body: "The server's release countdown has ended, the server is releasing now!",
+            icon: '../assets/images/logo.png'
+        });
+    }, distance);
+}
