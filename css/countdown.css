@@ -1,0 +1,55 @@
+@keyframes rainbow {
+    0% { color: red; }
+    14.28% { color: orange; }
+    28.56% { color: yellow; }
+    42.84% { color: green; }
+    57.12% { color: blue; }
+    71.4% { color: indigo; }
+    85.68% { color: violet; }
+    100% { color: red; }
+}
+
+body.light {
+    background-image: url('../assets/images/backgrounds/light/countdown.jpg');
+}
+
+body.dark {
+    background-image: url('../assets/images/backgrounds/dark/countdown.jpg');
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+#title {
+    font-size: 50px;
+    color: #0cc0df;
+    margin-bottom: 20px;
+}
+
+#timer {
+    display: flex;
+    gap: 25px;
+    font-size: 2em;
+    animation: rainbow 5s linear infinite;
+    z-index: 1;
+}
+
+#timer div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#timer span {
+    font-size: 1.5em;
+    font-weight: bold;
+}
