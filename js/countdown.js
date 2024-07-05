@@ -1,4 +1,4 @@
-const countdownDate = new Date("October 24, 2024 17:00:00 UTC").getTime();
+const countdownDate = new Date("June 18, 2024 07:00:00 UTC").getTime();
 
 const x = setInterval(() => {
     const now = new Date().getTime();
@@ -22,14 +22,22 @@ const x = setInterval(() => {
 }, 1000);
 
 document.getElementById('reminder').addEventListener('click', () => {
+    if (!('Notification' in window)) {
+        console.error('This browser does not support notifications');
+        return;
+    }
     if (Notification.permission === 'granted') {
         scheduleReminder();
-    } else if (Notification.permission !== 'denied') {
+    } else if (Notification.permission === 'default') {
         Notification.requestPermission().then(permission => {
             if (permission === 'granted') {
                 scheduleReminder();
+            } else {
+                alert('Notification permission is denied, please allow the notification access for this to work!');
             }
         });
+    } else {
+        alert('Notification permission is denied, please allow the notification access for this to work!');
     }
 });
 
@@ -37,8 +45,8 @@ function scheduleReminder() {
     const now = new Date().getTime();
     const distance = countdownDate - now;
     setTimeout(() => {
-        new Notification('Server Release', {
-            body: "The server's release countdown has ended, the server is releasing now!",
+        const notification = new Notification("DevenSMP's 2nd Anniversary", {
+            body: "Today is DevenSMP's 2nd Anniversary! Happy birthday DevenSMP!",
             icon: '../assets/images/logo.png'
         });
     }, distance);
