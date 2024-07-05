@@ -61,7 +61,7 @@ main {
     border: none;
     border-radius: 8px;
     transition-duration: .4s;
-    curson: pointer;
+    cursor: pointer;
 }
 
 #reminder:hover {
