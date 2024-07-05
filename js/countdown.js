@@ -1,4 +1,5 @@
 const countdownDate = new Date("June 18, 2024 07:00:00 UTC").getTime();
+
 const x = setInterval(() => {
     const now = new Date().getTime();
     const distance = countdownDate - now;
@@ -11,8 +12,12 @@ const x = setInterval(() => {
     document.getElementById("minutes").innerHTML = minutes + "m";
     document.getElementById("seconds").innerHTML = seconds + "s";
     if (distance < 0) {
-        clearInterval(x);
         document.getElementById('reminder').disabled = true;
+        document.getElementById("days").innerHTML = "0d";
+        document.getElementById("hours").innerHTML = "0h";
+        document.getElementById("minutes").innerHTML = "0m";
+        document.getElementById("seconds").innerHTML = "0s";
+        clearInterval(x);
     }
 }, 1000);
 
