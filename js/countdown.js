@@ -35,11 +35,11 @@ document.getElementById('reminder').addEventListener('click', () => {
                 scheduleReminder();
                 alert('Success! Reminder has been set!');
             } else {
-                alert('Notification permission is denied, please allow the notification access for this to work!');
+                alert('Please allow the notification access for this to work!');
             }
         });
     } else {
-        alert('Notification permission is denied, please allow the notification access for this to work!');
+        alert('Please allow the notification access for this to work!');
     }
 });
 
