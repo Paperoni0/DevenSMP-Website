@@ -23,15 +23,17 @@ const x = setInterval(() => {
 
 document.getElementById('reminder').addEventListener('click', () => {
     if (!('Notification' in window)) {
-        console.error('This browser does not support notifications');
+        alert('This browser does not support notifications');
         return;
     }
     if (Notification.permission === 'granted') {
         scheduleReminder();
+        alert('Success! Reminder has been set!');
     } else if (Notification.permission === 'default') {
         Notification.requestPermission().then(permission => {
             if (permission === 'granted') {
                 scheduleReminder();
+                alert('Success! Reminder has been set!');
             } else {
                 alert('Notification permission is denied, please allow the notification access for this to work!');
             }
