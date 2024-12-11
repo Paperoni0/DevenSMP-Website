@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Minecraft Survey Form</title>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css"> <!-- Link to external CSS -->
+</head>
+<body>
+<div class="survey-form">
+<h1>Minecraft Survey</h1>
+<form action="/submit-survey" method="POST">
+<!-- Username -->
+<label for="username">What is your Minecraft username?</label>
+<input type="text" id="username" name="username" placeholder="Enter your username" required>
+
+<!-- Expectations -->
+<label for="expectations">What do you expect for S12 of DSMP? Explain:</label>
+<textarea id="expectations" name="expectations" placeholder="Share your thoughts..." required></textarea>
+
+<!-- Will you play? -->
+<label for="play-server">Will you actually play the server? Explain:</label>
+<textarea id="play-server" name="play_server" placeholder="Tell us why..." required></textarea>
+
+<!-- Submit Button -->
+<button type="submit">Submit</button>
+</form>
+<div class="footer">
+Powered by DevenSMP
+</div>
+</div>
+</body>
+</html>
