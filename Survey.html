@@ -11,6 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
     <script src="js/all.js" defer></script>
+  <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
 </head>
 <body>
     <header>
@@ -59,5 +60,18 @@
 Powered by DevenSMP
 </div>
 </div>
+   <script>
+        $(document).ready(function () {
+            $("#submit").on("click", function () {
+                $("#form").fadeOut();
+                $("#wlcm").html("Hello " + $("#name").val() + "<br> Thanks for filling our form!");
+            });
+        });
+   </script>
+  <button id="back" onclick="backHome()">Go Back</button>
+  <script>function backHome() {
+            window.location.href = '/home';
+        }
+  </script>
 </body>
 </html>
