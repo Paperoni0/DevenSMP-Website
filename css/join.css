@@ -1,0 +1,62 @@
+/* Reset some default styles */
+body, h2, h4, button {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f4f8; /* Light background */
+    color: #333; /* Dark text color */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+}
+
+/* Main container styles */
+main {
+    background-color: #ffffff; /* White background for the main content */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    padding: 20px;
+    text-align: center;
+    max-width: 400px; /* Limit the width */
+}
+
+/* Heading styles */
+h2 {
+    color: #007BFF; /* Blue color for the main heading */
+    margin-bottom: 10px;
+}
+
+h4 {
+    color: #28a745; /* Green color for the subheading */
+    margin-bottom: 20px;
+}
+
+/* Button styles */
+button {
+    background-color: #007BFF; /* Blue background */
+    color: white; /* White text */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px 20px; /* Padding for the button */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 16px; /* Font size */
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Note styles */
+strong {
+    display: block; /* Make it a block element */
+    margin-top: 20px; /* Space above */
+    color: #666; /* Grey color for the note */
+    font-size: 14px; /* Smaller font size */
+}
