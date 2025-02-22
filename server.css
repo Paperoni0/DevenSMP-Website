@@ -1,11 +1,9 @@
-/* Reset some default styles */
 body, h2, h4, button {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Body styles */
 body {
     font-family: Arial, sans-serif;
     background-color: #f0f4f8; /* Light background */
@@ -16,7 +14,7 @@ body {
     height: 100vh; /* Full viewport height */
 }
 
-/* Main container styles */
+
 main {
     background-color: #ffffff; /* White background for the main content */
     border-radius: 8px; /* Rounded corners */
@@ -37,7 +35,7 @@ h4 {
     margin-bottom: 20px;
 }
 
-/* Button styles */
+
 button {
     background-color: #007BFF; /* Blue background */
     color: white; /* White text */
@@ -53,7 +51,7 @@ button:hover {
     background-color: #0056b3; /* Darker blue on hover */
 }
 
-/* Note styles */
+
 strong {
     display: block; /* Make it a block element */
     margin-top: 20px; /* Space above */
