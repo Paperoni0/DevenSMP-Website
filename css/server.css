@@ -16,6 +16,7 @@ body {
 
 
 main {
+    font-family: Minecraft, sans-serif;
     background-color: #ffffff; /* White background for the main content */
     border-radius: 8px; /* Rounded corners */
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow */
