@@ -1,25 +1,23 @@
-body, h2, h4, button {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+body{
+body.light {
+    background-image: url('../assets/images/backgrounds/light/server.jpg');
 }
-
-body {
-    
-    background-color: #f0f4f8; /* Light background */
-    color: #333; /* Dark text color */
+    body.dark {
+    background-image: url('../assets/images/backgrounds/dark/server.png');
+    }
+     /* Light background 
+    color: #ffffff; */
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; /* Full viewport height */
+    height: 100vh; /*Full viewport height */
 }
 
 
 main {
-    font-family: Minecraft, sans-serif;
-    background-color: #ffffff; /* White background for the main content */
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    font-family: Minecraft, sans-serif; 
+    /* Rounded corners */
+     /* Subtle shadow */
     padding: 20px;
     text-align: center;
     max-width: 400px; /* Limit the width */
