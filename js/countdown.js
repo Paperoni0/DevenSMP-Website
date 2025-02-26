@@ -47,8 +47,8 @@ function scheduleReminder() {
     const now = new Date().getTime();
     const distance = countdownDate - now;
     setTimeout(() => {
-        const notification = new Notification("DevenSMP's 2nd Anniversary", {
-            body: "Today is DevenSMP's 2nd Anniversary! Happy birthday DevenSMP!",
+        const notification = new Notification("DevenSMP's 3rd Anniversary", {
+            body: "Today is DevenSMP's 3rd Anniversary! Happy birthday DevenSMP!",
             icon: '../assets/images/logo.png'
         });
     }, distance);
