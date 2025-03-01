@@ -1,6 +1,6 @@
 export async function onRequest(context) {
   try {
-    console.log(context.request.url);
+    return new Response(context.request.url);
   const url = new URL(context.request.url);
     const code = url.searchParams.get("code");
     console.log(code);
@@ -24,7 +24,6 @@ export async function onRequest(context) {
   });
   return new Response("Success!");
   } catch (error) {
-    console.error(error);
     return new Response(error);
   }
 }
