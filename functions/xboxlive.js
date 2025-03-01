@@ -21,7 +21,7 @@ export async function onRequest(context) {
     },
     body
   });
-  return new Response(await response.text(), {
+  return new Response(JSON.stringify(response), {
     status: response.status,
     headers: { "Content-Type": "application/json" }
   });
