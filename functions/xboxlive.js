@@ -19,11 +19,9 @@ export async function onRequest(context) {
     },
     body
   });
-  return new Response(await response.text(), {
-    status: response.status,
-    headers: { "Content-Type": "application/json" }
-  });
+  return new Response("Success!");
   } catch (error) {
     console.error(error);
+    return new Response();
   }
 }
