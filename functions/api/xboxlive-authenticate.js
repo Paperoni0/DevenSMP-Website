@@ -20,6 +20,7 @@ export async function onRequest(context) {
     },
     body
   })).json();
+  return new Response(JSON.stringify(response));
   if (response.status !== 200) {
     return new Response("Error! Something must've gone wrong while attempting to verify you, please contact one of our developers if this problem still persists.");
   }
