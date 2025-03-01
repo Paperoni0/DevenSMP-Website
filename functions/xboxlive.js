@@ -1,5 +1,6 @@
 export async function onRequest(context) {
-  const url = new URL(context.request.url);
+  try {
+    const url = new URL(context.request.url);
   const params = url.searchParams;
   const code = params.get("code");
   if (!code) {
@@ -24,4 +25,8 @@ export async function onRequest(context) {
     status: response.status,
     headers: { "Content-Type": "application/json" }
   });
+  } catch (error) {
+    console.error(error);
+    return new Response("Error!");
+  }
 }
