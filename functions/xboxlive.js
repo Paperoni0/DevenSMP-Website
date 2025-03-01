@@ -27,6 +27,7 @@ export async function onRequest(context) {
   });
   } catch (error) {
     console.error(error);
+    console.log(context);
     return new Response("Error!");
   }
 }
