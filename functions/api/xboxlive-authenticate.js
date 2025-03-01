@@ -2,7 +2,7 @@ export async function onRequest(context) {
   const url = new URL(context.request.url);
   const code = url.searchParams.get("code");
   const discord = url.searchParams.get("state");
-  if (!code) {
+  if (!code || !discord) {
     return new Response("Error! Something must've gone wrong while attempting to verify you, please contact one of our developers if this problem still persists.");
   }
   const timestamp = Date.now().toString();
