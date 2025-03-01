@@ -1,7 +1,9 @@
 export async function onRequest(context) {
   try {
+    console.log(context.request.url);
   const url = new URL(context.request.url);
     const code = url.searchParams.get("code");
+    console.log(code);
   if (!code) {
     return new Response("Error!");
   }
