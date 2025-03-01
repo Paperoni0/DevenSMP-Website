@@ -1,14 +1,13 @@
 export async function onRequest(context) {
   try {
   const url = new URL(context.request.url);
-    const code = url.searchParams.get("code");
-    return new Response(code);
-    console.log(code);
+  const code = url.searchParams.get("code");
+  const discord = url.searchParams.get("state");
   if (!code) {
     return new Response("Error!");
   }
   const timestamp = Date.now().toString();
-  const body = JSON.stringify(await context.request.json());
+  const body = JSON.stringify({ code, discord });
   const key = new TextEncoder().encode(context.env.APISECRET);
   const data = new TextEncoder().encode(timestamp + body);
   const signatureBuffer = await crypto.subtle.sign({ name: "HMAC", hash: "SHA-256" }, await crypto.subtle.importKey("raw", key, { name: "HMAC", hash: "SHA-256" }, false, ["sign"]), data);
