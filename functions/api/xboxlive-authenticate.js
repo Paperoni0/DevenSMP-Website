@@ -23,17 +23,18 @@ export async function onRequest(context) {
   if (!response.ok) {
     switch (response.status) {
       case 400:
-        break;
+        return;
       case 403:
-        break;
+        return;
       case 500:
-        break;
+        return;
       case 409:
-        break;
+        return;
       case 403:
-        break;
+        return;
       default:
-        break;
+        return new Response(response.status);
+        return;
     }
   }
   return Response.redirect("https://discord.com/channels/1217371163345424404/1339580236341182476");
