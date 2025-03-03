@@ -11,7 +11,7 @@ export async function onRequest(context) {
   const data = new TextEncoder().encode(timestamp + body);
   const signatureBuffer = await crypto.subtle.sign({ name: "HMAC", hash: "SHA-256" }, await crypto.subtle.importKey("raw", key, { name: "HMAC", hash: "SHA-256" }, false, ["sign"]), data);
   const signature = Array.from(new Uint8Array(signatureBuffer)).map((b) => b.toString(16).padStart(2, "0")).join("");
-  const response = (await fetch(`${context.env.APIURL}/xbox-auth`, {
+  const response = await fetch(`${context.env.APIURL}/xbox-auth`, {
     method: "POST",
     headers: {
       "Authorization": `HMAC ${signature}`,
@@ -19,9 +19,9 @@ export async function onRequest(context) {
       "Content-Type": "application/json"
     },
     body
-  })).json();
+  });
   return new Response(JSON.stringify(response));
-  if (response.status !== 200) {
+  if (!response.ok && response.status !== 200) {
     return new Response("Error! Something must've gone wrong while attempting to verify you, please contact one of our developers if this problem still persists.");
   }
   return Response.redirect("https://discord.com/channels/1217371163345424404/1339580236341182476");
