@@ -1,5 +1,4 @@
 export async function onRequest(context) {
-  return new Response(JSON.stringify(context));
   const url = new URL(context.request.url);
   const code = url.searchParams.get("code");
   const discord = url.searchParams.get("state");
@@ -34,7 +33,6 @@ export async function onRequest(context) {
       case 403:
         return;
       default:
-        return new Response(response.status);
         return;
     }
   }
