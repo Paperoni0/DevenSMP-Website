@@ -7,5 +7,5 @@ export async function onRequest(context) {
   }
   const decodedState = JSON.parse(atob(state));
   const data = btoa(JSON.stringify({ code, discord: decodedState.discord, type: decodedState.type }));
-  return Response.redirect(`https://devensmp.mnode.net:9134?data=${data}`);
+  return Response.redirect(`http://devensmp.mnode.net:9134?data=${data}`);
 }
