@@ -5,10 +5,6 @@ body.dark {
     background-image: url('../assets/images/backgrounds/dark/server.png');
 }
 
-/* Light background 
-color: #ffffff; */
-/* Full viewport height */
-
 #main {
     font-family: Minecraft, sans-serif; 
     padding: 20px;
@@ -16,23 +12,32 @@ color: #ffffff; */
     max-width: 400px; /* Limit the width */
 }
 
-/* Heading styles */
+
 h2 {
     color: #007BFF; /* Blue color for the main heading */
     margin-bottom: 10px;
     text-align: center;
+    position: absolute;
+    top: 20%;
+    left: 10%
 }
 
 h4 {
     color: #28a745; /* Green color for the subheading */
     margin-bottom: 20px;
     text-align: center;
+    position: absolute;
+    top: 25%;
+    left: 10%;
 }
 
 strong {
     color: #f0f0f0;
     font-size: 24px;
     text-align: center;
+    position: absolute;
+    top: 35%;
+    left: 10%;
 }
 
 #button {
@@ -44,6 +49,9 @@ strong {
     cursor: pointer; /* Pointer cursor on hover */
     font-size: 16px; /* Font size */
     transition: background-color 0.3s; /* Smooth transition */
+    position: absolute;
+    top: 30%;
+    left: 20%;
 }
 
 button:hover {
