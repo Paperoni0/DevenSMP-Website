@@ -19,7 +19,7 @@ h2 {
     text-align: center;
     position: absolute;
     top: 20%;
-    left: 10%
+    left: 5%;
 }
 
 h4 {
@@ -27,8 +27,8 @@ h4 {
     margin-bottom: 20px;
     text-align: center;
     position: absolute;
-    top: 25%;
-    left: 10%;
+    top: 30%;
+    left: 5%;
 }
 
 strong {
@@ -36,8 +36,8 @@ strong {
     font-size: 24px;
     text-align: center;
     position: absolute;
-    top: 35%;
-    left: 10%;
+    top: 40%;
+    left: 5%;
 }
 
 #button {
@@ -49,9 +49,6 @@ strong {
     cursor: pointer; /* Pointer cursor on hover */
     font-size: 16px; /* Font size */
     transition: background-color 0.3s; /* Smooth transition */
-    position: absolute;
-    top: 30%;
-    left: 20%;
 }
 
 button:hover {
