@@ -44,7 +44,7 @@ body.dark {
     color: #fff;
 }
 
-#signInButton {
+#see {
     position: absolute;
     top: 75%;
     left: 50%;
@@ -56,6 +56,17 @@ body.dark {
     border-radius: 8px;
     transition-duration: .4s;
     cursor: pointer;
+}
+#changelog {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: Minecraft, sans-serif;
+    font-size: 30px;
+    text-align: center;
+    color: #f0f0f0;
+    
 }
 
 #signInButton:hover {
