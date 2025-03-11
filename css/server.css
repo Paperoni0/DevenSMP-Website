@@ -1,14 +1,13 @@
 body.light {
     background-image: url('../assets/images/backgrounds/light/server.jpg');
 }
-    body.dark {
+body.dark {
     background-image: url('../assets/images/backgrounds/dark/server.png');
-    }
-     /* Light background 
-    color: #ffffff; */
-  /*Full viewport height */
 }
 
+/* Light background 
+color: #ffffff; */
+/* Full viewport height */
 
 #main {
     font-family: Minecraft, sans-serif; 
@@ -18,22 +17,23 @@ body.light {
 }
 
 /* Heading styles */
-#h2 {
+h2 {
     color: #007BFF; /* Blue color for the main heading */
     margin-bottom: 10px;
     text-align: center;
 }
 
-#h4 {
+h4 {
     color: #28a745; /* Green color for the subheading */
     margin-bottom: 20px;
     text-align: center;
 }
-#strong {
+
+strong {
     color: #f0f0f0;
     font-size: 24px;
     text-align: center;
-
+}
 
 #button {
     background-color: #007BFF; /* Blue background */
@@ -49,7 +49,6 @@ body.light {
 button:hover {
     background-color: #0056b3; /* Darker blue on hover */
 }
-
 
 strong {
     display: block; /* Make it a block element */
