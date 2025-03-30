@@ -42,7 +42,7 @@ jobs:
       - name: Generate Map with uNmINeD
         run: |
           mkdir -p live
-          ./unmined/unmined-cli render --world="world" --output="live"
+          ./unmined/unmined-cli web render --world="world" --output="live"
 
       - name: Organize uNmINeD Output
         run: |
