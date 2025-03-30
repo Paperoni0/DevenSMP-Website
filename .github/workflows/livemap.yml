@@ -1,4 +1,4 @@
-name: Update Live Map
+name: live-map-update
 
 on:
   schedule:
