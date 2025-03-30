@@ -50,9 +50,12 @@ jobs:
           echo "Map generation and organization complete."
 
       - name: Deploy to Cloudflare Pages
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "actions@github.com"
+          git remote set-url origin https://x-access-token:$GH_PAT@github.com/Paperoni0/DevenSMP-Website.git
           git add .
           git commit -m "Updated live map $(date)" || echo "No changes to commit"
-          git push
+          git push origin main
