@@ -1,0 +1,45 @@
+name: Update Live Map
+
+on:
+  schedule:
+    - cron: "0 * * * *"  # Runs every hour
+  workflow_dispatch:  # Allows manual runs
+
+jobs:
+  update-map:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: |
+          sudo apt update
+          sudo apt install -y rsync sshpass tar
+          curl -LO https://unmined.net/download/unmined-cli-linux-x64-dev
+          tar -xvzf unmined-cli_0.19.47-dev_linux-x64.tar.gz -C unmined
+          chmod +x unmined/unmined-cli
+
+      - name: Download Minecraft World via SFTP
+        env:
+          SFTP_HOST: ${{ secrets.SFTP_HOST }}
+          SFTP_USER: ${{ secrets.SFTP_USER }}
+          SFTP_PASSWORD: ${{ secrets.SFTP_PASSWORD }}
+        run: |
+          mkdir -p world
+          sshpass -p "$SFTP_PASSWORD" rsync -avz --delete "$SFTP_USER@$SFTP_HOST:worlds/DevenSMP/" world/
+
+      - name: Generate Map with uNmINeD
+        run: |
+          mkdir -p output
+          ./unmined/unmined-cli web render --world="world" --output="output"
+
+      - name: Deploy to Cloudflare Pages
+        run: |
+          rsync -avz --delete output/ public/
+          git config --global user.name "github-actions"
+          git config --global user.email "actions@github.com"
+          git add .
+          git commit -m "Updated map $(date)" || echo "No changes to commit"
+          git push
