@@ -28,11 +28,12 @@ jobs:
       - name: Download Minecraft World via SFTP
         env:
           SFTP_HOST: ${{ secrets.SFTP_HOST }}
+          SFTP_PORT: ${{ secrets.SFTP_PORT }}
           SFTP_USER: ${{ secrets.SFTP_USER }}
           SFTP_PASSWORD: ${{ secrets.SFTP_PASSWORD }}
         run: |
           mkdir -p world
-          sshpass -p "$SFTP_PASSWORD" rsync -avz --delete "$SFTP_USER@$SFTP_HOST:worlds/DevenSMP/" world/
+          sshpass -p "$SFTP_PASSWORD" rsync -avz --delete -e "ssh -p $SFTP_PORT -o StrictHostKeyChecking=no" "$SFTP_USER@$SFTP_HOST:worlds/DevenSMP/" world/
 
       - name: Generate Map with uNmINeD
         run: |
