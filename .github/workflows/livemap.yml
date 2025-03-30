@@ -16,7 +16,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt update
-          sudo apt install -y rsync sshpass tar
+          sudo apt install -y sshpass tar
 
       - name: Download uNmINeD CLI
         run: |
@@ -33,7 +33,11 @@ jobs:
           SFTP_PASSWORD: ${{ secrets.SFTP_PASSWORD }}
         run: |
           mkdir -p world
-          sshpass -p "$SFTP_PASSWORD" rsync -avz --delete -e "ssh -p $SFTP_PORT -o StrictHostKeyChecking=no" "$SFTP_USER@$SFTP_HOST:worlds/DevenSMP/" world/
+          sshpass -p "$SFTP_PASSWORD" sftp -o StrictHostKeyChecking=no -P $SFTP_PORT $SFTP_USER@$SFTP_HOST <<EOF
+          lcd world
+          get -r worlds/DevenSMP/*
+          bye
+          EOF
 
       - name: Generate Map with uNmINeD
         run: |
