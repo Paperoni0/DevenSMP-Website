@@ -20,8 +20,8 @@ jobs:
 
       - name: Download uNmINeD CLI
         run: |
-          curl -LO https://unmined.net/download/unmined-cli-linux-x64-dev
-          tar -xvzf unmined-cli_0.19.47-dev_linux-x64.tar.gz -C unmined
+          curl -L -o unmined.tar.gz https://unmined.net/download/unmined-cli-linux-x64-dev
+          tar -xvzf unmined.tar.gz -C unmined
           chmod +x unmined/unmined-cli
 
       - name: Download Minecraft World via SFTP
