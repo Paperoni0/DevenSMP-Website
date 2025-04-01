@@ -34,9 +34,9 @@ spawnFeature.setStyle(new ol.style.Style({
     text: new ol.style.Text({
         text: "World Spawn",
         offsetY: 20,
-        font: "bold 14px Arial",
+        font: "14px Arial",
         fill: new ol.style.Fill({ color: "#ffffff" }),
-        backgroundFill: new ol.style.Fill({ color: "rgba(0, 0, 0, 0.7)" }),
+        backgroundFill: new ol.style.Fill({ color: "#00000088" }),
         padding: [2, 4, 2, 4]
     })
 }));
@@ -69,7 +69,7 @@ function updatePlayerLocations() {
                             offsetY: 20,
                             font: "bold 14px Arial",
                             fill: new ol.style.Fill({ color: "#ffffff" }),
-                            backgroundFill: new ol.style.Fill({ color: "rgba(0, 0, 0, 0.7)" }),
+                            backgroundFill: new ol.style.Fill({ color: "#00000088" }),
                             padding: [2, 4, 2, 4]
                         })
                     }));
