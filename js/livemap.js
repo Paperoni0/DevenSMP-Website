@@ -3,6 +3,13 @@ const map = new ol.Map({
     layers: [
         new ol.layer.Tile({
             source: new ol.source.XYZ({
+                tileLoadFunction: function(imageTile, src) {
+                    let coords = imageTile.getTileCoord();
+                    let z = -coords[0];
+                    let x = coords[1];
+                    let z = coords[2];
+                    imageTile.getImage().src = `assets/images/livemap/tiles/zoom.-${z}/${x}/${y}/tile.${x}.${y}.jpeg`;
+                },
                 url: 'assets/images/livemap/tiles/zoom,-{z}/{x}/{y}.jpeg',
                 tileSize: 256,
                 minZoom: -6,
@@ -23,6 +30,14 @@ spawnFeature.setStyle(new ol.style.Style({
     image: new ol.style.Icon({
         src: 'assets/images/livemap/world_spawn.png',
         scale: 0.5
+    }),
+    text: new ol.style.Text({
+        text: "World Spawn",
+        offsetY: 20,
+        font: "bold 14px Arial",
+        fill: new ol.style.Fill({ color: "#ffffff" }),
+        backgroundFill: new ol.style.Fill({ color: "rgba(0, 0, 0, 0.7)" }),
+        padding: [2, 4, 2, 4]
     })
 }));
 const spawnLayer = new ol.layer.Vector({
@@ -48,6 +63,14 @@ function updatePlayerLocations() {
                         image: new ol.style.Icon({
                             src: online ? 'assets/images/livemap/player_online.png' : 'assets/images/livemap/player_offline.png',
                             scale: 0.5
+                        }),
+                        text: new ol.style.Text({
+                            text: username,
+                            offsetY: 20,
+                            font: "bold 14px Arial",
+                            fill: new ol.style.Fill({ color: "#ffffff" }),
+                            backgroundFill: new ol.style.Fill({ color: "rgba(0, 0, 0, 0.7)" }),
+                            padding: [2, 4, 2, 4]
                         })
                     }));
                     map.addLayer(new ol.layer.Vector({
