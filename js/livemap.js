@@ -9,7 +9,7 @@ const map = new ol.Map({
         })
     ],
     view: new ol.View({
-        center: [0, 0],
+        center: [-86, 18],
         zoom: 5
     })
 });
@@ -28,7 +28,7 @@ function updatePlayerLocations() {
                     });
                     playerMarkers[username].setStyle(new ol.style.Style({
                         image: new ol.style.Icon({
-                            src: online ? 'icons/player_online.png' : 'icons/player_offline.png',
+                            src: online ? 'assets/images/player_online.png' : 'assets/images/player_offline.png',
                             scale: 0.5
                         })
                     }));
