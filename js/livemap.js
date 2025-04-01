@@ -29,7 +29,7 @@ const spawnFeature = new ol.Feature({
 spawnFeature.setStyle(new ol.style.Style({
     image: new ol.style.Icon({
         src: 'assets/images/livemap/world_spawn.png',
-        scale: 0.5
+        scale: 0.25
     }),
     text: new ol.style.Text({
         text: "World Spawn",
