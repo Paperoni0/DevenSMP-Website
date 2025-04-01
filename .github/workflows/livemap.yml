@@ -39,6 +39,7 @@ jobs:
         run: |
           mkdir .github/map
           ./.github/unmined/unmined-cli web render --world=".github/world" --output=".github/map"
+          rm -rf assets/images/livemap/tiles
           mv .github/map/tiles assets/images/livemap/
 
       - name: Clean Up Files
