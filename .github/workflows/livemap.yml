@@ -21,13 +21,6 @@ jobs:
           sudo apt update
           sudo apt install -y sshpass tar
 
-      - name: Download uNmINeD CLI
-        run: |
-          curl -L -o unmined.tar.gz https://unmined.net/download/unmined-cli-linux-x64-dev
-          mkdir -p unmined
-          tar -xvzf unmined.tar.gz -C unmined --strip-components=1
-          chmod +x unmined/unmined-cli
-
       - name: Download Minecraft World via SFTP
         env:
           SFTP_HOST: ${{ secrets.SFTP_HOST }}
@@ -35,24 +28,25 @@ jobs:
           SFTP_USER: ${{ secrets.SFTP_USER }}
           SFTP_PASSWORD: ${{ secrets.SFTP_PASSWORD }}
         run: |
-          mkdir -p world
+          mkdir .github/world
           sshpass -p "$SFTP_PASSWORD" sftp -o StrictHostKeyChecking=no -P $SFTP_PORT $SFTP_USER@$SFTP_HOST <<EOF
-          lcd world
+          lcd .github/world
           get -r worlds/DevenSMP/*
           bye
           EOF
 
       - name: Generate Map with uNmINeD
         run: |
-          mkdir -p live
-          ./unmined/unmined-cli web render --world="world" --output="live"
+          mkdir .github/map
+          ./.github/unmined/unmined-cli web render --world=".github/world" --output=".github/map"
+          mv .github/map/tiles assets/images/livemap/
 
-      - name: Organize uNmINeD Output
+      - name: Clean Up Files
         run: |
-          mv live/index.html live/map.html
-          echo "Map generation and organization complete."
+          rm -rf .github/world
+          rm -rf .github/map
 
-      - name: Deploy to Cloudflare Pages
+      - name: Commit Changes
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
