@@ -31,6 +31,14 @@
             </div>
         </nav>
     </header>
+    <div id="version-selector">
+            <h3>Select TOS Version:</h3>
+            <select id="tos-version">
+                <option value="terms">Website TOS</option>
+                <option value="terms_mc" selected>Minecraft TOS</option>
+                <option value="terms_disc">Discord TOS</option>
+            </select>
+    </div>
 <div class="container">
     <h1>Terms of Service</h1>
     <p><strong>Effective Date:</strong> March 9, 2025</p>
@@ -79,6 +87,23 @@
 </div>
 
 <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const versionSelector = document.getElementById('tos-version');
+            const tosVersions = document.querySelectorAll('.tos-version');
+            
+            // Show/hide TOS versions when selector changes
+            versionSelector.addEventListener('change', function() {
+                // Hide all versions
+                tosVersions.forEach(version => {
+                    version.classList.remove('active');
+                });
+                
+                // Show selected version
+                const selectedVersion = document.getElementById(`${this.value}-tos`);
+                if (selectedVersion) {
+                    selectedVersion.classList.add('active');
+                }
+            });
     function goHome() {
         window.location.href = "home.html";
     }
