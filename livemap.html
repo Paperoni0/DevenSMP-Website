@@ -26,7 +26,7 @@
         }
         let playerMarkers = [];
         const updatePlayerLocations = () => {
-            fetch('/livemapplayers', { headers: { 'Authorization': `Bearer 7d06d670a06774e62b812b94a9e2dde30756d7e0cf608afc90ee7dbaafc63c8c` } })
+            fetch('/livemapplayers', { headers: { 'Authorization': 'Bearer 7d06d670a06774e62b812b94a9e2dde30756d7e0cf608afc90ee7dbaafc63c8c' } })
                 .then(response => response.json())
                 .then(players => {
                     Object.keys(players).forEach(username => {
