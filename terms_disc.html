@@ -175,6 +175,25 @@
     <footer>
         <p>© 2025 DevenSMP™ Community. All rights reserved.</p>
     </footer>
+     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const versionSelector = document.getElementById('tos-version');
+            const tosVersions = document.querySelectorAll('.tos-version');
+            
+            // Show/hide TOS versions when selector changes
+            versionSelector.addEventListener('change', function() {
+                // Hide all versions
+                tosVersions.forEach(version => {
+                    version.classList.remove('active');
+                });
+                
+                // Show selected version
+                const selectedVersion = document.getElementById(`${this.value}-tos`);
+                if (selectedVersion) {
+                    selectedVersion.classList.add('active');
+                }
+            });
+            </script>
 </body> 
         </html>
   
