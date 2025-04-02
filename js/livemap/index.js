@@ -254,7 +254,7 @@ class Unmined {
                         const worldZoom = -(mapZoomLevels - coordinate[0]) + this.#options.maxZoom;
 
                         if (this.regionMap.hasTile(tileX, tileY, worldZoom)) {
-                            const url = ('tiles/zoom.{z}/{xd}/{yd}/tile.{x}.{y}.' + this.#options.imageFormat)
+                            const url = ('assets/images/livemap/tiles/zoom.{z}/{xd}/{yd}/tile.{x}.{y}.' + this.#options.imageFormat)
                                 .replace('{z}', worldZoom)
                                 .replace('{yd}', Math.floor(tileY / 10))
                                 .replace('{xd}', Math.floor(tileX / 10))
