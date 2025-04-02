@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/terms.css">
     <link rel="stylesheet" href="css/all.css">
     <script src="js/all.js" defer></script>
+    <script src="tos-navigation.js" defer></script>
 </head>
 <body>
  <header>
@@ -33,11 +34,11 @@
     </header>
     <div id="version-selector">
             <h3>Select TOS Version:</h3>
-            <select id="tos-version">
-                <option value="terms">Website TOS</option>
-                <option value="terms_mc" selected>Minecraft TOS</option>
-                <option value="terms_disc">Discord TOS</option>
-            </select>
+            <select id="tos-version">     
+<a href="#" data-tos-version="terms">Website Version</a>
+<a href="#" data-tos-version="terms_mc">Minecraft Version</a>
+<a href="#" data-tos-version="terms_disc">Discord Version</a
+                </select>
     </div>
 <div class="container">
     <h1>Terms of Service</h1>
@@ -87,23 +88,7 @@
 </div>
 
 <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const versionSelector = document.getElementById('tos-version');
-            const tosVersions = document.querySelectorAll('.tos-version');
-            
-            // Show/hide TOS versions when selector changes
-            versionSelector.addEventListener('change', function() {
-                // Hide all versions
-                tosVersions.forEach(version => {
-                    version.classList.remove('active');
-                });
-                
-                // Show selected version
-                const selectedVersion = document.getElementById(`${this.value}-tos`);
-                if (selectedVersion) {
-                    selectedVersion.classList.add('active');
-                }
-            });
+        
     function goHome() {
         window.location.href = "home.html";
     }
