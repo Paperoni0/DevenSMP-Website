@@ -28,6 +28,7 @@
         fetch('/livemapplayers', { headers: { 'Authorization': 'Bearer 7d06d670a06774e62b812b94a9e2dde30756d7e0cf608afc90ee7dbaafc63c8c' } })
             .then(response => response.json())
             .then(res => {
+                console.log(res);
                 Object.keys(res.data).forEach(username => {
                     const { x, z, online } = players[username];
                     playerMarkers.push({ name: username, x, z, online });
