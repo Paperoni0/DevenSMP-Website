@@ -1,3 +1,121 @@
+body.light, body.dark {
+    margin: 0;
+    min-height: 100vh;
+    position: relative;
+}
+
+body.light::before, body.dark::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+body.light::before {
+    background: url('../assets/images/backgrounds/light/home.jpg') no-repeat center center;
+    background-size: cover;
+}
+
+body.dark::before {
+    background: url('../assets/images/backgrounds/dark/home.jpg') no-repeat center center;
+    background-size: cover;
+}
+
+/* Main Content Styles */
+main {
+    padding-top: 80px; /* Space for fixed header */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: calc(100vh - 80px);
+    color: white;
+    font-family: 'Minecraft', sans-serif;
+    text-align: center;
+}
+
+/* Title Section */
+#title {
+    margin: 2rem 0;
+}
+
+#titleImage {
+    max-width: 100%;
+    height: auto;
+    max-height: 150px;
+}
+
+/* Rainbow Text */
+#text {
+    font-size: 2rem;
+    margin: 1.5rem 0;
+    padding: 0 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    animation: rainbow 5s linear infinite;
+}
+
+/* Links Section */
+#see {
+    margin: 2rem 0;
+    width: 100%;
+    max-width: 600px;
+}
+
+#see ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#see li {
+    margin: 1rem 0;
+}
+
+#see a {
+    color: #0cc0df;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: all 0.3s;
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+}
+
+#see a:hover {
+    color: white;
+    background-color: rgba(12, 192, 223, 0.3);
+    text-decoration: underline;
+}
+
+/* Changelog Section */
+#changelog {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin: 2rem auto;
+    max-width: 600px;
+    width: 90%;
+    text-align: left;
+}
+
+#changelog h2 {
+    color: #28a745;
+    margin-top: 0;
+    text-align: center;
+}
+
+#changelog ol {
+    padding-left: 1.5rem;
+}
+
+#changelog li {
+    margin: 0.8rem 0;
+    line-height: 1.4;
+}
+
+/* Rainbow Animation */
 @keyframes rainbow {
     0% { color: red; }
     14.28% { color: orange; }
@@ -9,66 +127,21 @@
     100% { color: red; }
 }
 
-body.light {
-    background-image: url('../assets/images/backgrounds/light/home.jpg');
-}
-
-body.dark {
-    background-image: url('../assets/images/backgrounds/dark/home.jpg');
-}
-
-#title {
-    display: flex;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 300px;
-    justify-content: center;
-    align-items: center;
-}
-
-#titleImage {
-    max-width: 100%;
-    max-height: 100%;
-}
-
-#text {
-    position: absolute;
-    animation: rainbow 5s linear infinite;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 40px;
-    text-align: center;
-    color: #fff;
-}
-
-#see {
-    position: absolute;
-    top: 75%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-family: Minecraft, sans-serif;
-    font-size: 30px;
-    background-color: #0cc0df;
-    border: none;
-    border-radius: 8px;
-    transition-duration: .4s;
-    cursor: pointer;
-}
-#changelog {
-    position: absolute;
-    top: 45%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-family: Minecraft, sans-serif;
-    font-size: 30px;
-    text-align: center;
-    color: #f0f0f0;
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    #text {
+        font-size: 1.5rem;
+    }
     
-}
-
-#signInButton:hover {
-    font-size: 35px;
+    #titleImage {
+        max-height: 120px;
+    }
+    
+    #see a {
+        font-size: 1rem;
+    }
+    
+    #changelog {
+        padding: 1rem;
+    }
 }
