@@ -44,7 +44,7 @@ jobs:
           rm -rf js/livemap/properties.js
           mv .github/map/unmined.map.properties.js js/livemap/properties.js
           rm -rf js/livemap/regions.js
-          mv .github/map/unmined.map.properties.js js/livemap/regions.js
+          mv .github/map/unmined.map.regions.js js/livemap/regions.js
 
       - name: Clean Up Files
         run: |
