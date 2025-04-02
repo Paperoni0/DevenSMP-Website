@@ -52,7 +52,8 @@ const map = new ol.Map({
     ],
     view: new ol.View({
         center: [UnminedMapProperties.centerX, UnminedMapProperties.centerZ],
-        zoom: UnminedMapProperties.defaultZoom
+        zoom: UnminedMapProperties.defaultZoom,
+        projection: 'EPSG:3857'
     })
 });
 
