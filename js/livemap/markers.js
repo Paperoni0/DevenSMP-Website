@@ -43,8 +43,8 @@ UnminedCustomMarkers = {
     markers: [
 
         {
-            x: -83,
-            z: -41,
+            x: -86,
+            z: 18,
             image: "assets/images/livemap/world_spawn.png",
             imageAnchor: [0.5, 0.5],
             imageScale: 0.25,
