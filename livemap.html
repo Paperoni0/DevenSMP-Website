@@ -2,12 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <link rel="icon" href="assets/images/icons/favicon.ico" type="image/x-icon">
     <title>Live Map | DevenSMP</title>
-    <link rel="stylesheet" href="css/livemap.css">
     <link rel="stylesheet" href="css/all.css">
+    <link rel="stylesheet" type="text/css" href="css/livemap/ol.css">
+    <link rel="stylesheet" href="css/livemap/ol-contextmenu.css">
+    <link rel="stylesheet" type="text/css" href="css/livemap/toastify-js.min.css">
+    <link rel="stylesheet" type="text/css" href="css/livemap/index.css">
     <script src="js/all.js" defer></script>
+    <script src="js/livemap/ol.js"></script>
+    <script src="js/livemap/ol-contextmenu.iife.js"></script>
+    <script type="text/javascript" src="js/livemap/toastify-js.js"></script>
+    <script type="text/javascript" src="js/livemap/properties.js"></script>
+    <script type="text/javascript" src="js/livemap/regions.js"></script>
+    <script type="text/javascript" src="js/livemap/markers.js"></script>
+    <script type="text/javascript" src="js/livemap/index.js"></script>
+    </style>
 </head>
 <body>
     <header>
@@ -33,9 +44,30 @@
         </nav>
     </header>
     <main>
-      <div id="map"></div>
+        <div id="map"></div>
     </main>
-    <script src="https://cdn.jsdelivr.net/npm/ol@10.4.0/dist/ol.js"></script>
-    <script src="js/livemap.properties.js"></script>
-    <script src="js/livemap.js"></script>
+    <script type="text/javascript">
+        if (UnminedCustomMarkers && UnminedCustomMarkers.isEnabled && UnminedCustomMarkers.markers) {
+            UnminedMapProperties.markers = UnminedMapProperties.markers.concat(UnminedCustomMarkers.markers);
+        }
+        let playerMarkers = [];
+        const updatePlayerLocations = () => {
+            fetch('/livemapplayers', { headers: { 'Authorization': `Bearer 7d06d670a06774e62b812b94a9e2dde30756d7e0cf608afc90ee7dbaafc63c8c` } })
+                .then(response => response.json())
+                .then(players => {
+                    Object.keys(players).forEach(username => {
+                        const { x, z, online } = players[username];
+                        playerMarkers.push({ name: username, x, z, online });
+                    });
+                });
+        }
+        updatePlayerLocations();
+        if (playerMarkers && playerMarkers.length > 0) {
+            UnminedMapProperties.playerMarkers = Unmined.createPlayerMarkers(playerMarkers);
+        }
+        const mapElement = document.getElementById('map');
+        const unmined = new Unmined(mapElement, UnminedMapProperties, UnminedRegions);
+        setInterval(() => updatePlayerLocations(), 10000);
+    </script>
 </body>
+</html>
