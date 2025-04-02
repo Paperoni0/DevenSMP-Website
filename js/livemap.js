@@ -3,14 +3,15 @@ const map = new ol.Map({
     layers: [
         new ol.layer.Tile({
             source: new ol.source.XYZ({
-                tileLoadFunction: function(imageTile, src) {
-                    let coords = imageTile.getTileCoord();
-                    let z = -coords[0];
-                    let x = coords[1];
-                    let z = coords[2];
-                    imageTile.getImage().src = `assets/images/livemap/tiles/zoom.-${z}/${x}/${y}/tile.${x}.${y}.jpeg`;
+                tileLoadFunction: (imageTile, src) => {
+                    const coords = imageTile.getTileCoord();
+                    const z = coords[0];
+                    const x = coords[1];
+                    const y = -coords[2] - 1;
+                    const xDir = Math.floor(x / 10);
+                    const yDir = Math.floor(y / 10);
+                    imageTile.getImage().src = `assets/images/livemap/tiles/zoom.${z}/${xDir}/${yDir}/tile.${x}.${y}.jpeg`;
                 },
-                url: 'assets/images/livemap/tiles/zoom,-{z}/{x}/{y}.jpeg',
                 tileSize: 256,
                 minZoom: -6,
                 maxZoom: 0
@@ -67,7 +68,7 @@ function updatePlayerLocations() {
                         text: new ol.style.Text({
                             text: username,
                             offsetY: 20,
-                            font: "bold 14px Arial",
+                            font: "14px Arial",
                             fill: new ol.style.Fill({ color: "#ffffff" }),
                             backgroundFill: new ol.style.Fill({ color: "#00000088" }),
                             padding: [2, 4, 2, 4]
