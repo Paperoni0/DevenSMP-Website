@@ -8,6 +8,7 @@ const map = new ol.Map({
                     const z = coords[0];
                     const x = coords[1];
                     const y = coords[2];
+                    console.log(x, y, z);
                     let tileUrl;
                     if (z < 0) {
                         const xDir = Math.floor(x / 1);
