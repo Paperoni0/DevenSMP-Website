@@ -24,25 +24,20 @@
         if (UnminedCustomMarkers && UnminedCustomMarkers.isEnabled && UnminedCustomMarkers.markers) {
             UnminedMapProperties.markers = UnminedMapProperties.markers.concat(UnminedCustomMarkers.markers);
         }
-        let playerMarkers = [];
         fetch('/livemapplayers', { headers: { 'Authorization': 'Bearer 7d06d670a06774e62b812b94a9e2dde30756d7e0cf608afc90ee7dbaafc63c8c' } })
             .then(response => response.json())
             .then(res => {
-                console.log(typeof res.data);
+                let playerMarkers = [];
                 for (const username of Object.keys(res.data)) {
                     const { x, z, online } = res.data[username];
                     playerMarkers.push({ name: username, x, z, online });
                 }
+                if (playerMarkers && playerMarkers.length > 0) {
+                    UnminedMapProperties.playerMarkers = Unmined.createPlayerMarkers(playerMarkers);
+                }
+                const mapElement = document.getElementById('map');
+                const unmined = new Unmined(mapElement, UnminedMapProperties, UnminedRegions);
             });
-        console.log(playerMarkers.length);
-        if (playerMarkers && playerMarkers.length > 0) {
-            console.log(0);
-            UnminedMapProperties.playerMarkers = Unmined.createPlayerMarkers(playerMarkers);
-            console.log(UnminedMapProperties.playerMarkers);
-        }
-        const mapElement = document.getElementById('map');
-        const unmined = new Unmined(mapElement, UnminedMapProperties, UnminedRegions);
-        console.log(UnminedMapProperties);
     </script>
 </body>
 </html>
