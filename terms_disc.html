@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/terms.css">
     <link rel="stylesheet" href="css/all.css">
     <script src="js/all.js" defer></script>
+    <script src="tos-navigation.js" defer></script>
 </head>
 <body>
  <header>
@@ -37,10 +38,10 @@
         <div id="version-selector">
             <h3>Select TOS Version:</h3>
             <select id="tos-version">
-                <option value="terms">Website TOS</option>
-                <option value="terms_mc" selected>Minecraft TOS</option>
-                <option value="terms_disc">Discord TOS</option>
-            </select>
+<a href="#" data-tos-version="terms">Website Version</a>
+<a href="#" data-tos-version="terms_mc">Minecraft Version</a>
+<a href="#" data-tos-version="terms_disc">Discord Version</a>
+                 </select>
         </div>
         <p class="last-updated">Last Updated: February 5, 2025</p>
         <section class="intro">
@@ -54,6 +55,7 @@
                 <li><b>Owner:</b> GaiaChang04</li>
                 <li><b>Vice Owner:</b> Paperoni4848</li>
                 <li><b>Date Established:</b> December 25, 2022 (officially)</li>
+                <li><b>Effective Date:</b> 2 April 2025</li>
             </ul>
         </section>
 
@@ -113,9 +115,8 @@
                 <h3>Workers & Members</h3>
                 <ul>
                     <li><b>Developers:</b> GaiaChang04, MuchNo0nehas, Someeno3, Paperoni4848, Jivakabp – Develop server content.</li>
-                    <li><b>ADSNews:</b> MuchNo0nehas – Creates content like community news.</li>
                     <li><b>CraftersMC Players:</b> Regular members who play CraftersMC.</li>
-                    <li><b>Simp Rank:</b> Special role (MuchNo0nehas & Devhasblade).</li>
+                    <li><b>Simp Rank:</b> Special role (MuchNo0nehas & Someeno3 & TheMighty2903 & Fer63591).</li>
                     <li><b>Slave Rank:</b> All general members.</li>
                 </ul>
             </div>
@@ -132,7 +133,6 @@
                     <li>📌 <b>Media Sharing:</b> Allowed.</li>
                     <li>📌 <b>Self-Promotion:</b> Allowed.</li>
                     <li>📌 <b>Fake News Policy:</b> Members will discuss whether forwarded news is true or false and decide if action is necessary.</li>
-             
                 </ul>
             </div>
         </section>
@@ -170,30 +170,13 @@
             <p>By joining the DevenSMP™ Community on WhatsApp or Discord, you acknowledge and agree to follow these terms. The owner and staff reserve the right to modify these rules at any time without prior notice. Continued participation implies acceptance of any updated terms.</p>
             <p>If you have any questions, contact a staff member.</p>
         </section>
+
+            <h3>Last Update: 2 April 2025</h3>
     </main>
 
     <footer>
         <p>© 2025 DevenSMP™ Community. All rights reserved.</p>
     </footer>
-     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const versionSelector = document.getElementById('tos-version');
-            const tosVersions = document.querySelectorAll('.tos-version');
-            
-            // Show/hide TOS versions when selector changes
-            versionSelector.addEventListener('change', function() {
-                // Hide all versions
-                tosVersions.forEach(version => {
-                    version.classList.remove('active');
-                });
-                
-                // Show selected version
-                const selectedVersion = document.getElementById(`${this.value}-tos`);
-                if (selectedVersion) {
-                    selectedVersion.classList.add('active');
-                }
-            });
-            </script>
 </body> 
         </html>
   
