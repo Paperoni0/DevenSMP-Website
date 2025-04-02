@@ -408,7 +408,6 @@ class Unmined {
     }
 
     static defaultPlayerMarkerStyle = {
-        image: "playerimages/default.png",
         imageAnchor: [0.5, 0.5],
         imageScale: 0.25,
 
@@ -426,6 +425,7 @@ class Unmined {
 
     static playerToMarker(player) {
         var marker = Object.assign({}, Unmined.defaultPlayerMarkerStyle);
+        marker.image = player.online === true ? 'assets/images/livemap/player_online.png' : 'assets/images/livemap/player_offline.png;
         marker.x = player.x;
         marker.z = player.z;
         marker.text = player.name;
