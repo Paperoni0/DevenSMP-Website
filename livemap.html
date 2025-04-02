@@ -25,23 +25,19 @@
             UnminedMapProperties.markers = UnminedMapProperties.markers.concat(UnminedCustomMarkers.markers);
         }
         let playerMarkers = [];
-        const updatePlayerLocations = () => {
-            fetch('/livemapplayers', { headers: { 'Authorization': 'Bearer 7d06d670a06774e62b812b94a9e2dde30756d7e0cf608afc90ee7dbaafc63c8c' } })
-                .then(response => response.json())
-                .then(players => {
-                    Object.keys(players).forEach(username => {
-                        const { x, z, online } = players[username];
-                        playerMarkers.push({ name: username, x, z, online });
-                    });
+        fetch('/livemapplayers', { headers: { 'Authorization': 'Bearer 7d06d670a06774e62b812b94a9e2dde30756d7e0cf608afc90ee7dbaafc63c8c' } })
+            .then(response => response.json())
+            .then(players => {
+                Object.keys(players).forEach(username => {
+                    const { x, z, online } = players[username];
+                    playerMarkers.push({ name: username, x, z, online });
                 });
-        }
-        updatePlayerLocations();
+            });
         if (playerMarkers && playerMarkers.length > 0) {
             UnminedMapProperties.playerMarkers = Unmined.createPlayerMarkers(playerMarkers);
         }
         const mapElement = document.getElementById('map');
         const unmined = new Unmined(mapElement, UnminedMapProperties, UnminedRegions);
-        setInterval(() => updatePlayerLocations(), 10000);
     </script>
 </body>
 </html>
