@@ -7,10 +7,18 @@ const map = new ol.Map({
                     const coords = imageTile.getTileCoord();
                     const z = coords[0];
                     const x = coords[1];
-                    const y = -coords[2] - 1;
-                    const xDir = Math.floor(x / 10);
-                    const yDir = Math.floor(y / 10);
-                    imageTile.getImage().src = `assets/images/livemap/tiles/zoom.${z}/${xDir}/${yDir}/tile.${x}.${y}.jpeg`;
+                    const y = coords[2];
+                    let tileUrl;
+                    if (z < 0) {
+                        const xDir = Math.floor(x / 1);
+                        const yDir = Math.floor(y / 1);
+                        tileUrl = `assets/images/livemap/tiles/zoom.${z}/${xDir}/${yDir}/tile.${x}.${y}.jpeg`;
+                    } else {
+                        const xDir = x < 0 ? -1 : 0;
+                        const yDir = y < 0 ? -1 : 0;
+                        tileUrl = `assets/images/livemap/tiles/zoom.${z}/${xDir}/${yDir}/tile.${x}.${y}.jpeg`;
+                    }
+                    imageTile.getImage().src = tileUrl;
                 },
                 tileSize: 256,
                 minZoom: -6,
