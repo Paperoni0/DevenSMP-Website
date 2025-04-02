@@ -55,3 +55,10 @@ button {
 button:hover {
     background-color: #e62e00;
 }
+/* Highlight current page link */
+[data-tos-version].current-page {
+    font-weight: bold;
+    color: #0cc0df;
+    pointer-events: none;
+    text-decoration: none;
+}
