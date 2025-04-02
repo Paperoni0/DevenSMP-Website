@@ -8,7 +8,7 @@ const map = new ol.Map({
                     const z = coords[0];
                     const x = coords[1];
                     const y = coords[2];
-                    console.log(x, y, z);
+                    console.log(`X: ${x} | Y: ${y} | Z: ${z}`);
                     let tileUrl;
                     if (z < 0) {
                         const xDir = Math.floor(x / 1);
@@ -28,13 +28,13 @@ const map = new ol.Map({
         })
     ],
     view: new ol.View({
-        center: ol.proj.fromLonLat([-86, 18]),
+        center: [0, 0],
         zoom: 0
     })
 });
 
 const spawnFeature = new ol.Feature({
-    geometry: new ol.geom.Point([-86, 18])
+    geometry: new ol.geom.Point([0, 0])
 });
 spawnFeature.setStyle(new ol.style.Style({
     image: new ol.style.Icon({
