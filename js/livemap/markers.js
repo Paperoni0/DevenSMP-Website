@@ -13,7 +13,7 @@ UnminedCustomMarkers = {
             offsetY: 20,
             font: "14px Arial",
             textBackgroundColor: "#00000088",
-            textPadding: [2, 4, 2, 4],
+            textPadding: [2, 4, 2, 4]
         }
     ]
 }
