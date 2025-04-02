@@ -21,6 +21,6 @@ export async function onRequestPost(context) {
     const data = await context.request.json();
     const { username, x, z, online } = data;
     const storage = context.env.LIVEMAPPLAYERS;
-    await storage.put(username, JSON.stringify({ x, z, online, timestamp: Date.now() }));
+    await storage.put(username, JSON.stringify({ x, z, online }));
     return new Response(JSON.stringify({ success: true, data: null }), { headers: { "Content-Type": "application/json" } });
 }
