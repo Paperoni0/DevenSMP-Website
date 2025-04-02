@@ -5,12 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <link rel="icon" href="assets/images/icons/favicon.ico" type="image/x-icon">
     <title>Live Map | DevenSMP</title>
-    <link rel="stylesheet" href="css/all.css">
     <link rel="stylesheet" type="text/css" href="css/livemap/ol.css">
     <link rel="stylesheet" href="css/livemap/ol-contextmenu.css">
     <link rel="stylesheet" type="text/css" href="css/livemap/toastify-js.min.css">
     <link rel="stylesheet" type="text/css" href="css/livemap/index.css">
-    <script src="js/all.js" defer></script>
     <script src="js/livemap/ol.js"></script>
     <script src="js/livemap/ol-contextmenu.iife.js"></script>
     <script type="text/javascript" src="js/livemap/toastify-js.js"></script>
@@ -21,31 +19,7 @@
     </style>
 </head>
 <body>
-    <header>
-        <nav id="topBar">
-            <img src="assets/images/main_menu.png" alt="Main Menu" id="menuToggle">
-            <a href="home">
-                <img id="topLogo" src="assets/images/logo.png" alt="Logo">
-            </a>
-        </nav>
-        <nav id="menu">
-            <a href="home">
-                <img id="menuLogo" src="assets/images/logo.png" alt="Logo">
-            </a>
-            <div id="links">
-                <a href="about">About Us</a>
-                <a href="login">Login/Sign Up</a>
-                <a href="Survey">Survey</a>
-                <a href="terms">Terms of Services</a>
-                <a href="project">Projects</a>
-                <a href="server">Server</a>
-                <a href="setting">Settings</a>
-            </div>
-        </nav>
-    </header>
-    <main>
-        <div id="map"></div>
-    </main>
+    <div id="map"></div>
     <script type="text/javascript">
         if (UnminedCustomMarkers && UnminedCustomMarkers.isEnabled && UnminedCustomMarkers.markers) {
             UnminedMapProperties.markers = UnminedMapProperties.markers.concat(UnminedCustomMarkers.markers);
