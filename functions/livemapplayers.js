@@ -19,7 +19,7 @@ export async function onRequestPost(context) {
         return new Response(JSON.stringify({ success: false, data: "Unauthorized" }), { status: 401 });
     }
     const data = await context.request.json();
-    const { username, x, y, z, online } = data;
+    const { username, x, z, online } = data;
     const storage = context.env.LIVEMAPPLAYERS;
     await storage.put(username, JSON.stringify({ x, y, z, online, timestamp: Date.now() }));
     return new Response(JSON.stringify({ success: true, data: null }), { headers: { "Content-Type": "application/json" } });
