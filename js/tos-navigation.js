@@ -1,29 +1,20 @@
-// tos.js - Optimized for your data-tos-version links
+// tos.js - Fixed and simplified version
 document.addEventListener('DOMContentLoaded', function() {
-    // Get current page name (works with or without .html extension)
+    // Get current page (works with any extension or none)
     const currentPage = window.location.pathname.split('/').pop().replace('.html', '');
     
-    // 1. Handle dropdown navigation if exists
-    const versionDropdown = document.getElementById('tos-version');
-    if (versionDropdown) {
-        versionDropdown.value = currentPage;
-        versionDropdown.addEventListener('change', function() {
-            window.location.href = this.value + '.html';
-        });
-    }
-    
-    // 2. Handle your data-tos-version links
+    // Make all version links work
     document.querySelectorAll('[data-tos-version]').forEach(link => {
-        // Add active class if this link matches current page
+        // Highlight current page link
         if (link.getAttribute('data-tos-version') === currentPage) {
-            link.classList.add('active');
+            link.classList.add('current-page');
         }
         
-        // Add click handler
+        // Handle clicks
         link.addEventListener('click', function(e) {
             e.preventDefault();
-            const targetVersion = this.getAttribute('data-tos-version');
-            window.location.href = targetVersion + '.html';
+            const targetPage = this.getAttribute('data-tos-version');
+            window.location.href = targetPage + '.html';
         });
     });
 });
