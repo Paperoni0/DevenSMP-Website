@@ -1,0 +1,96 @@
+!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="icon" href="assets/images/icons/favicon.ico" type="image/x-icon">
+    <title>SMP Projects | DevenSMP</title>
+    <link rel="stylesheet" href="css/all.css">
+    <script src="js/all.js" defer></script>
+</head>
+<body>
+     <header>
+        <nav id="topBar">
+            <img src="assets/images/main_menu.png" alt="Main Menu" id="menuToggle">
+            <a href="home">
+                <img id="topLogo" src="assets/images/logo.png" alt="Logo">
+            </a>
+        </nav>
+        <nav id="menu">
+            <a href="home">
+                <img id="menuLogo" src="assets/images/logo.png" alt="Logo">
+            </a>
+            <div id="links">
+                <a href="about">About Us</a>
+                <a href="Survey">Survey</a>
+                <a href="terms">Terms of Services</a>
+                <a href="project">Projects</a>
+                <a href="server">Server</a>
+                <a href="setting">Settings</a>
+            </div>
+        </nav>
+    </header>
+        <style>
+            font-family: Minecraft, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background-color: #888;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        .projects {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+        }
+        .project {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin: 10px;
+            overflow: hidden;
+            width: 30%;
+        }
+        .project img {
+            width: 100%;
+            height: auto;
+        }
+        .project-name {
+            background-color: #eee;
+            padding: 10px;
+            font-weight: bold;
+        }
+        .project-description {
+            padding: 10px;
+        }
+    </style>
+<main>
+    <div class="header">
+        <h1>Projects</h1>
+    </div>
+    <div class="projects">
+        <div class="project">
+            <img src="../assets/S12.png" alt="Project Image 1">
+            <div class="project-name">S12 Lore Map</div>
+            <div class="project-description">Discontinued</div>
+        </div>
+        <div class="project">
+            <img src="../assets/logo.png" alt="Epic">
+            <div class="project-name">Server Live Map</div>
+            <div class="project-description">Allows to view the server loaded surface map. Click "LiveMap" to go there. Option to return in LiveMap docs is not available right now.</div>
+            <a href="livemap">LiveMap</a>
+        </div>
+        <div class="project">
+            <img src="../assets/credit_secret1.jpg" alt="Project Image 3">
+            <div class="project-name">[insert Project Title Here]</div>
+            <div class="project-description">Don't know</div>
+        </div>
+    </div>
+      
+</main>
+</html>
