@@ -1,4 +1,4 @@
-export async function onRequestGet(context) {
+export async function onRequest(context) {
   const { searchParams } = new URL(context.request.url);
   const imageUrl = searchParams.get("url");
   const response = await fetch(imageUrl);
