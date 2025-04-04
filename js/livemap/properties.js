@@ -8,7 +8,7 @@ var UnminedMapProperties = {
     minRegionZ: -1,
     maxRegionX: 0,
     maxRegionZ: 0,
-    worldName: "My World",
+    worldName: "DevenSMP",
     background: "",
     markers: new Array(),
     enableGrid: true,
