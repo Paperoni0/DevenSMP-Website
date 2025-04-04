@@ -1,6 +1,6 @@
-export async function onRequest(context) {
-  const { searchParams } = new URL(context.request.url);
-  const imageUrl = searchParams.get("url");
+export async function onRequestPost(context) {
+  const data = await context.request.json();
+  const imageUrl = data.url;
   const response = await fetch(imageUrl);
   const buffer = await response.arrayBuffer();
   const base64 = btoa(String.fromCharCode(...new Uint8Array(buffer)));
