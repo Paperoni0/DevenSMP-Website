@@ -10,6 +10,6 @@ export async function onRequestGet(context) {
     const mimeType = response.headers.get("content-type");
     return new Respose(`data:${mimeType};base64,${base64}`);
   } catch (error) {
-    return new Response(error, { status: 500 });
+    return new Response(context.headers, { status: 500 });
   }
 }
