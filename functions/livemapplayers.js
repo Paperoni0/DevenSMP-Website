@@ -18,9 +18,13 @@ export async function onRequestPost(context) {
     if (!apiKey || apiKey !== `Bearer ${context.env.API_KEY}`) {
         return new Response("Unauthorized", { status: 401 });
     }
-    const data = await context.request.json();
-    const { username, x, z, online } = data;
+    const { username, x, z, online } = await context.request.json();
     const storage = context.env.LIVEMAPPLAYERS;
-    await storage.put(username, JSON.stringify({ x, z, online }));
+    if (x && z) {
+        await storage.put(username, JSON.stringify({ x, z, online }));
+    } else {
+        const { x, z } = await storage.get(username, { type: "json" });
+        await storage.put(username, JSON.stringify({ x, z, online }));
+    }
     return new Response("Success");
 }
