@@ -1,20 +1,14 @@
-// tos.js - Fixed and simplified version
+// Set the selected option based on the current page
 document.addEventListener('DOMContentLoaded', function() {
-    // Get current page (works with any extension or none)
     const currentPage = window.location.pathname.split('/').pop().replace('.html', '');
-    
-    // Make all version links work
-    document.querySelectorAll('[data-tos-version]').forEach(link => {
-        // Highlight current page link
-        if (link.getAttribute('data-tos-version') === currentPage) {
-            link.classList.add('current-page');
-        }
-        
-        // Handle clicks
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetPage = this.getAttribute('data-tos-version');
-            window.location.href = targetPage + '.html';
-        });
+    const selector = document.getElementById('tos-version');
+    if (selector) {
+        selector.value = currentPage;
+    }
+
+    // When the dropdown changes, navigate to the selected page
+    selector.addEventListener('change', function() {
+        const selectedValue = this.value;
+        window.location.href = selectedValue + ".html";
     });
 });
