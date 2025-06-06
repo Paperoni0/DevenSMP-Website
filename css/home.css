@@ -1,64 +1,47 @@
-body.light, body.dark {
-    margin: 0;
-    min-height: 100vh;
-    position: relative;
+@keyframes rainbow {
+    0% { color: red; }
+    14.28% { color: orange; }
+    28.56% { color: yellow; }
+    42.84% { color: green; }
+    57.12% { color: blue; }
+    71.4% { color: indigo; }
+    85.68% { color: violet; }
+    100% { color: red; }
 }
-
-body.light::before, body.dark::before {
-    content: "";
-    position: fixed;
+body.light {
+    background-image: url('../assets/images/backgrounds/light/home.jpg');
+}
+body.dark {
+    background-image: url('../assets/images/backgrounds/dark/home.jpg');
+}
+#title {
+    display: flex;
+    position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-}
-
-body.light::before {
-    background: url('../assets/images/backgrounds/light/home.jpg') no-repeat center center;
-    background-size: cover;
-}
-
-body.dark::before {
-    background: url('../assets/images/backgrounds/dark/home.jpg') no-repeat center center;
-    background-size: cover;
-}
-
-/* Main Content Styles */
-main {
-    padding-top: 80px; /* Space for fixed header */
-    display: flex;
-    flex-direction: column;
+    width: 100vw;
+    height: 300px;
+    justify-content: center;
     align-items: center;
-    min-height: calc(100vh - 80px);
-    color: white;
-    font-family: 'Minecraft', sans-serif;
-    text-align: center;
 }
-
-/* Title Section */
-#title {
-    margin: 2rem 0;
-}
-
 #titleImage {
     max-width: 100%;
-    height: auto;
-    max-height: 150px;
+    max-height: 100%;
 }
-
-/* Rainbow Text */
 #text {
-    font-size: 2rem;
-    margin: 1.5rem 0;
-    padding: 0 1rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    position: absolute;
     animation: rainbow 5s linear infinite;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 40px;
+    text-align: center;
+    color: #fff;
 }
 
 /* Links Section */
 #see {
-    margin: 2rem 0;
+    margin: 1rem 0;
     width: 100%;
     max-width: 600px;
 }
@@ -114,19 +97,6 @@ main {
     margin: 0.8rem 0;
     line-height: 1.4;
 }
-
-/* Rainbow Animation */
-@keyframes rainbow {
-    0% { color: red; }
-    14.28% { color: orange; }
-    28.56% { color: yellow; }
-    42.84% { color: green; }
-    57.12% { color: blue; }
-    71.4% { color: indigo; }
-    85.68% { color: violet; }
-    100% { color: red; }
-}
-
 /* Responsive Adjustments */
 @media (max-width: 768px) {
     #text {
