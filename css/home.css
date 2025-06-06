@@ -41,9 +41,13 @@ body.dark {
 
 /* Links Section */
 #see {
-    margin: 1rem 0;
-    width: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin: 2rem auto;
     max-width: 600px;
+    width: 90%;
+    text-align: left;
 }
 
 #see ul {
@@ -73,30 +77,6 @@ body.dark {
 }
 
 /* Changelog Section */
-#changelog {
-    background-color: rgba(0, 0, 0, 0.6);
-    padding: 1.5rem;
-    border-radius: 10px;
-    margin: 2rem auto;
-    max-width: 600px;
-    width: 90%;
-    text-align: left;
-}
-
-#changelog h2 {
-    color: #28a745;
-    margin-top: 0;
-    text-align: center;
-}
-
-#changelog ol {
-    padding-left: 1.5rem;
-}
-
-#changelog li {
-    margin: 0.8rem 0;
-    line-height: 1.4;
-}
 /* Responsive Adjustments */
 @media (max-width: 768px) {
     #text {
@@ -109,9 +89,5 @@ body.dark {
     
     #see a {
         font-size: 1rem;
-    }
-    
-    #changelog {
-        padding: 1rem;
     }
 }
