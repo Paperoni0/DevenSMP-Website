@@ -40,8 +40,6 @@ body.dark {
     text-align: center;
     color: #fff;
 }
-
-/* Links Section */
 #see {
     background-color: rgba(0, 0, 0, 0.6);
     padding: 1.5rem;
@@ -51,17 +49,14 @@ body.dark {
     width: 90%;
     text-align: left;
 }
-
 #see ul {
     list-style: none;
     padding: 0;
     margin: 0;
 }
-
 #see li {
     margin: 1rem 0;
 }
-
 #see a {
     color: #0cc0df;
     text-decoration: none;
@@ -71,24 +66,18 @@ body.dark {
     padding: 0.5rem 1rem;
     border-radius: 4px;
 }
-
 #see a:hover {
     color: white;
     background-color: rgba(12, 192, 223, 0.3);
     text-decoration: underline;
 }
-
-/* Changelog Section */
-/* Responsive Adjustments */
 @media (max-width: 768px) {
     #text {
         font-size: 1.5rem;
-    }
-    
+    }1
     #titleImage {
         max-height: 120px;
     }
-    
     #see a {
         font-size: 1rem;
     }
