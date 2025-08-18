@@ -4,6 +4,7 @@ document.getElementById('themeToggle').addEventListener('change', (event) => {
     } else {
         localStorage.setItem('theme', 'light');
     }
+    location.reload();
 });
 
 document.getElementById('themeClose').addEventListener('click', () => {
@@ -13,4 +14,5 @@ document.getElementById('themeClose').addEventListener('click', () => {
 
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('themeToggle').checked = (localStorage.getItem('theme') === 'dark') ? true : false;
+
 });
