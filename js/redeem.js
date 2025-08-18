@@ -1,19 +1,24 @@
 document.getElementById('codeForm').addEventListener('submit', (event) => {
     event.preventDefault();
     const code = document.getElementById('code').value.toLowerCase();
-    const video = document.getElementById('rickrollVideo');
     switch(code) {
         case 'freegift69':
             document.getElementById('rickroll').style.display = 'block';
-            video.play().then(() => {
-                if (video.requestFullscreen)
-                    video.requestFullscreen();
-                else if (video.webkitRequestFullscreen)
-                    video.webkitRequestFullscreen();
-                else if (video.msRequestFullscreen)
-                    video.msRequestFullscreen();
-            }).catch(error => {
-                console.error(`Error attempting to request fullscreen mode for rickroll video: ${error}`);
+            video.play().then(() => totallynotprank()).catch(error => console.error(`Error attempting to request fullscreen mode for rickroll video: ${error}`));
+            document.addEventListener('fullscreenchange', () => {
+                if (!document.fullscreenElement) totallynotprank();
+            });
+            document.addEventListener("keydown", e => {
+                const blockedKeys = ["Escape", "F11"];
+                const ctrlCombos = ["w", "r", "t", "n"]; 
+                if (blockedKeys.includes(e.key)) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
+                if (e.ctrlKey && ctrlCombos.includes(e.key.toLowerCase())) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
             });
             break;
         case 'omagachikennuget':
@@ -36,3 +41,13 @@ document.getElementById('codeForm').addEventListener('submit', (event) => {
     }
 
 });
+
+function totallynotprank() {
+    const video = document.getElementById('rickrollVideo');
+    if (video.requestFullscreen)
+        video.requestFullscreen();
+    else if (video.webkitRequestFullscreen)
+        video.webkitRequestFullscreen();
+    else if (video.msRequestFullscreen)
+        video.msRequestFullscreen();
+}
