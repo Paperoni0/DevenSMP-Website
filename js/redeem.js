@@ -1,9 +1,18 @@
 document.getElementById('codeForm').addEventListener('submit', (event) => {
     event.preventDefault();
     const code = document.getElementById('code').value.toLowerCase();
+    const video = document.getElementById('rickrollVideo');
     switch(code) {
         case 'freegift69':
-            document.getElementById('rickrollVideo').requestFullscreen().catch(error => {
+            document.getElementById('rickroll').style.display = 'block';
+            video.play().then(() => {
+                if (video.requestFullscreen)
+                    video.requestFullscreen();
+                else if (video.webkitRequestFullscreen)
+                    video.webkitRequestFullscreen();
+                else if (video.msRequestFullscreen)
+                    video.msRequestFullscreen();
+            }).catch(error => {
                 console.error(`Error attempting to request fullscreen mode for rickroll video: ${error}`);
             });
             break;
@@ -25,4 +34,5 @@ document.getElementById('codeForm').addEventListener('submit', (event) => {
             document.getElementById('overlay').style.display = 'block';
             break;
     }
+
 });
