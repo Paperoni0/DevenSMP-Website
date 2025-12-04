@@ -1,7 +1,5 @@
 # DevenSMP Website
 The source code for https://devensmp.us.to. This website contains a lot of information about DevenSMP and much more!  
-[x] Server isn't on beta/alpha version  
-[X] Server is free from bug
 
 # Contributors
 - Leader: [@MuchLikeWhat](https://github.com/MuchLikeWhat)
