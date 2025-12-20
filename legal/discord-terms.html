@@ -3,36 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <link rel="icon" href="assets/images/icons/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/assets/images/icons/favicon.ico" type="image/x-icon">
     <title>Terms of Service | DevenSMP™</title>
-    <link rel="stylesheet" href="css/terms.css">
-    <link rel="stylesheet" href="css/all.css">
-    <script src="js/all.js" defer></script>
+    <link rel="stylesheet" href="/css/terms.css">
+    <link rel="stylesheet" href="/css/all.css">
+    <script src="/js/all.js" defer></script>
 </head>
 <body>
     <header>
         <nav id="topBar">
-            <img src="assets/images/main_menu.png" alt="Main Menu" id="menuToggle">
-            <a href="home.html">
-                <img id="topLogo" src="assets/images/logo.png" alt="Logo">
+            <img src="/assets/images/main_menu.png" alt="Main Menu" id="menuToggle">
+            <a href="/home.html">
+                <img id="topLogo" src="/assets/images/logo.png" alt="Logo">
             </a>
         </nav>
         <nav id="menu">
-            <a href="home.html">
-                <img id="menuLogo" src="assets/images/logo.png" alt="Logo">
+            <a href="/home.html">
+                <img id="menuLogo" src="/assets/images/logo.png" alt="Logo">
             </a>
             <div id="links">
-                <a href="about.html">About Us</a>
-                <a href="news/index.html">News</a>
-                <a href="legal/index.html">Legal</a>
-                <a href="project/index.html">Projects</a>
-                <a href="server.html">Server</a>
-                <a href="setting.html">Settings</a>
+                <a href="/about.html">About Us</a>
+                <a href="/news/index.html">News</a>
+                <a href="/legal/index.html">Legal</a>
+                <a href="/project/index.html">Projects</a>
+                <a href="/server.html">Server</a>
+                <a href="/setting.html">Settings</a>
             </div>
         </nav>
     </header>
     <main>
-        <h1>DevenSMP™ Discord Terms of Service</h1>
+        <h1 style="align-content: center;">DevenSMP™ Discord Terms of Service</h1>
         <section class="basic-info">
             <h2>1. Basic Information</h2>
             <ul>
@@ -40,8 +40,8 @@
                 <li><b>Owner:</b> GaiaChang04</li>
                 <li><b>Vice Owner:</b> Paperoni4848</li>
                 <li><b>Community Established:</b> December 25, 2022</li>
-                <li><b>Effective Date:</b> April 19, 2025</li>
-                <li><b>Last Updated:</b> December 5, 2025</li>
+                <li><b>Effective Date:</b> December 20, 2025</li>
+                <li><b>Last Updated:</b> December 20, 2025</li>
             </ul>
         </section>
         <section class="agreement-notice">
@@ -88,8 +88,8 @@
             <div class="staff-team">
                 <h3>Core Team</h3>
                 <ul>
-                    <li><b>Enforcer:</b> Someeno3 – Handles moderation, enforcement, and application processing.</li>
-                    <li><b>Lead Developer:</b> SourlyMarmot95393 – Oversees development of seasonal content.</li>
+                    <li><b>Lead Enforcer:</b> Someeno3 – Handles moderation, enforcement, and application processing.</li>
+                    <li><b>Lead Developer:</b> FeasibleBird604 – Oversees development of seasonal content.</li>
                     <li><b>Community Manager:</b> MuchNo0nehas – Connects with and supports community members.</li>
                 </ul>
             </div>
@@ -151,16 +151,20 @@
             <p>By joining the DevenSMP™ Community Discord Server, you acknowledge that you have read and agree to follow these Terms of Service. The owner and staff reserve the right to modify these terms at any time. Continued participation in the server implies acceptance of any updates.</p>
             <p><b>Questions or Concerns?</b> Contact a staff member or email us at devensmpofficial@gmail.com.</p>
         </section>
-        <button onclick="goHome()">Back to Home</button>
-        <p>© 2025 DevenSMP™ Community. All rights reserved.</p>
+            <button onclick="goHome()">Back to Home</button>
+        <button id="top">Back to Top</button>
     </main>
     <footer>
         <p>© 2025 DevenSMP™ Community. All rights reserved.</p>
     </footer>
 
     <script>
+        document.getElementById("top").addEventListener("click", function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
         function goHome() {
-            window.location.href = "home.html";
+            window.location.href = "/home.html";
         }
     </script>
 </body>
