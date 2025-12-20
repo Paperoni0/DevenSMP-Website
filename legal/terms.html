@@ -3,32 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0", user-scalable=no>
-    <link rel="icon" href="assets/images/icons/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/assets/images/icons/favicon.ico" type="/image/x-icon">
     <title>Terms of Service | DSMP™ Official Site</title>
-    <link rel="stylesheet" href="css/terms.css">
-    <link rel="stylesheet" href="css/all.css">
-    <script src="js/all.js" defer></script>
-    <script src="js/tos-navigation.js" defer></script>
+    <link rel="stylesheet" href="/css/terms.css">
+    <link rel="stylesheet" href="/css/all.css">
+    <script src="/js/all.js" defer></script>
 </head>
 <body>
  <header>
      <nav id="topBar">
-            <img src="assets/images/main_menu.png" alt="Main Menu" id="menuToggle">
+            <img src="/assets/images/main_menu.png" alt="Main Menu" id="menuToggle">
             <a href="home">
-                <img id="topLogo" src="assets/images/logo.png" alt="Logo">
+                <img id="topLogo" src="/assets/images/logo.png" alt="Logo">
             </a>
         </nav>
         <nav id="menu">
             <a href="home">
-                <img id="menuLogo" src="assets/images/logo.png" alt="Logo">
+                <img id="menuLogo" src="/assets/images/logo.png" alt="Logo">
             </a>
             <div id="links">
-                <a href="about">About Us</a>
-                <a href="news/index.html">News</a>
-                <a href="terms">Terms of Services</a>
-                <a href="project">Projects</a>
-                <a href="server">Server</a>
-                <a href="setting">Settings</a>
+                <a href="/about">About Us</a>
+                <a href="/news/index.html">News</a>
+                <a href="/legal/index.html">Legal</a>
+                <a href="/project">Projects</a>
+                <a href="/server">Server</a>
+                <a href="/setting">Settings</a>
             </div>
         </nav>
     </header>
@@ -92,13 +91,12 @@
 <h2>9. Changes to Terms</h2>
 <p>DSMP™ Official Site reserves the right to update, modify, or revise these Terms of Service at any time. Changes will be posted on the Website and will become effective upon publication.</p>
 
-<h2>Other Policies & Terms</h2>
+<h2>10. Contact</h2>
 <ul>
-    <li><a href="terms_disc.html">Discord Server Terms of Service</a></li>
-    <li><a href="tos_bot1">TeachMeFy Bot Terms of Service</a></li>
+    <li>Email: <a href="mailto:devensmpofficial@gmail.com"></a></li>
 </ul>
     <button onclick="goHome()">Back to Home</button>
-        <p>For further questions or support, contact us at devensmpofficial@gmail.com.</p>
+    <button id="top">Back to Top</button>
     </main>
     <footer>
         <p>© 2025 DevenSMP™ Community. All rights reserved.</p>
@@ -106,6 +104,10 @@
 </div>
 
 <script>
+    document.getElementById("top").addEventListener("click", function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
     function goHome() {
         window.location.href = "home.html";
     }
