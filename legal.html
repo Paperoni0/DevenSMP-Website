@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="description" content="The Official DevenSMP Website where all the amazing DevenSMP Community is located at">
     <link rel="icon" href="assets/images/icons/favicon.ico" type="image/x-icon">
-    <title>Settings | DevenSMP</title>
-    <link rel="stylesheet" href="css/setting.css">
+    <title>Home | DevenSMP</title>
+    <link rel="stylesheet" href="css/home.css">
     <link rel="stylesheet" href="css/all.css">
     <script src="js/all.js" defer></script>
 </head>
@@ -31,30 +32,23 @@
             </div>
         </nav>
     </header>
-    <div id="overlay"></div>
-    <div id="themeContainer">
-        <span id="themeClose">X</span>
-        <span id="light">Light</span>
-        <label id="theme">
-            <input id="themeToggle" type="checkbox">
-            <span id="themeSlider"></span>
-        </label>
-        <span id="dark">Dark</span>
+    <main>
+    <div class="container" style="background: transparent;">
+    <h1 style="text-align: center;">DevenSMP Legal</h1>
+    <h2>Website</h2>
+    <ul>
+        <Li><a href="legal/terms.html">Terms of Service and Privacy</a></Li>
+    </ul>
+    <h2>Discord</h2>
+    <ul>
+        <Li><a href="legal/discord-terms.html">Discord Community Guidelines</a></Li>
+    </ul>
+    <h2>TeachMeFy Bot</h2>
+    <ul>
+        <li><a href="legal/teachmefy-terms-privacy.html">Terms of Service and Privacy</a></li>
+    </ul>
     </div>
-    <div id="container">
-        <a href="redeem">
-            <button>Redeem</button>
-        </a>
-        <button onclick="theme()">Toggle Theme</button>
-        <a href="credit">
-            <button>Credit</button>
-        </a>
-    </div>
-    <script src="js/setting.js"></script>
-    <script>
-        function theme() {
-            document.getElementById('themeContainer').style.display = 'flex';
-            document.getElementById('overlay').style.display = 'block';
-        }
-    </script>
+    </main>
 </body>
+</html>
+
