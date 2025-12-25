@@ -38,8 +38,11 @@ document.getElementById('codeForm').addEventListener('submit', (event) => {
             document.getElementById('invalid').style.display = 'block';
             document.getElementById('overlay').style.display = 'block';
             break;
+            
+      case 'merryxmas':
+      window.location.replace('https://m.youtube.com/watch?v=xvFZjo5PgG0&list=RDxvFZjo5PgG0&start_radio=1&pp=ygUPcmlja3JvbGwgbm8gYWRzoAcB');
+      break;
     }
-
 });
 
 function totallynotprank() {
@@ -51,3 +54,4 @@ function totallynotprank() {
     else if (video.msRequestFullscreen)
         video.msRequestFullscreen();
 }
+
