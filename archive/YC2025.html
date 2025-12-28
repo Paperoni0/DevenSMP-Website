@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="/css/all.css">
     <style>
         body { font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background:#f7f8fb; color:#111; margin:0; }
-        #links a { margin:0 8px; color:#334155; text-decoration:none; font-weight:500; font-size:14px; }
         .container { max-width:1000px; margin:28px auto; padding:0 20px; }
         .breadcrumb { color:#64748b; font-size:13px; margin-bottom:20px; }
         .breadcrumb a { color:#0ea5a9; text-decoration:none; }
@@ -88,5 +87,45 @@
             </footer>
         </div>
     </main>
+    <script>
+    (function(){
+        const iframe = document.querySelector('.pdf-container iframe');
+        const actions = document.querySelector('.action-buttons');
+        if(!iframe || !actions) return;
+
+        // Open in new tab link
+        const openBtn = document.createElement('a');
+        openBtn.className = 'btn';
+        openBtn.textContent = 'Open in new tab';
+        openBtn.href = iframe.src.split('#')[0];
+        openBtn.target = '_blank';
+
+        // Toggle toolbar button
+        const toolbarToggle = document.createElement('button');
+        toolbarToggle.type = 'button';
+        toolbarToggle.className = 'btn secondary';
+        toolbarToggle.textContent = 'Toggle Toolbar';
+
+        actions.appendChild(toolbarToggle);
+        actions.appendChild(openBtn);
+
+        function setToolbar(show){
+            const base = iframe.src.split('#')[0].split('?')[0];
+            const hash = show ? '#toolbar=1' : '#toolbar=0';
+            const cache = '?_=' + Date.now();
+            iframe.src = base + cache + hash;
+            try{ history.replaceState(null, '', window.location.pathname + (show ? '#toolbar=1' : '') ); } catch(e){}
+        }
+
+        const hash = new URLSearchParams(window.location.hash.replace('#',''));
+        const show = hash.get('toolbar') !== '0';
+        setToolbar(show);
+
+        toolbarToggle.addEventListener('click', function(){
+            const current = iframe.src.includes('#toolbar=1');
+            setToolbar(!current);
+        });
+    })();
+    </script>
 </body>
 </html>
