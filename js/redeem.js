@@ -42,6 +42,9 @@ document.getElementById('codeForm').addEventListener('submit', (event) => {
       case 'merryxmas':
       window.location.replace('https://m.youtube.com/watch?v=xvFZjo5PgG0&list=RDxvFZjo5PgG0&start_radio=1&pp=ygUPcmlja3JvbGwgbm8gYWRzoAcB');
       break;
+      case 'Yappology':
+      window.location.replace('https://devensmp.us.to/archive.html');
+      break;
     }
 });
 

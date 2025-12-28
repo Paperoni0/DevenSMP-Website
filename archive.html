@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="description" content="DevenSMP archive: historical documents, chronicles, and versioned files.">
+    <link rel="icon" href="/assets/images/icons/favicon.ico" type="image/x-icon">
+    <title>Archive | DevenSMP</title>
+    <link rel="stylesheet" href="/css/all.css">
+    <style>
+        /* Archive page styles (small, self-contained) */
+        body { font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background:#f7f8fb; color:#111; margin:0; }
+        header { background:#fff; box-shadow:0 1px 0 rgba(16,24,40,0.04); }
+        #topBar, #menu { display:flex; align-items:center; gap:12px; padding:10px 18px; }
+        #menu { justify-content:space-between; }
+        #links a { margin:0 8px; color:#334155; text-decoration:none; font-weight:500 }
+        .container { max-width:1100px; margin:36px auto; padding:0 20px; }
+        .hero { text-align:center; margin-bottom:28px; }
+        .hero h1 { margin:0; font-size:28px; color:#0f172a }
+        .hero p { margin:8px 0 0; color:#475569 }
+        .archive-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:18px; margin-top:20px }
+        .card { background:#fff; border-radius:10px; padding:16px; box-shadow:0 6px 18px rgba(15,23,42,0.06); display:flex; flex-direction:column; gap:10px }
+        .card .meta { color:#64748b; font-size:13px }
+        .card h3 { margin:0; font-size:18px }
+        .card p { margin:0; color:#475569; font-size:14px }
+        .card .actions { margin-top:auto; display:flex; gap:8px }
+        .btn { background:#0ea5a9; color:#fff; padding:8px 12px; border-radius:8px; text-decoration:none; font-weight:600 }
+        .btn.secondary { background:#e2e8f0; color:#0f172a }
+        @media (max-width:520px){ .hero h1{font-size:22px} }
+    </style>
+    <script src="/js/all.js" defer></script>
+</head>
+<body>
+    <header>
+        <nav id="topBar">
+            <img src="assets/images/main_menu.png" alt="Main Menu" id="menuToggle">
+            <a href="home">
+                <img id="topLogo" src="assets/images/logo.png" alt="Logo">
+            </a>
+        </nav>
+        <nav id="menu">
+            <a href="home">
+                <img id="menuLogo" src="assets/images/logo.png" alt="Logo">
+            </a>
+            <div id="links">
+                <a href="about">About Us</a>
+                <a href="news">News</a>
+                <a href="legal">Legal</a>
+                <a href="project">Projects</a>
+                <a href="server">Server</a>
+                <a href="setting">Settings</a>
+            </div>
+        </nav>
+    </header>
+    <main>
+    <div class="container">
+        <section class="hero">
+            <h1>Archive</h1>
+            <p>Historical documents, chronicles, and versioned releases for DevenSMP. Click an entry to view details or download a specific version.</p>
+        </section>
+
+        <section class="archive-grid">
+            <article class="card">
+                <div class="meta">Chronicle · 2024</div>
+                <h3>Yapping Chronicles 2024</h3>
+                <p>Collection of posts and notes from 2024. Latest stable release: v1.2.</p>
+                <div class="actions">
+                    <a class="btn" href="/archive/YC2024.html">View</a>
+                    <a class="btn secondary" href="/archive/YC2024.html">Download</a>
+                </div>
+            </article>
+
+            <article class="card">
+                <div class="meta">Chronicle · 2025</div>
+                <h3>Yapping Chronicles 2025</h3>
+                <p>Ongoing collection of community updates for 2025.</p>
+                <div class="actions">
+                    <a class="btn" href="/archive/YC2025.html">View</a>
+                    <a class="btn secondary" href="/archive/YC2025.html">Download</a>
+                </div>
+            </article>
+
+            <article class="card">
+                <div class="meta">Compilation · 2025</div>
+                <h3>Master Yapping Chronicles</h3>
+                <p>Consolidated master copy of key chronicles.</p>
+                <div class="actions">
+                    <a class="btn" href="/archive/MYC2025.html">View</a>
+                    <a class="btn secondary" href="/archive/MYC2025.html">Download</a>
+                </div>
+            </article>
+        </section>
+    </div>
+    </main>
+        <!-- Metadata tip: keep a machine-readable index at /archive/data.json to drive this UI -->
+</body>
+</html>
