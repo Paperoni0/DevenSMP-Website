@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="description" content="DevenSMP News & Chronicles - Jivaka's reflections and community insights.">
+    <link rel="icon" href="/assets/images/icons/favicon.ico" type="image/x-icon">
+    <title>Vaka | DevenSMP</title>
+    <link rel="stylesheet" href="/css/all.css">
+    <style>
+        body { background:#f7f8fb; color:#111; }
+        header { background:#fff; box-shadow:0 1px 0 rgba(16,24,40,0.04); }
+        #topBar, #menu { display:flex; align-items:center; gap:12px; padding:10px 18px; }
+        #menu { justify-content:space-between; }
+        .container { max-width:900px; margin:50px auto; padding:0 20px; }
+        .hero { text-align:center; margin-bottom:40px; }
+        .hero h1 { margin:0; font-size:32px; color:#0f172a; }
+        .hero p { margin:12px 0 0; color:#475569; font-size:16px; line-height:1.6; }
+        .content-section { margin-bottom:40px; }
+        .section-title { font-size:20px; color:#0f172a; margin-bottom:16px; border-bottom:2px solid #0ea5a9; padding-bottom:8px; }
+        .chronicle-card { background:#fff; border-radius:10px; padding:24px; box-shadow:0 6px 18px rgba(15,23,42,0.06); margin-bottom:20px; }
+        .chronicle-meta { color:#64748b; font-size:13px; margin-bottom:8px; }
+        .chronicle-title { font-size:22px; color:#0f172a; margin:8px 0; }
+        .chronicle-excerpt { color:#475569; font-size:15px; line-height:1.6; margin:12px 0; }
+        .btn { display:inline-block; background:#0ea5a9; color:#fff; padding:10px 16px; border-radius:8px; text-decoration:none; font-weight:600; font-size:14px; }
+        .btn.secondary { background:#e2e8f0; color:#0f172a; }
+        .btn:hover { opacity:0.9; }
+        .about-jivaka { background:#f1f5f9; border-left:4px solid #0ea5a9; padding:20px; border-radius:8px; margin-bottom:40px; }
+        .about-jivaka strong { color:#0f172a; }
+        .archives-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:16px; margin-top:16px; }
+        .archive-item { background:#fff; border-radius:8px; padding:16px; box-shadow:0 2px 8px rgba(15,23,42,0.04); }
+        .archive-item h4 { margin:0 0 8px; color:#0f172a; }
+        .archive-item p { margin:0; color:#64748b; font-size:13px; }
+        .archive-item a { color:#0ea5a9; text-decoration:none; font-weight:600; }
+        @media (max-width:640px) { .hero h1 { font-size:24px; } .chronicle-card { padding:16px; } }
+    </style>
+    <script src="/js/all.js" defer></script>
+</head>
+<body>
+    <header>
+        <nav id="topBar">
+            <img src="/assets/images/main_menu.png" alt="Main Menu" id="menuToggle">
+            <a href="/home.html">
+                <img id="topLogo" src="/assets/images/logo.png" alt="Logo">
+            </a>
+        </nav>
+        <nav id="menu">
+            <a href="/home.html">
+                <img id="menuLogo" src="/assets/images/logo.png" alt="Logo">
+            </a>
+            <div id="links">
+                <a href="/about.html">About Us</a>
+                <a href="/news/index.html">News</a>
+                <a href="/legal/index.html">Legal</a>
+                <a href="/project/index.html">Projects</a>
+                <a href="/server.html">Server</a>
+                <a href="/setting.html">Settings</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <section class="hero">
+                <h1>DevenSMP Chronicles</h1>
+                <p>A space for Jivaka's reflections, observations, and written thoughts on the SMP journey and community.</p>
+            </section>
+
+            <section class="about-jivaka">
+                <strong>About Jivaka Brahma Putra</strong>
+                <p>Jivaka is a valued member of the DevenSMP community whose reflective essays and chronicles document the evolving narrative of our shared server experience. Through the Yapping Chronicles, Jivaka captures personal insights, community moments, and philosophical musings that shape our collective history.</p>
+            </section>
+
+            <section style="margin-bottom:40px;">
+                <p style="color:#475569; line-height:1.8; font-size:15px; margin-bottom:16px;">
+                    Every server has a story. Every player, a narrative. DevenSMP has been home to countless moments of triumph, discovery, and unexpected friendships. But beneath the gameplay and the structures we build lies something deeper—the human experience of connection, growth, and shared purpose. This is what the Yapping Chronicles seek to preserve: not just the what and where, but the why and how we evolved together.
+                </p>
+                <p style="color:#475569; line-height:1.8; font-size:15px; margin-bottom:16px;">
+                    In the digital age, we often move too quickly to reflect. We build, we progress, we achieve the next goal. But reflection is where meaning lives. It's in the quiet moments between server updates, in the conversations around difficult decisions, and in the acknowledgment of how far we've come. Jivaka's chronicles offer a counterpoint to the constant forward motion—an invitation to pause, remember, and understand the texture of our shared journey.
+                </p>
+                <p style="color:#475569; line-height:1.8; font-size:15px;">
+                    These writings are personal yet universal. They're a record of individual perspective meeting collective experience. Whether you're a founding member looking back with nostalgia or a newer player discovering the roots of our community, there's something here for you. The Yapping Chronicles are more than posts—they are a mirror reflecting who we are, where we've been, and who we're becoming.
+                </p>
+            </section>
+
+            <section class="content-section">
+                <div class="section-title">Latest Chronicle</div>
+                <article class="chronicle-card">
+                    <div class="chronicle-meta">2025 Collection · Version 1.0</div>
+                    <h2 class="chronicle-title">Yapping Chronicles 2025</h2>
+                    <p class="chronicle-excerpt">An ongoing collection of Jivaka's written thoughts and observations throughout 2025, capturing the moments, reflections, and community insights as they unfold.</p>
+                    <div style="display:flex; gap:8px;">
+                        <a href="/archive/YC2025.html" class="btn">Read Now</a>
+                        <a href="/assets/doc/YC2025.pdf" download class="btn secondary">Download PDF</a>
+                    </div>
+                </article>
+            </section>
+
+            <section class="content-section">
+                <div class="section-title">Browse All Chronicles</div>
+                <p style="color:#475569; margin-bottom:20px;">Explore Jivaka's complete collection of reflections and observations across multiple years.</p>
+                <div class="archives-grid">
+                    <div class="archive-item">
+                        <h4>2024 Collection</h4>
+                        <p>A curated compilation of key posts and reflections from 2024.</p>
+                        <a href="/archive/YC2024.html">View →</a>
+                    </div>
+                    <div class="archive-item">
+                        <h4>2025 Collection</h4>
+                        <p>Ongoing chronicles documenting the 2025 journey.</p>
+                        <a href="/archive/YC2025.html">View →</a>
+                    </div>
+                    <div class="archive-item">
+                        <h4>Master Collection</h4>
+                        <p>Combined compilation of key chronicles from 2024 to present.</p>
+                        <a href="/archive/MYC2025.html">View →</a>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <div class="section-title">Why We Yap</div>
+                <p style="color:#475569; line-height:1.8;">
+                    In a world of constant activity and rapid change, taking time to reflect and document our thoughts matters. The Yapping Chronicles represent more than personal essays—they are a record of community growth, individual perspectives, and the shared journey we experience together on DevenSMP. By preserving these reflections, we honor the stories that shape our collective identity.
+                </p>
+            </section>
+
+            <footer style="text-align:center; padding:40px 0 20px; border-top:1px solid #e2e8f0; color:#64748b; font-size:13px;">
+                <p>© 2024-2025 Jivaka Brahma Putra. Published by PT. Deven Strategic Media Platform.</p>
+            </footer>
+        </div>
+    </main>
+</body>
+</html>
