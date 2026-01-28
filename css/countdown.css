@@ -10,11 +10,11 @@
 }
 
 body.light {
-    background-image: url('../assets/images/backgrounds/light/countdown.jpg');
+    background-image: url('../assets/images/backgrounds/light/countdown.webp');
 }
 
 body.dark {
-    background-image: url('../assets/images/backgrounds/dark/countdown.jpg');
+    background-image: url('../assets/images/backgrounds/dark/countdown.webp');
 }
 
 main {

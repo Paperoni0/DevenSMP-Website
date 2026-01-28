@@ -1,9 +1,9 @@
 body.light {
-    background-image: url('../assets/images/backgrounds/light/redeem.jpg');
+    background-image: url('../assets/images/backgrounds/light/redeem.webp');
 }
 
 body.dark {
-    background-image: url('../assets/images/backgrounds/dark/redeem.jpg');
+    background-image: url('../assets/images/backgrounds/dark/redeem.webp');
 }
 
 #container {

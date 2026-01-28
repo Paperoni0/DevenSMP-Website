@@ -8,7 +8,7 @@ html, body {
 }
 
 body.light {
-    background-image: url('../assets/images/backgrounds/light/server.jpg');
+    background-image: url('../assets/images/backgrounds/light/server.webp');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -19,7 +19,7 @@ body.light {
 }
 
 body.dark {
-    background-image: url('../assets/images/backgrounds/dark/server.png');
+    background-image: url('../assets/images/backgrounds/dark/server.webp');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;

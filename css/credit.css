@@ -1,9 +1,9 @@
 body.light {
-    background-image: url('../assets/images/backgrounds/light/credit.jpg');
+    background-image: url('../assets/images/backgrounds/light/credit.webp');
 }
 
 body.dark {
-    background-image: url('../assets/images/backgrounds/dark/credit.jpg');
+    background-image: url('../assets/images/backgrounds/dark/credit.webp');
 }
 
 main {

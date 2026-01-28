@@ -9,12 +9,12 @@
     100% { color: red; }
 }
 body.light {
-    background-image: url('../assets/images/backgrounds/light/home.jpg');
+    background-image: url('../assets/images/backgrounds/light/home.webp');
     background-size: cover;
     background-position: center;
 }
 body.dark {
-    background-image: url('../assets/images/backgrounds/dark/home.jpg');
+    background-image: url('../assets/images/backgrounds/dark/home.webp');
     background-size: cover;
     background-position: center;
 }
