@@ -16,7 +16,7 @@
         .header-section h1 { margin:0; font-size:28px; color:#0f172a; }
         .meta-info { font-size:13px; color:#64748b; margin-top:8px; }
         .action-buttons { display:flex; gap:10px; flex-wrap:wrap; }
-        .btn { padding:10px 16px; border-radius:8px; text-decoration:none; font-weight:600; font-size:14px; border:none; cursor:pointer; }
+        .btn { padding:10px 16px; border-radius:8px; text-decoration:none; font-weight:600; font-size:14px; border:none; cursor:pointer; font-family:Minecraft, sans-serif; }
         .btn.primary { background:#0ea5a9; color:#fff; }
         .btn.secondary { background:#e2e8f0; color:#0f172a; }
         .btn:hover { opacity:0.9; }
@@ -65,6 +65,8 @@
                 </div>
                 <div class="action-buttons">
                     <a href="/assets/doc/YC2024.pdf" download class="btn primary">Download PDF</a>
+                    <button id="openTab" class="btn secondary">Open in new tab</button>
+                    <button id="toggleToolbar" class="btn secondary">Toggle Toolbar</button>
                 </div>
             </div>
 
@@ -91,25 +93,17 @@
     <script>
     (function(){
         const iframe = document.querySelector('.pdf-container iframe');
-        const actions = document.querySelector('.action-buttons');
-        if(!iframe || !actions) return;
+        const openBtn = document.getElementById('openTab');
+        const toolbarToggle = document.getElementById('toggleToolbar');
 
-        // Open in new tab link
-        const openBtn = document.createElement('a');
-        openBtn.className = 'btn';
-        openBtn.textContent = 'Open in new tab';
-        openBtn.href = iframe.src.split('#')[0];
-        openBtn.target = '_blank';
+        if(!iframe || !openBtn || !toolbarToggle) return;
+        
+        // Open in new tab function
+        openBtn.addEventListener('click', function(){
+            window.open(iframe.src.split('#')[0], '_blank');
+        });
 
-        // Toggle toolbar button
-        const toolbarToggle = document.createElement('button');
-        toolbarToggle.type = 'button';
-        toolbarToggle.className = 'btn secondary';
-        toolbarToggle.textContent = 'Toggle Toolbar';
-
-        actions.appendChild(toolbarToggle);
-        actions.appendChild(openBtn);
-
+        // Toggle toolbar function
         function setToolbar(show){
             const base = iframe.src.split('#')[0].split('?')[0];
             const hash = show ? '#toolbar=1' : '#toolbar=0';
@@ -122,6 +116,7 @@
         const show = hash.get('toolbar') !== '0';
         setToolbar(show);
 
+        // Toggle toolbar on click
         toolbarToggle.addEventListener('click', function(){
             const current = iframe.src.includes('#toolbar=1');
             setToolbar(!current);
