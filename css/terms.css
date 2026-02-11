@@ -10,7 +10,8 @@ body{
 /* Container */
 .container {
     max-width: 800px;
-    margin: 5px;
+    margin: auto;
+    padding: 35px;
     background: white;
     padding-top: 50px;
     border-radius: 8px;
