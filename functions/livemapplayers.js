@@ -10,7 +10,7 @@ export async function onRequestGet(context) {
         const data = await storage.get(key.name, { type: "json" });
         players[key.name] = data;
     }
-    return new Response(JSON.stringify(players), { headers: { "Content-Type": "application/json" } });
+    return new Response(JSON.stringify(players), { headers: { "Content-Type": "application/json", "Cache-Control": "no-store" } });
 }
 
 export async function onRequestPost(context) {
