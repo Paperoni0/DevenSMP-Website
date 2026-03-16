@@ -19,21 +19,9 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt update
-          sudo apt install -y sshpass tar openssh-client
+          sudo apt install -y sshpass tar
 
-      - name: Create compressed world backup on server
-        env:
-          SFTP_HOST: ${{ secrets.SFTP_HOST }}
-          SFTP_PORT: ${{ secrets.SFTP_PORT }}
-          SFTP_USER: ${{ secrets.SFTP_USER }}
-          SFTP_PASSWORD: ${{ secrets.SFTP_PASSWORD }}
-        run: |
-          sshpass -p "$SFTP_PASSWORD" ssh -o StrictHostKeyChecking=no -p $SFTP_PORT $SFTP_USER@$SFTP_HOST "
-            rm -f DevenSMP_backup.tar.gz
-            tar -czf DevenSMP_backup.tar.gz -C worlds DevenSMP
-          "
-
-      - name: Download compressed world
+      - name: Download Minecraft World via SFTP
         env:
           SFTP_HOST: ${{ secrets.SFTP_HOST }}
           SFTP_PORT: ${{ secrets.SFTP_PORT }}
@@ -41,45 +29,30 @@ jobs:
           SFTP_PASSWORD: ${{ secrets.SFTP_PASSWORD }}
         run: |
           mkdir -p .github/world
+
           sshpass -p "$SFTP_PASSWORD" sftp -o StrictHostKeyChecking=no -P $SFTP_PORT $SFTP_USER@$SFTP_HOST <<EOF
-          get DevenSMP_backup.tar.gz .github/world/world.tar.gz
+          lcd .github/world
+          get -r worlds/DevenSMP
           bye
           EOF
 
-      - name: Remove server backup
-        env:
-          SFTP_HOST: ${{ secrets.SFTP_HOST }}
-          SFTP_PORT: ${{ secrets.SFTP_PORT }}
-          SFTP_USER: ${{ secrets.SFTP_USER }}
-          SFTP_PASSWORD: ${{ secrets.SFTP_PASSWORD }}
+      - name: Generate Map with uNmINeD (Incremental)
         run: |
-          sshpass -p "$SFTP_PASSWORD" ssh -o StrictHostKeyChecking=no -p $SFTP_PORT $SFTP_USER@$SFTP_HOST "
-            rm -f DevenSMP_backup.tar.gz
-          "
+          ./.github/unmined/unmined-cli web render \
+            --world=".github/world/DevenSMP" \
+            --output="assets/images/livemap"
 
-      - name: Extract world
+      - name: Move metadata files
         run: |
-          tar -xzf .github/world/world.tar.gz -C .github/world
-          rm .github/world/world.tar.gz
-
-      - name: Generate Map with uNmINeD
-        run: |
-          mkdir .github/map
-          ./.github/unmined/unmined-cli web render --world=".github/world/DevenSMP" --output=".github/map"
-
-          rm -rf assets/images/livemap/tiles
-          mv .github/map/tiles assets/images/livemap/
-
           rm -f js/livemap/properties.js
-          mv .github/map/unmined.map.properties.js js/livemap/properties.js
+          mv assets/images/livemap/unmined.map.properties.js js/livemap/properties.js
 
           rm -f js/livemap/regions.js
-          mv .github/map/unmined.map.regions.js js/livemap/regions.js
+          mv assets/images/livemap/unmined.map.regions.js js/livemap/regions.js
 
       - name: Clean Up Files
         run: |
           rm -rf .github/world
-          rm -rf .github/map
 
       - name: Commit Changes
         env:
@@ -87,6 +60,7 @@ jobs:
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "actions@github.com"
+
           git add .
           git commit -m "Updated live map $(date)" || echo "No changes to commit"
           git push origin main
