@@ -24,8 +24,11 @@ export async function onRequestPost(context) {
     const keys = await storage.list();
     const onlineNames = new Set(online.map(p => p.username));
     for (const p of online) {
-        fetch(`https://mcprofile.io/api/v1/bedrock/gamertag/${p.username}`).then()
-        await storage.put(p.username, JSON.stringify({ x: p.x, z: p.z, online: true }));
+        let playerImage = "";
+        fetch(`https://mcprofile.io/api/v1/bedrock/gamertag/${p.username}`).then(response => response.json()).then(data => {
+            playerImage = `https://mc-heads.net/${data.textureId}/64`;
+        });
+        await storage.put(p.username, JSON.stringify({ x: p.x, z: p.z, image: playerImage, online: true }));
     }
     for (const key of keys.keys) {
         if (!onlineNames.has(key.name)) {
