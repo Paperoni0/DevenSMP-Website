@@ -25,22 +25,24 @@ jobs:
           UUID=$(echo "$RESPONSE" | jq -r '.data | map(select(.attributes.is_successful == true)) | sort_by(.attributes.created_at) | last | .attributes.uuid')
           DOWNLOAD_RESPONSE=$(curl "https://panel.freezehost.pro/api/client/servers/$SERVER_ID/backups/$UUID/download" -H "Authorization: Bearer $API_KEY" -H "Accept: Application/vnd.pterodactyl.v1+json" -H "Content-Type: application/json")
           DOWNLOAD_LINK=$(echo "$DOWNLOAD_RESPONSE" | jq -r '.attributes.url')
-          mkdir .github/world
-          curl -L "$DOWNLOAD_LINK" -o ".github/world/world.tar.gz"
-          tar -xzf ".github/world/world.tar.gz" -C .github/world
+          mkdir .github/livemap
+          curl -L "$DOWNLOAD_LINK" -o ".github/livemap/world.tar.gz"
+          tar -xzf ".github/livemap/world.tar.gz" -C .github/livemap
 
       - name: Generate map
         run: |
           ./.github/unmined/unmined-cli web render \
-            --world=".github/world/worlds/DevenSMP" \
-            --output="assets/images/livemap"
+            --world=".github/livemap/worlds/DevenSMP" \
+            --output=".github/livemap"
 
       - name: Move files
         run: |
+          rm -rf assets/images/livemap/tiles
+          mv .github/livemap/tiles assets/images/livemap
           rm -f js/livemap/properties.js
-          mv assets/images/livemap/unmined.map.properties.js js/livemap/properties.js
+          mv .github/livemap/unmined.map.properties.js js/livemap/properties.js
           rm -f js/livemap/regions.js
-          mv assets/images/livemap/unmined.map.regions.js js/livemap/regions.js
+          mv .github/livemap/unmined.map.regions.js js/livemap/regions.js
 
       - name: Clean Up Files
         run: |
