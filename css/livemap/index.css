@@ -1,3 +1,10 @@
+@font-face {
+    font-family: 'MinecraftFont';
+    src: url('assets/fonts/minecraft.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 html, body {
     width: 100%;
     height: 100%;
