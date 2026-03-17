@@ -14,39 +14,31 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Install dependencies
-        run: |
-          sudo apt update
-          sudo apt install -y sshpass tar
-
-      - name: Download Minecraft World via SFTP
+      - name: Download world
         env:
-          SFTP_HOST: ${{ secrets.SFTP_HOST }}
-          SFTP_PORT: ${{ secrets.SFTP_PORT }}
-          SFTP_USER: ${{ secrets.SFTP_USER }}
-          SFTP_PASSWORD: ${{ secrets.SFTP_PASSWORD }}
+          SERVER_ID: ${{ secrets.PTERODACTYL_SERVERID }}
+          API_KEY: ${{ secrets.PTERODACTYL_APIKEY }}
         run: |
-          mkdir -p .github/world
+          RESPONSE=$(curl "https://panel.freezehost.pro/api/client/servers/$SERVER_ID/backups" -H "Authorization: Bearer $API_KEY" -H "Accept: Application/vnd.pterodactyl.v1+json" -H "Content-Type: application/json")
+          UUID=$(echo "$RESPONSE" | jq -r '.data | map(select(.attributes.is_successful == true)) | sort_by(.attributes.created_at) | last | .attributes.uuid')
+          DOWNLOAD_RESPONSE=$(curl "https://panel.freezehost.pro/api/client/servers/$SERVER_ID/backups/$UUID/download" -H "Authorization: Bearer $API_KEY" -H "Accept: Application/vnd.pterodactyl.v1+json" -H "Content-Type: application/json")
+          DOWNLOAD_LINK=$(echo "$DOWNLOAD_RESPONSE" | jq -r '.attributes.url')
+          mkdir .github/world
+          curl -L "$DOWNLOAD_LINK" -o ".github/world/world.tar.gz"
+          tar -xzf ".github/world/world.tar.gz" -C .github/world
 
-          sshpass -p "$SFTP_PASSWORD" sftp -o StrictHostKeyChecking=no -P $SFTP_PORT $SFTP_USER@$SFTP_HOST <<EOF
-          lcd .github/world
-          get -r worlds/DevenSMP
-          bye
-          EOF
-
-      - name: Generate Map with uNmINeD (Incremental)
+      - name: Generate map
         run: |
           ./.github/unmined/unmined-cli web render \
-            --world=".github/world/DevenSMP" \
+            --world=".github/world/worlds/DevenSMP" \
             --output="assets/images/livemap"
 
-      - name: Move metadata files
+      - name: Move files
         run: |
           rm -f js/livemap/properties.js
           mv assets/images/livemap/unmined.map.properties.js js/livemap/properties.js
-
           rm -f js/livemap/regions.js
           mv assets/images/livemap/unmined.map.regions.js js/livemap/regions.js
 
@@ -60,7 +52,6 @@ jobs:
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "actions@github.com"
-
           git add .
           git commit -m "Updated live map $(date)" || echo "No changes to commit"
           git push origin main
