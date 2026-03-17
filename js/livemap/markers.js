@@ -2,11 +2,11 @@ UnminedCustomMarkers = {
     isEnabled: true,
     markers: [
         {
-            x: -86,
-            z: 18,
+            x: -6,
+            z: 23,
             image: "assets/images/livemap/world_spawn.png",
             imageAnchor: [0.5, 0.5],
-            imageScale: 0.25,
+            imageScale: 0.1,
             text: "World Spawn",
             textColor: "white",
             offsetX: 0,
