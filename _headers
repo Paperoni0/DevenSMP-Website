@@ -1,6 +1,9 @@
 /livemap.html
   Cache-Control: no-cache
 
+/css/livemap/*
+  Cache-Control: no-cache
+
 /js/livemap/*
   Cache-Control: no-cache
 
