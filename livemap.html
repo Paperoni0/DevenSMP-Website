@@ -29,8 +29,8 @@
             .then(players => {
                 let playerMarkers = [];
                 for (const username of Object.keys(players)) {
-                    const { x, z, online } = players[username];
-                    playerMarkers.push({ name: username, x, z, online });
+                    const { x, z, online, image } = players[username];
+                    playerMarkers.push({ name: username, x, z, online, image });
                 }
                 if (playerMarkers && playerMarkers.length > 0) {
                     UnminedMapProperties.playerMarkers = Unmined.createPlayerMarkers(playerMarkers);
