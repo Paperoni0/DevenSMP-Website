@@ -19,13 +19,20 @@ export async function onRequestPost(context) {
         return new Response("Unauthorized", { status: 401 });
     }
     const request = await context.request.json();
-    for (const player of request.players) {
-        const storage = context.env.LIVEMAPPLAYERS;
-        if (x && z) {
-            await storage.put(username, JSON.stringify({ x, z, online }));
-        } else {
-            const { x, z } = await storage.get(username, { type: "json" });
-            await storage.put(username, JSON.stringify({ x, z, online }));
+    const online = request.players || [];
+    const storage = context.env.LIVEMAPPLAYERS;
+    const keys = await storage.list();
+    const onlineNames = new Set(online.map(p => p.username));
+    for (const player of online) {
+        await storage.put(p.username, JSON.stringify({ x: p.x, z: p.z, online: true }));
+    }
+    for (const key of keys.keys) {
+        if (!onlineNames.has(key.name)) {
+            const data = await storage.get(key.name, { type: "json" });
+            if (data && data.online !== false) {
+                data.online = false;
+                await storage.put(key.name, JSON.stringify(data));
+            }
         }
     }
     return new Response("Success");
