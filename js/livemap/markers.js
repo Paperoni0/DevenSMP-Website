@@ -8,7 +8,7 @@ UnminedCustomMarkers = {
             imageAnchor: [0.5, 0.5],
             imageScale: 0.25,
             text: "World Spawn",
-            textColor: "white",
+            textColor: "lime",
             offsetX: 0,
             offsetY: 20,
             font: "14px Arial",
