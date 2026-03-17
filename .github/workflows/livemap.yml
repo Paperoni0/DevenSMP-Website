@@ -46,7 +46,7 @@ jobs:
 
       - name: Clean Up Files
         run: |
-          rm -rf .github/world
+          rm -rf .github/livemap
 
       - name: Commit Changes
         env:
