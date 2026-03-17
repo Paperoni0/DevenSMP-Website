@@ -26,7 +26,7 @@ export async function onRequestPost(context) {
     for (const p of online) {
         const response = await fetch(`https://mcprofile.io/api/v1/bedrock/gamertag/${p.username}`);
         const data = await response.json();
-        const playerImage = `https://mc-heads.net/${data.textureid}/64` ?? "";
+        const playerImage = `https://mc-heads.net/avatar/${data.textureid}/64` ?? "";
         await storage.put(p.username, JSON.stringify({ x: p.x, z: p.z, image: playerImage, online: true }));
     }
     for (const key of keys.keys) {
