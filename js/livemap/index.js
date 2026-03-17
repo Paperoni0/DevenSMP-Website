@@ -425,7 +425,8 @@ class Unmined {
 
     static playerToMarker(player) {
         var marker = Object.assign({}, Unmined.defaultPlayerMarkerStyle);
-        marker.image = player.online === true ? 'assets/images/livemap/player_online.png' : 'assets/images/livemap/player_offline.png';
+        marker.image = player.image;
+        marker.textColor = player.online ? "white" : "gray";
         marker.x = player.x;
         marker.z = player.z;
         marker.text = player.name;
