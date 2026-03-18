@@ -35,6 +35,19 @@ jobs:
             --world=".github/livemap/worlds/DevenSMP" \
             --output=".github/livemap"
 
+      - name: Move files
+        run: |
+          rm -rf assets/images/livemap/tiles
+          mv .github/livemap/tiles assets/images/livemap
+          rm -f js/livemap/properties.js
+          mv .github/livemap/unmined.map.properties.js js/livemap/properties.js
+          rm -f js/livemap/regions.js
+          mv .github/livemap/unmined.map.regions.js js/livemap/regions.js
+
+      - name: Clean Up Files
+        run: |
+          rm -rf .github/livemap
+
       - name: Commit Changes
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
