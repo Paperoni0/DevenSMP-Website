@@ -42,15 +42,14 @@
                     .then(response => response.json())
                     .then(players => {
                         let playerMarkers = [];
-                        let playerProperties = [];
                         for (const username of Object.keys(players)) {
                             const { x, z, online, image } = players[username];
                             playerMarkers.push({ name: username, x, z, online, image });
                         }
                         if (playerMarkers && playerMarkers.length > 0) {
-                            playerProperties = Unmined.createPlayerMarkers(playerMarker);
+                            const playerProperties = Unmined.createPlayerMarkers(playerMarkers);
+                            unmined.editMarkersLayer(unmined.playerMarkersLayer, playerProperties);
                         }
-                        unmined.editMarkersLayer(unmined.playerMarkersLayer, playerProperties);
                     });
                 }, 5000);
             });
