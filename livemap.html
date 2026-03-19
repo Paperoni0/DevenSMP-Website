@@ -26,7 +26,7 @@
         if (UnminedCustomMarkers && UnminedCustomMarkers.isEnabled && UnminedCustomMarkers.markers) {
             UnminedMapProperties.markers = UnminedMapProperties.markers.concat(UnminedCustomMarkers.markers);
         }
-        fetch('/livemapplayers', { headers: { 'Authorization': 'Bearer da9b81c4-3dec-4678-be81-f47a3b91d9e0' } })
+        fetch('http://217.160.125.126:12377/players', { headers: { 'Authorization': 'Bearer da9b81c4-3dec-4678-be81-f47a3b91d9e0' } })
             .then(response => response.json())
             .then(players => {
                 let playerMarkers = [];
@@ -41,7 +41,7 @@
                 unmined = new Unmined(mapElement, UnminedMapProperties, UnminedRegions);
             });
         setInterval(async () => {
-            await fetch('/livemapplayers', { headers: { 'Authorization': 'Bearer da9b81c4-3dec-4678-be81-f47a3b91d9e0' } })
+            await fetch('http://217.160.125.126:12377/players', { headers: { 'Authorization': 'Bearer da9b81c4-3dec-4678-be81-f47a3b91d9e0' } })
             .then(response => response.json())
             .then(players => {
                 let playerProperties;
