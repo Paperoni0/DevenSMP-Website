@@ -23,7 +23,7 @@
         if (UnminedCustomMarkers && UnminedCustomMarkers.isEnabled && UnminedCustomMarkers.markers) {
             UnminedMapProperties.markers = UnminedMapProperties.markers.concat(UnminedCustomMarkers.markers);
         }
-        fetch('/livemapplayers', { headers: { 'Authorization': 'Bearer da9b81c4-3dec-4678-be81-f47a3b91d9e0' } })
+        fetch('/livemapplayers')
             .then(response => response.json())
             .then(players => {
                 let playerMarkers = [];
