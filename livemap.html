@@ -17,7 +17,6 @@
     <script type="text/javascript" src="js/livemap/regions.js"></script>
     <script type="text/javascript" src="js/livemap/markers.js"></script>
     <script type="text/javascript" src="js/livemap/index.js"></script>
-    </style>
 </head>
 <body>
     <div id="map"></div>
@@ -38,7 +37,7 @@
                 }
                 const mapElement = document.getElementById('map');
                 const unmined = new Unmined(mapElement, UnminedMapProperties, UnminedRegions);
-                system.runInterval(() => {
+                setInterval(() => {
                     fetch('http://217.160.125.126:12377/players', { headers: { 'Authorization': 'Bearer da9b81c4-3dec-4678-be81-f47a3b91d9e0' } })
                     .then(response => response.json())
                     .then(players => {
