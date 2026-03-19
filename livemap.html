@@ -43,7 +43,7 @@
                 socket.onmessage = (event) => {
                     const players = JSON.parse(event.data);
                     const playerMarkers = Object.entries(players).map(([username, { x, z, online, image }]) => ({
-                    name: username, x, z, online, image
+                        name: username, x, z, online, image
                     }));
                     if (playerMarkers.length > 0 && playerMarkersLayer) {
                         unmined.editMarkersLayer(playerMarkersLayer, playerMarkers);
