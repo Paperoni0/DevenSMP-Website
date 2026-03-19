@@ -22,7 +22,6 @@
 <body>
     <div id="map"></div>
     <script type="text/javascript">
-        let unmined;
         if (UnminedCustomMarkers && UnminedCustomMarkers.isEnabled && UnminedCustomMarkers.markers) {
             UnminedMapProperties.markers = UnminedMapProperties.markers.concat(UnminedCustomMarkers.markers);
         }
@@ -38,7 +37,7 @@
                     UnminedMapProperties.playerMarkers = Unmined.createPlayerMarkers(playerMarkers);
                 }
                 const mapElement = document.getElementById('map');
-                unmined = new Unmined(mapElement, UnminedMapProperties, UnminedRegions);
+                const unmined = new Unmined(mapElement, UnminedMapProperties, UnminedRegions);
                 const socket = new WebSocket('ws://217.160.125.126:12377');
                 socket.onmessage = (event) => {
                     const players = JSON.parse(event.data);
