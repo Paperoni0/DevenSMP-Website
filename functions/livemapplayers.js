@@ -1,12 +1,10 @@
-const PLAYERS_KEY = "players";
-
 export async function onRequestGet(context) {
     const apiKey = context.request.headers.get("Authorization");
     if (!apiKey || apiKey !== `Bearer ${context.env.API_KEY}`) {
         return new Response("Unauthorized", { status: 401 });
     }
-    const storage = context.env.LIVEMAPPLAYERS;
-    const players = await storage.get(PLAYERS_KEY, { type: "json" }) || {};
+    const response = await fetch('http://217.160.125.126:12377/players', { headers: { "Authorization": `Bearer da9b81c4-3dec-4678-be81-f47a3b91d9e0` } });
+    const players = (await response.json()).players;
     return new Response(JSON.stringify(players), {
         headers: { "Content-Type": "application/json", "Cache-Control": "no-store" }
     });
