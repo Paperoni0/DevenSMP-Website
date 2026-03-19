@@ -407,6 +407,71 @@ class Unmined {
         return vectorLayer;
     }
 
+    editMarkersLayer(layer, markers) {
+    var source = layer.getSource();
+    var existingFeatures = source.getFeatures();
+    var featureMap = {};
+    for (var i = 0; i < existingFeatures.length; i++) {
+        featureMap[i] = existingFeatures[i];
+    }
+    var updatedFeatures = [];
+    for (var i = 0; i < markers.length; i++) {
+        var item = markers[i];
+        var longitude = item.x;
+        var latitude = item.z;
+        var feature = featureMap[i] ?? new ol.Feature();
+        feature.setGeometry(
+            new ol.geom.Point(
+                ol.proj.transform([longitude, latitude], this.dataProjection, this.viewProjection)
+            )
+        );
+        var style = new ol.style.Style();
+        if (item.image) {
+            style.setImage(new ol.style.Icon({
+                src: item.image,
+                anchor: item.imageAnchor,
+                scale: item.imageScale
+            }));
+        } else {
+            style.setImage(null);
+        }
+        if (item.text) {
+            style.setText(new ol.style.Text({
+                text: item.text,
+                font: item.font,
+                offsetX: item.offsetX,
+                offsetY: item.offsetY,
+                fill: item.textColor ? new ol.style.Fill({
+                    color: item.textColor
+                }) : null,
+                padding: item.textPadding ?? [2, 4, 2, 4],
+                stroke: item.textStrokeColor ? new ol.style.Stroke({
+                    color: item.textStrokeColor,
+                    width: item.textStrokeWidth
+                }) : null,
+                backgroundFill: item.textBackgroundColor ? new ol.style.Fill({
+                    color: item.textBackgroundColor
+                }) : null,
+                backgroundStroke: item.textBackgroundStrokeColor ? new ol.style.Stroke({
+                    color: item.textBackgroundStrokeColor,
+                    width: item.textBackgroundStrokeWidth
+                }) : null,
+            }));
+        } else {
+            style.setText(null);
+        }
+        feature.setStyle(style);
+        updatedFeatures.push(feature);
+    }
+    var newFeatures = updatedFeatures.slice(existingFeatures.length);
+    if (newFeatures.length > 0) {
+        source.addFeatures(newFeatures);
+    }
+    for (var i = markers.length; i < existingFeatures.length; i++) {
+        source.removeFeature(existingFeatures[i]);
+    }
+    }
+
     static defaultPlayerMarkerStyle = {
         imageAnchor: [0.5, 0.5],
         imageScale: 0.25,
