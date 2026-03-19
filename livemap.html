@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <link rel="icon" href="assets/images/icons/favicon.ico" type="image/x-icon">
     <title>Live Map | DevenSMP</title>
-    <link rel="preload" href="assets/fonts/minecraft.ttf" as="font" type="font/ttf" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="css/livemap/ol.css">
     <link rel="stylesheet" href="css/livemap/ol-contextmenu.css">
     <link rel="stylesheet" type="text/css" href="css/livemap/toastify-js.min.css">
@@ -24,7 +23,7 @@
         if (UnminedCustomMarkers && UnminedCustomMarkers.isEnabled && UnminedCustomMarkers.markers) {
             UnminedMapProperties.markers = UnminedMapProperties.markers.concat(UnminedCustomMarkers.markers);
         }
-        fetch('/livemap', { headers: { 'Authorization': 'Bearer da9b81c4-3dec-4678-be81-f47a3b91d9e0' } })
+        fetch('http://217.160.125.126:12377/players', { headers: { 'Authorization': 'Bearer da9b81c4-3dec-4678-be81-f47a3b91d9e0' } })
             .then(response => response.json())
             .then(players => {
                 let playerMarkers = [];
