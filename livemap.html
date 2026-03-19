@@ -22,6 +22,7 @@
 <body>
     <div id="map"></div>
     <script type="text/javascript">
+        let unmined;
         if (UnminedCustomMarkers && UnminedCustomMarkers.isEnabled && UnminedCustomMarkers.markers) {
             UnminedMapProperties.markers = UnminedMapProperties.markers.concat(UnminedCustomMarkers.markers);
         }
@@ -37,8 +38,24 @@
                     UnminedMapProperties.playerMarkers = Unmined.createPlayerMarkers(playerMarkers);
                 }
                 const mapElement = document.getElementById('map');
-                const unmined = new Unmined(mapElement, UnminedMapProperties, UnminedRegions);
+                unmined = new Unmined(mapElement, UnminedMapProperties, UnminedRegions);
             });
+        setInterval(async () => {
+            await fetch('/livemapplayers', { headers: { 'Authorization': 'Bearer da9b81c4-3dec-4678-be81-f47a3b91d9e0' } })
+            .then(response => response.json())
+            .then(players => {
+                let playerProperties;
+                let playerMarkers = [];
+                for (const username of Object.keys(players)) {
+                    const { x, z, online, image } = players[username];
+                    playerMarkers.push({ name: username, x, z, online, image });
+                }
+                if (playerMarkers && playerMarkers.length > 0) {
+                    playerProperties = Unmined.createPlayerMarkers(playerMarkers);
+                }
+                unmined.editMarkersLayer(this.playerMarkersLayer, playerMarkers);
+            });
+        }, 5000);
     </script>
 </body>
 </html>
