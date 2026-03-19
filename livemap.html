@@ -39,23 +39,19 @@
                 }
                 const mapElement = document.getElementById('map');
                 unmined = new Unmined(mapElement, UnminedMapProperties, UnminedRegions);
+                const socket = new WebSocket('ws://217.160.125.126:12377');
+                socket.onmessage = (event) => {
+                    const players = JSON.parse(event.data);
+                    const playerMarkers = Object.entries(players).map(([username, { x, z, online, image }]) => ({
+                    name: username, x, z, online, image
+                    }));
+                    if (playerMarkers.length > 0 && playerMarkersLayer) {
+                        unmined.editMarkersLayer(playerMarkersLayer, playerMarkers);
+                    }
+                };
+                socket.onclose = () => console.warn('WebSocket closed');
+                socket.onerror = (e) => console.error('WebSocket error', e);
             });
-        setInterval(async () => {
-            await fetch('http://217.160.125.126:12377/players', { headers: { 'Authorization': 'Bearer da9b81c4-3dec-4678-be81-f47a3b91d9e0' } })
-            .then(response => response.json())
-            .then(players => {
-                let playerProperties;
-                let playerMarkers = [];
-                for (const username of Object.keys(players)) {
-                    const { x, z, online, image } = players[username];
-                    playerMarkers.push({ name: username, x, z, online, image });
-                }
-                if (playerMarkers && playerMarkers.length > 0) {
-                    playerProperties = Unmined.createPlayerMarkers(playerMarkers);
-                }
-                unmined.editMarkersLayer(this.playerMarkersLayer, playerProperties);
-            });
-        }, 5000);
     </script>
 </body>
 </html>
