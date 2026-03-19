@@ -44,8 +44,8 @@
                     const playerMarkers = Object.entries(players).map(([username, { x, z, online, image }]) => ({
                         name: username, x, z, online, image
                     }));
-                    if (playerMarkers.length > 0 && playerMarkersLayer) {
-                        unmined.editMarkersLayer(playerMarkersLayer, playerMarkers);
+                    if (playerMarkers.length > 0 && unmined.playerMarkersLayer) {
+                        unmined.editMarkersLayer(unmined.playerMarkersLayer, playerMarkers);
                     }
                 };
                 socket.onclose = () => console.warn('WebSocket closed');
