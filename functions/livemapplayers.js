@@ -1,5 +1,5 @@
 export async function onRequestGet(context) {
-    const origin = context.request.headers.get('Origin');
+    const origin = context.request.headers['origin'];
     if (origin !== 'https://devensmp.us.to') {
         return new Response('Forbidden', { status: 403 });
     }
