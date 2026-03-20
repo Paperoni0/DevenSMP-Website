@@ -1,8 +1,7 @@
 export async function onRequestGet(context) {
     const response = await fetch(`${context.env.API_URL}/players`, { headers: { "Authorization": `Bearer ${context.env.API_KEY}` } });
     if (!response.ok) {
-        console.error(JSON.stringify(response));
-        return new Response('Failed to fetch players', { status: 502 });
+        return new Response(`Upstream error: ${response.status} ${response.statusText}`, { status: 502 });
     }
     const data = await response.json();
     return new Response(JSON.stringify(data.players), {
