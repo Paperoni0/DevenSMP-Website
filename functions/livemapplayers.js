@@ -1,7 +1,14 @@
 export async function onRequestGet(context) {
+    const origin = context.request.headers.get('Origin');
+    if (origin !== 'https://devensmp.us.to') {
+        return new Response('Forbidden', { status: 403 });
+    }
     const response = await fetch('http://217.160.125.126:12377/players', { headers: { "Authorization": `Bearer ${context.env.API_KEY}` } });
-    const players = (await response.json()).players;
-    return new Response(JSON.stringify(players), {
-        headers: { "Content-Type": "application/json", "Cache-Control": "no-store" }
+    if (!response.ok) {
+        return new Response('Failed to fetch players', { status: 502 });
+    }
+    const data = await response.json();
+    return new Response(JSON.stringify(data.players), {
+        headers: { "Content-Type": "application/json", "Cache-Control": "no-store", "Access-Control-Allow-Origin": "https://devensmp.us.to" }
     });
 }
