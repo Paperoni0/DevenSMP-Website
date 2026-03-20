@@ -19,39 +19,48 @@
 </head>
 <body>
     <div id="map"></div>
-    <script type="text/javascript">
+    <script type="module">
+        import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+        const supabase = createClient('https://mqprtorkbjflarpbjdrr.supabase.co', 'sb_publishable_mzn0G0K6Y1QGwi83TVweug_uETtafBU');
         if (UnminedCustomMarkers && UnminedCustomMarkers.isEnabled && UnminedCustomMarkers.markers) {
             UnminedMapProperties.markers = UnminedMapProperties.markers.concat(UnminedCustomMarkers.markers);
         }
-        fetch('https://mqprtorkbjflarpbjdrr.supabase.co/functions/v1/live-map-players')
-            .then(response => response.json())
-            .then(players => {
-                let playerMarkers = [];
-                for (const username of Object.keys(players)) {
-                    const { x, z, online, image } = players[username];
-                    playerMarkers.push({ name: username, x, z, online, image });
-                }
-                if (playerMarkers && playerMarkers.length > 0) {
-                    UnminedMapProperties.playerMarkers = Unmined.createPlayerMarkers(playerMarkers);
-                }
-                const mapElement = document.getElementById('map');
-                const unmined = new Unmined(mapElement, UnminedMapProperties, UnminedRegions);
-                setInterval(() => {
-                    fetch('https://mqprtorkbjflarpbjdrr.supabase.co/functions/v1/live-map-players')
-                    .then(response => response.json())
-                    .then(players => {
-                        let playerMarkers = [];
-                        for (const username of Object.keys(players)) {
-                            const { x, z, online, image } = players[username];
-                            playerMarkers.push({ name: username, x, z, online, image });
+        function buildMarkers(data) {
+            return data
+                .filter(p => p.username && p.username !== 'null' && p.x != null && p.z != null)
+                .map(p => ({ name: p.username, x: p.x, z: p.z, image: p.image, online: p.online }));
+        }
+        async function init() {
+            const { data, error } = await supabase
+                .from('players')
+                .select('username, x, z, image, online');
+            if (error) return console.error(error);
+            const playerMarkers = buildMarkers(data);
+            if (playerMarkers.length > 0) {
+                UnminedMapProperties.playerMarkers = Unmined.createPlayerMarkers(playerMarkers);
+            }
+            const mapElement = document.getElementById('map');
+            window.unmined = new Unmined(mapElement, UnminedMapProperties, UnminedRegions);
+            supabase
+                .channel('players-changes')
+                .on(
+                    'postgres_changes',
+                    { event: '*', schema: 'public', table: 'players' },
+                    async () => {
+                        const { data, error } = await supabase
+                            .from('players')
+                            .select('username, x, z, image, online');
+                        if (error) return console.error(error);
+                        const playerMarkers = buildMarkers(data);
+                        if (playerMarkers.length > 0 && window.unmined?.playerMarkersLayer) {
+                            const markers = Unmined.createPlayerMarkers(playerMarkers);
+                            window.unmined.editMarkersLayer(window.unmined.playerMarkersLayer, markers);
                         }
-                        if (playerMarkers && playerMarkers.length > 0) {
-                            const playerProperties = Unmined.createPlayerMarkers(playerMarkers);
-                            unmined.editMarkersLayer(unmined.playerMarkersLayer, playerProperties);
-                        }
-                    });
-                }, 5000);
-            });
+                    }
+                )
+                .subscribe();
+        }
+        init();
     </script>
 </body>
 </html>
