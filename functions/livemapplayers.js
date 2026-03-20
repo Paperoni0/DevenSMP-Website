@@ -1,5 +1,5 @@
 export async function onRequestGet(context) {
-    const response = await fetch('http://217.160.125.126:12377/players', { headers: { "Authorization": `Bearer ${context.env.API_KEY}` } });
+    const response = await fetch(`${context.env.API_URL}/players`, { headers: { "Authorization": `Bearer ${context.env.API_KEY}` } });
     if (!response.ok) {
         return new Response('Failed to fetch players', { status: 502 });
     }
