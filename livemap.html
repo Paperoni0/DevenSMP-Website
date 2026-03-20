@@ -23,7 +23,7 @@
         if (UnminedCustomMarkers && UnminedCustomMarkers.isEnabled && UnminedCustomMarkers.markers) {
             UnminedMapProperties.markers = UnminedMapProperties.markers.concat(UnminedCustomMarkers.markers);
         }
-        fetch('/livemapplayers')
+        fetch('https://mqprtorkbjflarpbjdrr.supabase.co/functions/v1/live-map-players')
             .then(response => response.json())
             .then(players => {
                 let playerMarkers = [];
@@ -37,7 +37,7 @@
                 const mapElement = document.getElementById('map');
                 const unmined = new Unmined(mapElement, UnminedMapProperties, UnminedRegions);
                 setInterval(() => {
-                    fetch('/livemapplayers')
+                    fetch('https://mqprtorkbjflarpbjdrr.supabase.co/functions/v1/live-map-players')
                     .then(response => response.json())
                     .then(players => {
                         let playerMarkers = [];
