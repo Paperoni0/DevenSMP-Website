@@ -11,7 +11,7 @@ UnminedCustomMarkers = {
             textColor: "lime",
             offsetX: 0,
             offsetY: 20,
-            font: "12px MinecraftFont Arial",
+            font: '12px "MinecraftFont", Arial',
             textBackgroundColor: "#00000088",
             textPadding: [2, 4, 2, 4]
         }
