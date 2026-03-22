@@ -8,6 +8,12 @@ on:
     - cron: "0 0,12 * * *"
   workflow_dispatch:
 
+env:
+  LIVEMAP_DIR: .github/livemap
+  WORLD_PATH: .github/livemap/worlds/DevenSMP
+  UNMINED: ./.github/unmined/unmined-cli
+  RENDER_FLAGS: --shadows=true --imageformat="webp" --zoomout=-2 --zoomin=3
+
 jobs:
   update-map:
     runs-on: ubuntu-latest
@@ -16,59 +22,55 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Download world
+      - name: Download world backup
         env:
           SERVER_ID: ${{ secrets.PTERODACTYL_SERVERID }}
           API_KEY: ${{ secrets.PTERODACTYL_APIKEY }}
         run: |
-          RESPONSE=$(curl "https://panel.freezehost.pro/api/client/servers/$SERVER_ID/backups" -H "Authorization: Bearer $API_KEY" -H "Accept: Application/vnd.pterodactyl.v1+json" -H "Content-Type: application/json")
-          UUID=$(echo "$RESPONSE" | jq -r '.data | map(select(.attributes.is_successful == true)) | sort_by(.attributes.created_at) | last | .attributes.uuid')
-          DOWNLOAD_RESPONSE=$(curl "https://panel.freezehost.pro/api/client/servers/$SERVER_ID/backups/$UUID/download" -H "Authorization: Bearer $API_KEY" -H "Accept: Application/vnd.pterodactyl.v1+json" -H "Content-Type: application/json")
-          DOWNLOAD_LINK=$(echo "$DOWNLOAD_RESPONSE" | jq -r '.attributes.url')
-          mkdir .github/livemap
-          curl -L "$DOWNLOAD_LINK" -o ".github/livemap/world.tar.gz"
-          tar -xzf ".github/livemap/world.tar.gz" -C .github/livemap
+          BASE_URL="https://panel.freezehost.pro/api/client/servers/$SERVER_ID"
+          AUTH_HEADERS=(-H "Authorization: Bearer $API_KEY" -H "Accept: Application/vnd.pterodactyl.v1+json")
 
-      - name: Generate map
-        run: |
-          ./.github/unmined/unmined-cli web render --world=".github/livemap/worlds/DevenSMP" --output=".github/livemap/overworld" --dimension=overworld --shadows=true --imageformat="webp" --zoomout=-2 --zoomin=3
-          ./.github/unmined/unmined-cli web render --world=".github/livemap/worlds/DevenSMP" --output=".github/livemap/nether" --dimension=nether --shadows=true --imageformat="webp" --zoomout=-2 --zoomin=3
-          ./.github/unmined/unmined-cli web render --world=".github/livemap/worlds/DevenSMP" --output=".github/livemap/end" --dimension=end --shadows=true --imageformat="webp" --zoomout=-2 --zoomin=3
+          UUID=$(curl -sf "${BASE_URL}/backups" "${AUTH_HEADERS[@]}" | \
+            jq -r '[.data[] | select(.attributes.is_successful)] | sort_by(.attributes.created_at) | last | .attributes.uuid')
 
-      - name: Move files
-        run: |
-          rm -rf assets/images/livemap/overworld/tiles
-          rm -rf assets/images/livemap/nether/tiles
-          rm -rf assets/images/livemap/end/tiles
-          mv .github/livemap/overworld/tiles assets/images/livemap/overworld
-          mv .github/livemap/nether/tiles assets/images/livemap/nether
-          mv .github/livemap/end/tiles assets/images/livemap/end
-          rm -f js/livemap/overworld/properties.js
-          rm -f js/livemap/nether/properties.js
-          rm -f js/livemap/end/properties.js
-          mv .github/livemap/overworld/unmined.map.properties.js js/livemap/overworld/properties.js
-          mv .github/livemap/nether/unmined.map.properties.js js/livemap/nether/properties.js
-          mv .github/livemap/end/unmined.map.properties.js js/livemap/end/properties.js
-          rm -f js/livemap/overworld/regions.js
-          rm -f js/livemap/nether/regions.js
-          rm -f js/livemap/end/regions.js
-          mv .github/livemap/overworld/unmined.map.regions.js js/livemap/overworld/regions.js
-          mv .github/livemap/nether/unmined.map.regions.js js/livemap/nether/regions.js
-          mv .github/livemap/end/unmined.map.regions.js js/livemap/end/regions.js
+          [ -z "$UUID" ] && echo "No successful backup found" && exit 1
 
-      - name: Clean Up Files
-        run: |
-          rm -rf .github/livemap
+          DOWNLOAD_LINK=$(curl -sf "${BASE_URL}/backups/${UUID}/download" "${AUTH_HEADERS[@]}" | \
+            jq -r '.attributes.url')
 
-      - name: Commit Changes
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          mkdir -p "$LIVEMAP_DIR"
+          curl -L --retry 3 --retry-delay 5 "$DOWNLOAD_LINK" -o "$LIVEMAP_DIR/world.tar.gz"
+          tar -xzf "$LIVEMAP_DIR/world.tar.gz" -C "$LIVEMAP_DIR"
+
+      - name: Generate map tiles
         run: |
+          for dim in overworld nether end; do
+            "$UNMINED" web render \
+              --world="$WORLD_PATH" \
+              --output="$LIVEMAP_DIR/$dim" \
+              --dimension=$dim \
+              $RENDER_FLAGS
+          done
+
+      - name: Move tiles and properties
+        run: |
+          for dim in overworld nether end; do
+            rm -rf "assets/images/livemap/$dim/tiles"
+            mv "$LIVEMAP_DIR/$dim/tiles" "assets/images/livemap/$dim/tiles"
+
+            for file in properties regions; do
+              rm -f "js/livemap/$dim/$file.js"
+              mv "$LIVEMAP_DIR/$dim/unmined.map.$file.js" "js/livemap/$dim/$file.js"
+            done
+          done
+
+      - name: Commit and push changes
+        run: |
+          rm -rf "$LIVEMAP_DIR"
+          git config --global user.name "github-actions"
+          git config --global user.email "actions@github.com"
           git config --global http.postBuffer 524288000
           git config --global http.lowSpeedLimit 0
           git config --global http.lowSpeedTime 600
-          git config --global user.name "github-actions"
-          git config --global user.email "actions@github.com"
           git add .
-          git commit -m "Updated live map $(date)" || echo "No changes to commit"
-          git push origin main
+          git diff --cached --quiet || git commit -m "Updated live map $(date -u '+%Y-%m-%d %H:%M UTC')" && git push origin main
