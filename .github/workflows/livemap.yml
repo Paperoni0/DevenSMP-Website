@@ -12,7 +12,7 @@ env:
   LIVEMAP_DIR: .github/livemap
   WORLD_PATH: .github/livemap/worlds/DevenSMP
   UNMINED: ./.github/unmined/unmined-cli
-  RENDER_FLAGS: --shadows=true --imageformat=webp --zoomout=-2 --zoomin=3
+  RENDER_FLAGS: --shadows=true --imageformat=webp --zoomout=-3 --zoomin=1
 
 jobs:
   update-map:
