@@ -40,9 +40,9 @@ jobs:
         env:
           CLOUDINARY_URL: ${{ secrets.CLOUDINARY_URL }}
         run: |
-          find .github/livemap/overworld -type f > /tmp/filelist.txt
+          find .github/livemap/overworld/tiles -type f > /tmp/filelist.txt
           while read file; do
-          relative=$(realpath --relative-to=".github/livemap/overworld" "$file")
+          relative=$(realpath --relative-to=".github/livemap/overworld/tiles" "$file")
           subfolder="livemap/$(dirname "$relative")"
           subfolder=$(echo "$subfolder" | sed 's|/\./|/|g' | sed 's|/.$||')
           cld uploader upload "$file" folder="$subfolder" use_filename=true unique_filename=false
