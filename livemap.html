@@ -19,6 +19,17 @@
 </head>
 <body>
     <div id="map"></div>
+    <div id="sidebar-backdrop"></div>
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <span class="sidebar-header-title">Switch Dimension</span>
+            <button class="sidebar-close" id="close-btn">✕</button>
+        </div>
+        <ul id="sidebar-list"></ul>
+    </nav>
+    <button id="map-toggle-btn" onclick="toggleSidebar()">
+        <div id="toggle-icon"><span></span><span></span><span></span></div>
+    </button>
     <script type="module">
         import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
         const supabase = createClient('https://mqprtorkbjflarpbjdrr.supabase.co', 'sb_publishable_mzn0G0K6Y1QGwi83TVweug_uETtafBU');
