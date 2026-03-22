@@ -14,9 +14,8 @@
     <script type="text/javascript" src="js/livemap/toastify-js.js"></script>
     <script type="text/javascript" src="js/livemap/markers.js"></script>
     <script type="text/javascript" src="js/livemap/index.js"></script>
-    <style>
-        
-    </style>
+    <script type="text/javascript" src="js/livemap/properties.js"></script>
+    <script type="text/javascript" src="js/livemap/regions.js"></script>
     <script>
         const sidebar = document.getElementById('sidebar');
         const backdrop = document.getElementById('sidebar-backdrop');
@@ -66,21 +65,6 @@
         import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
         const supabase = createClient('https://mqprtorkbjflarpbjdrr.supabase.co', 'sb_publishable_mzn0G0K6Y1QGwi83TVweug_uETtafBU');
         const dimension = new URLSearchParams(window.location.search).get("dimension");
-        function loadScript(src) {
-            return new Promise((resolve, reject) => {
-                const s = document.createElement("script");
-                s.src = src;
-                s.onload = resolve;
-                s.onerror = reject;
-                document.head.appendChild(s);
-            });
-        }
-        Promise.all([
-            loadScript(`js/${world}/properties.js`),
-            loadScript(`js/${world}/regions.js`),
-        ]).then(() => {
-            
-        });
         if (UnminedCustomMarkers && UnminedCustomMarkers.isEnabled && UnminedCustomMarkers.markers) {
             UnminedMapProperties.markers = UnminedMapProperties.markers.concat(UnminedCustomMarkers.markers);
         }
