@@ -6,6 +6,7 @@ permissions:
 on:
   schedule:
     - cron: "0 0,12 * * *"
+      timezone: Asia/Jakarta
   workflow_dispatch:
 
 jobs:
