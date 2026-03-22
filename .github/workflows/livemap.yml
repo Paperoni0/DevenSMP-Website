@@ -40,8 +40,15 @@ jobs:
         env:
           CLOUDINARY_URL: ${{ secrets.CLOUDINARY_URL }}
         run: |
-          for file in assets/images/livemap/*; do
-            cld uploader upload "$file" folder=livemap
+          for dimension in overworld nether end; do
+          if [ -d ".github/livemap/$dimension" ]; then
+          find ".github/livemap/$dimension" -type f | while read file; do
+          relative=$(realpath --relative-to=".github/livemap/$dimension" "$file")
+          cld uploader upload "$file" folder="livemap/$dimension/tiles/$(dirname "$relative")"
+          done
+          else
+          echo "Skipping $dimension"
+          fi
           done
   
       - name: Move files
