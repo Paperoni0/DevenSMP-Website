@@ -12,10 +12,30 @@
     <script src="js/livemap/ol.js"></script>
     <script src="js/livemap/ol-contextmenu.iife.js"></script>
     <script type="text/javascript" src="js/livemap/toastify-js.js"></script>
-    <script type="text/javascript" src="js/livemap/properties.js"></script>
-    <script type="text/javascript" src="js/livemap/regions.js"></script>
     <script type="text/javascript" src="js/livemap/markers.js"></script>
     <script type="text/javascript" src="js/livemap/index.js"></script>
+    <style>
+        
+    </style>
+    <script>
+        const sidebar = document.getElementById('sidebar');
+        const backdrop = document.getElementById('sidebar-backdrop');
+        const toggleBtn = document.getElementById('map-toggle-btn');
+        function toggleSidebar() {
+            const isOpen = sidebar.classList.toggle('open');
+            backdrop.classList.toggle('visible', isOpen);
+            toggleBtn.classList.toggle('open', isOpen);
+        }
+        function closeSidebar() {
+            sidebar.classList.remove('open');
+            backdrop.classList.remove('visible');
+            toggleBtn.classList.remove('open');
+        }
+        document.getElementById('close-btn').addEventListener('click', closeSidebar);
+        backdrop.addEventListener('click', closeSidebar);
+        function selectWorld(key) {
+            window.location.href = `?world=${key}`;
+        }
 </head>
 <body>
     <div id="map"></div>
@@ -25,7 +45,19 @@
             <span class="sidebar-header-title">Switch Dimension</span>
             <button class="sidebar-close" id="close-btn">✕</button>
         </div>
-        <ul id="sidebar-list"></ul>
+        <ul id="sidebar-list">
+                <li> 
+                <a class="dimension-btn" href="?dimension=overworld">
+                <span class="dimension-label">Overworld</span>
+                </a>
+                <a class="dimension-btn" href="?dimension=nether">
+                <span class="dimension-label">Nether</span>
+                </a>
+                <a class="dimension-btn" href="?dimension=end">
+                <span class="dimension-label">The End</span>
+                </a>
+                </li>
+        </ul>
     </nav>
     <button id="map-toggle-btn" onclick="toggleSidebar()">
         <div id="toggle-icon"><span></span><span></span><span></span></div>
@@ -33,6 +65,22 @@
     <script type="module">
         import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
         const supabase = createClient('https://mqprtorkbjflarpbjdrr.supabase.co', 'sb_publishable_mzn0G0K6Y1QGwi83TVweug_uETtafBU');
+        const dimension = new URLSearchParams(window.location.search).get("dimension");
+        function loadScript(src) {
+            return new Promise((resolve, reject) => {
+                const s = document.createElement("script");
+                s.src = src;
+                s.onload = resolve;
+                s.onerror = reject;
+                document.head.appendChild(s);
+            });
+        }
+        Promise.all([
+            loadScript(`js/${world}/properties.js`),
+            loadScript(`js/${world}/regions.js`),
+        ]).then(() => {
+            
+        });
         if (UnminedCustomMarkers && UnminedCustomMarkers.isEnabled && UnminedCustomMarkers.markers) {
             UnminedMapProperties.markers = UnminedMapProperties.markers.concat(UnminedCustomMarkers.markers);
         }
