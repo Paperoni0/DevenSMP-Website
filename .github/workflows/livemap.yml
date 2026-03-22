@@ -34,14 +34,15 @@ jobs:
 
       - name: Generate map
         run: |
-          ./.github/unmined/unmined-cli web render --world=".github/livemap/worlds/DevenSMP" --output=".github/livemap" --dimension=overworld --shadows=true --imageformat=webp --zoomout=-2 --zoomin=2
+          ./.github/unmined/unmined-cli web render --world=".github/livemap/worlds/DevenSMP" --output=".github/livemap/overworld" --dimension=overworld --shadows=true --imageformat=webp --zoomout=-2 --zoomin=2
 
       - name: Upload tiles
         env:
           CLOUDINARY_URL: ${{ secrets.CLOUDINARY_URL }}
         run: |
-          cld uploader upload "assets/images/livemap/*" folder="livemap/overworld"
-          
+          for file in assets/images/livemap/*; do
+            cld uploader upload "$file" folder=livemap
+          done
   
       - name: Move files
         run: |
