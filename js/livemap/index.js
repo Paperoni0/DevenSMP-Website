@@ -254,7 +254,7 @@ class Unmined {
                         const worldZoom = -(mapZoomLevels - coordinate[0]) + this.#options.maxZoom;
 
                         if (this.regionMap.hasTile(tileX, tileY, worldZoom)) {
-                            const url = ('assets/images/livemap/tiles/zoom.{z}/{xd}/{yd}/tile.{x}.{y}.' + this.#options.imageFormat)
+                            const url = ('https://res.cloudinary.com/devensmp/image/upload/livemap/tiles/zoom.{z}/{xd}/{yd}/tile.{x}.{y}.' + this.#options.imageFormat)
                                 .replace('{z}', worldZoom)
                                 .replace('{yd}', Math.floor(tileY / 10))
                                 .replace('{xd}', Math.floor(tileX / 10))
@@ -490,7 +490,7 @@ class Unmined {
 
     static playerToMarker(player) {
         var marker = Object.assign({}, Unmined.defaultPlayerMarkerStyle);
-        marker.image = player.image || (player.online ? "assets/images/livemap/player_online.png" : "assets/images/livemap/player_offline.png");
+        marker.image = player.image || (player.online ? "https://res.cloudinary.com/devensmp/image/upload/livemap/player_online.png" : "https://res.cloudinary.com/devensmp/image/upload/livemap/player_offline.png");
         marker.textColor = player.online ? "white" : "gray";
         marker.x = player.x;
         marker.z = player.z;
