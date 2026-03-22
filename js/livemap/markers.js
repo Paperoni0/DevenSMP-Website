@@ -4,7 +4,7 @@ UnminedCustomMarkers = {
         {
             x: -6,
             z: 23,
-            image: "assets/images/livemap/world_spawn.png",
+            image: "https://res.cloudinary.com/devensmp/image/upload/world_spawn.png",
             imageAnchor: [0.5, 0.5],
             imageScale: 0.25,
             text: "World Spawn",
