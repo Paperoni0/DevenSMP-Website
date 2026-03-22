@@ -31,7 +31,7 @@ jobs:
 
       - name: Generate map
         run: |
-          ./.github/unmined/unmined-cli web render --world=".github/livemap/worlds/DevenSMP" --output=".github/livemap" --dimension=0 --shadows --textures=true --bedrock-vanilla-pack="./github/unmined/bedrock-1.26.0.2.zip"
+          ./.github/unmined/unmined-cli web render --world=".github/livemap/worlds/DevenSMP" --output=".github/livemap" --dimension=0 --shadows --imageFormat="webp" --minZoom=-2 --maxZoom=3 --minRegionX=-10 --maxRegionX=-8 --maxRegionX=18 --maxRegionZ=20
 
       - name: Move files
         run: |
