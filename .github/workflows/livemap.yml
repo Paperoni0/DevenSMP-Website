@@ -31,16 +31,30 @@ jobs:
 
       - name: Generate map
         run: |
-          ./.github/unmined/unmined-cli web render --world=".github/livemap/worlds/DevenSMP" --output=".github/livemap" --dimension=0 --shadows --imageFormat="webp" --minZoom=-2 --maxZoom=3 --minRegionX=-10 --maxRegionX=-8 --maxRegionX=18 --maxRegionZ=20
+          ./.github/unmined/unmined-cli web render --world=".github/livemap/worlds/DevenSMP" --output=".github/livemap/overworld" --dimension=overworld --shadows=true --imageformat="webp" --zoomout=-2 --zoomin=3
+          ./.github/unmined/unmined-cli web render --world=".github/livemap/worlds/DevenSMP" --output=".github/livemap/nether" --dimension=nether --shadows=true --imageformat="webp" --zoomout=-2 --zoomin=3
+          ./.github/unmined/unmined-cli web render --world=".github/livemap/worlds/DevenSMP" --output=".github/livemap/end" --dimension=end --shadows=true --imageformat="webp" --zoomout=-2 --zoomin=3
 
       - name: Move files
         run: |
-          rm -rf assets/images/livemap/tiles
-          mv .github/livemap/tiles assets/images/livemap
-          rm -f js/livemap/properties.js
-          mv .github/livemap/unmined.map.properties.js js/livemap/properties.js
-          rm -f js/livemap/regions.js
-          mv .github/livemap/unmined.map.regions.js js/livemap/regions.js
+          rm -rf assets/images/livemap/overworld/tiles
+          rm -rf assets/images/livemap/nether/tiles
+          rm -rf assets/images/livemap/end/tiles
+          mv .github/livemap/overworld/tiles assets/images/livemap/overworld
+          mv .github/livemap/nether/tiles assets/images/livemap/nether
+          mv .github/livemap/end/tiles assets/images/livemap/end
+          rm -f js/livemap/overworld/properties.js
+          rm -f js/livemap/nether/properties.js
+          rm -f js/livemap/end/properties.js
+          mv .github/livemap/overworld/unmined.map.properties.js js/livemap/overworld/properties.js
+          mv .github/livemap/nether/unmined.map.properties.js js/livemap/nether/properties.js
+          mv .github/livemap/end/unmined.map.properties.js js/livemap/end/properties.js
+          rm -f js/livemap/overworld/regions.js
+          rm -f js/livemap/nether/regions.js
+          rm -f js/livemap/end/regions.js
+          mv .github/livemap/overworld/unmined.map.regions.js js/livemap/overworld/regions.js
+          mv .github/livemap/nether/unmined.map.regions.js js/livemap/nether/regions.js
+          mv .github/livemap/end/unmined.map.regions.js js/livemap/end/regions.js
 
       - name: Clean Up Files
         run: |
