@@ -8,12 +8,6 @@ on:
     - cron: "0 0,12 * * *"
   workflow_dispatch:
 
-env:
-  LIVEMAP_DIR: .github/livemap
-  WORLD_PATH: .github/livemap/worlds/DevenSMP
-  UNMINED: ./.github/unmined/unmined-cli
-  RENDER_FLAGS: --shadows=true --imageformat=webp --zoomout=-3 --zoomin=1
-
 jobs:
   update-map:
     runs-on: ubuntu-latest
@@ -22,55 +16,45 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Download world backup
+      - name: Download world
         env:
           SERVER_ID: ${{ secrets.PTERODACTYL_SERVERID }}
           API_KEY: ${{ secrets.PTERODACTYL_APIKEY }}
         run: |
-          BASE_URL="https://panel.freezehost.pro/api/client/servers/$SERVER_ID"
-          AUTH_HEADERS=(-H "Authorization: Bearer $API_KEY" -H "Accept: Application/vnd.pterodactyl.v1+json")
+          RESPONSE=$(curl "https://panel.freezehost.pro/api/client/servers/$SERVER_ID/backups" -H "Authorization: Bearer $API_KEY" -H "Accept: Application/vnd.pterodactyl.v1+json" -H "Content-Type: application/json")
+          UUID=$(echo "$RESPONSE" | jq -r '.data | map(select(.attributes.is_successful == true)) | sort_by(.attributes.created_at) | last | .attributes.uuid')
+          DOWNLOAD_RESPONSE=$(curl "https://panel.freezehost.pro/api/client/servers/$SERVER_ID/backups/$UUID/download" -H "Authorization: Bearer $API_KEY" -H "Accept: Application/vnd.pterodactyl.v1+json" -H "Content-Type: application/json")
+          DOWNLOAD_LINK=$(echo "$DOWNLOAD_RESPONSE" | jq -r '.attributes.url')
+          mkdir .github/livemap
+          curl -L "$DOWNLOAD_LINK" -o ".github/livemap/world.tar.gz"
+          tar -xzf ".github/livemap/world.tar.gz" -C .github/livemap
 
-          UUID=$(curl -sf "${BASE_URL}/backups" "${AUTH_HEADERS[@]}" | \
-            jq -r '[.data[] | select(.attributes.is_successful)] | sort_by(.attributes.created_at) | last | .attributes.uuid')
-
-          [ -z "$UUID" ] && echo "No successful backup found" && exit 1
-
-          DOWNLOAD_LINK=$(curl -sf "${BASE_URL}/backups/${UUID}/download" "${AUTH_HEADERS[@]}" | \
-            jq -r '.attributes.url')
-
-          mkdir -p "$LIVEMAP_DIR"
-          curl -L --retry 3 --retry-delay 5 "$DOWNLOAD_LINK" -o "$LIVEMAP_DIR/world.tar.gz"
-          tar -xzf "$LIVEMAP_DIR/world.tar.gz" -C "$LIVEMAP_DIR"
-
-      - name: Generate map tiles
+      - name: Generate map
         run: |
-          for dim in overworld nether; do
-            "$UNMINED" web render \
-              --world="$WORLD_PATH" \
-              --output="$LIVEMAP_DIR/$dim" \
-              --dimension=$dim \
-              $RENDER_FLAGS
-          done
-
-      - name: Move tiles and properties
+          ./.github/unmined/unmined-cli web render --world=".github/livemap/worlds/DevenSMP" --output=".github/livemap" --dimension=overworld --shadows=true --imageformat="webp" --zoomout=-2 --zoomin=3
+  
+      - name: Move files
         run: |
-          for dim in overworld nether; do
-            rm -rf "assets/images/livemap/$dim/tiles"
-            mv "$LIVEMAP_DIR/$dim/tiles" "assets/images/livemap/$dim/tiles"
+          rm -rf assets/images/livemap/tiles
+          mv .github/livemap/tiles assets/images/livemap
+          rm -f js/livemap/properties.js
+          mv .github/livemap/unmined.map.properties.js js/livemap/properties.js
+          rm -f js/livemap/regions.js
+          mv .github/livemap/unmined.map.regions.js js/livemap/regions.js
 
-            for file in properties regions; do
-              rm -f "js/livemap/$dim/$file.js"
-              mv "$LIVEMAP_DIR/$dim/unmined.map.$file.js" "js/livemap/$dim/$file.js"
-            done
-          done
-
-      - name: Commit and push changes
+      - name: Clean Up Files
         run: |
-          rm -rf "$LIVEMAP_DIR"
-          git config --global user.name "github-actions"
-          git config --global user.email "actions@github.com"
+          rm -rf .github/livemap
+
+      - name: Commit Changes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
           git config --global http.postBuffer 524288000
           git config --global http.lowSpeedLimit 0
           git config --global http.lowSpeedTime 600
+          git config --global user.name "github-actions"
+          git config --global user.email "actions@github.com"
           git add .
-          git diff --cached --quiet || git commit -m "Updated live map $(date -u '+%Y-%m-%d %H:%M UTC')" && git push origin main
+          git commit -m "Updated live map $(date)" || echo "No changes to commit"
+          git push origin main
