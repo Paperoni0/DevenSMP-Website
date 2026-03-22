@@ -44,7 +44,7 @@ jobs:
 
       - name: Generate map tiles
         run: |
-          for dim in overworld nether end; do
+          for dim in overworld nether; do
             "$UNMINED" web render \
               --world="$WORLD_PATH" \
               --output="$LIVEMAP_DIR/$dim" \
@@ -54,7 +54,7 @@ jobs:
 
       - name: Move tiles and properties
         run: |
-          for dim in overworld nether end; do
+          for dim in overworld nether; do
             rm -rf "assets/images/livemap/$dim/tiles"
             mv "$LIVEMAP_DIR/$dim/tiles" "assets/images/livemap/$dim/tiles"
 
