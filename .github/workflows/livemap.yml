@@ -13,8 +13,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: 
+          python-version: '3.11'
+          cache: 'pip'
+      - run: pip install cloudinary-cli
 
       - name: Download world
         env:
@@ -32,11 +36,14 @@ jobs:
       - name: Generate map
         run: |
           ./.github/unmined/unmined-cli web render --world=".github/livemap/worlds/DevenSMP" --output=".github/livemap" --dimension=overworld --shadows=true --imageformat="webp" --zoomout=-2 --zoomin=3
+
+      - name: Upload tiles
+        run: |
+          cld uploader upload "assets/images/livemap/*" folder="livemap/overworld"
+          
   
       - name: Move files
         run: |
-          rm -rf assets/images/livemap/tiles
-          mv .github/livemap/tiles assets/images/livemap
           rm -f js/livemap/properties.js
           mv .github/livemap/unmined.map.properties.js js/livemap/properties.js
           rm -f js/livemap/regions.js
