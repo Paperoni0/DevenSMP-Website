@@ -33,7 +33,6 @@
             box-shadow: 4px 0 24px rgba(0,0,0,0.4);
         }
         #sidebar.open { transform: translateX(0); }
-
         #sidebar-backdrop {
             position: fixed;
             inset: 0;
@@ -44,7 +43,6 @@
             transition: opacity 0.25s ease;
         }
         #sidebar-backdrop.visible { opacity: 1; pointer-events: all; }
-
         #map-toggle-btn {
             position: fixed;
             bottom: 20px; right: 20px;
@@ -64,7 +62,6 @@
         }
         #map-toggle-btn:hover { background: rgba(40,40,40,0.95); transform: scale(1.05); }
         #map-toggle-btn:active { transform: scale(0.97); }
-
         #toggle-icon { display: flex; flex-direction: column; gap: 4px; }
         #toggle-icon span {
             display: block; width: 18px; height: 1.5px;
@@ -76,26 +73,6 @@
         #map-toggle-btn.open #toggle-icon span:nth-child(2) { opacity: 0; transform: scaleX(0); }
         #map-toggle-btn.open #toggle-icon span:nth-child(3) { transform: translateY(-5.5px) rotate(-45deg); }
     </style>
-    <script>
-        const sidebar = document.getElementById('sidebar');
-        const backdrop = document.getElementById('sidebar-backdrop');
-        const toggleBtn = document.getElementById('map-toggle-btn');
-        function toggleSidebar() {
-            const isOpen = sidebar.classList.toggle('open');
-            backdrop.classList.toggle('visible', isOpen);
-            toggleBtn.classList.toggle('open', isOpen);
-        }
-        function closeSidebar() {
-            sidebar.classList.remove('open');
-            backdrop.classList.remove('visible');
-            toggleBtn.classList.remove('open');
-        }
-        document.getElementById('close-btn').addEventListener('click', closeSidebar);
-        backdrop.addEventListener('click', closeSidebar);
-        function selectWorld(key) {
-            window.location.href = `?world=${key}`;
-        }
-    </script>
 </head>
 <body>
     <div id="map"></div>
@@ -122,6 +99,26 @@
     <button id="map-toggle-btn" onclick="toggleSidebar()">
         <div id="toggle-icon"><span></span><span></span><span></span></div>
     </button>
+    <script>
+        const sidebar = document.getElementById('sidebar');
+        const backdrop = document.getElementById('sidebar-backdrop');
+        const toggleBtn = document.getElementById('map-toggle-btn');
+        function toggleSidebar() {
+            const isOpen = sidebar.classList.toggle('open');
+            backdrop.classList.toggle('visible', isOpen);
+            toggleBtn.classList.toggle('open', isOpen);
+        }
+        function closeSidebar() {
+            sidebar.classList.remove('open');
+            backdrop.classList.remove('visible');
+            toggleBtn.classList.remove('open');
+        }
+        document.getElementById('close-btn').addEventListener('click', closeSidebar);
+        backdrop.addEventListener('click', closeSidebar);
+        function selectWorld(key) {
+            window.location.href = `?world=${key}`;
+        }
+    </script>
     <script type="module">
         import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
         const supabase = createClient('https://mqprtorkbjflarpbjdrr.supabase.co', 'sb_publishable_mzn0G0K6Y1QGwi83TVweug_uETtafBU');
