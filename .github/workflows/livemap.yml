@@ -41,7 +41,7 @@ jobs:
         env:
           CLOUDINARY_URL: ${{ secrets.CLOUDINARY_URL }}
         run: |
-          cld upload_dir -e -f livemap/overworld -o overwrite true ".github/livemap/overworld/tiles"
+          cld upload_dir -e -f livemap/overworld -p ml_default ".github/livemap/overworld/tiles"
   
       - name: Move files
         run: |
