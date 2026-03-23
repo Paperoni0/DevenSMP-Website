@@ -16,6 +16,66 @@
     <script type="text/javascript" src="js/livemap/index.js"></script>
     <script type="text/javascript" src="js/livemap/properties.js"></script>
     <script type="text/javascript" src="js/livemap/regions.js"></script>
+    <style>
+        #sidebar {
+            position: fixed;
+            top: 0; left: 0;
+            height: 100vh;
+            width: 220px;
+            background: rgba(15, 15, 15, 0.92);
+            backdrop-filter: blur(8px);
+            display: flex;
+            flex-direction: column;
+            padding: 20px 0 16px;
+            z-index: 1000;
+            transform: translateX(-100%);
+            transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 4px 0 24px rgba(0,0,0,0.4);
+        }
+        #sidebar.open { transform: translateX(0); }
+
+        #sidebar-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.4);
+            z-index: 999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s ease;
+        }
+        #sidebar-backdrop.visible { opacity: 1; pointer-events: all; }
+
+        #map-toggle-btn {
+            position: fixed;
+            bottom: 20px; right: 20px;
+            z-index: 1001;
+            width: 44px; height: 44px;
+            border-radius: 12px;
+            background: rgba(15,15,15,0.88);
+            border: 0.5px solid rgba(255,255,255,0.18);
+            color: #fff;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(6px);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+            transition: background 0.15s, transform 0.1s;
+        }
+        #map-toggle-btn:hover { background: rgba(40,40,40,0.95); transform: scale(1.05); }
+        #map-toggle-btn:active { transform: scale(0.97); }
+
+        #toggle-icon { display: flex; flex-direction: column; gap: 4px; }
+        #toggle-icon span {
+            display: block; width: 18px; height: 1.5px;
+            background: #fff; border-radius: 2px;
+            transition: transform 0.2s, opacity 0.2s;
+            transform-origin: center;
+        }
+        #map-toggle-btn.open #toggle-icon span:nth-child(1) { transform: translateY(5.5px) rotate(45deg); }
+        #map-toggle-btn.open #toggle-icon span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+        #map-toggle-btn.open #toggle-icon span:nth-child(3) { transform: translateY(-5.5px) rotate(-45deg); }
+    </style>
     <script>
         const sidebar = document.getElementById('sidebar');
         const backdrop = document.getElementById('sidebar-backdrop');
