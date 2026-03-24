@@ -41,7 +41,7 @@ jobs:
             mv .github/livemap/$dimension/unmined.map.properties.js js/livemap/$dimension/properties.js
             rm -f js/livemap/$dimension/regions.js
             mv .github/livemap/$dimension/unmined.map.regions.js js/livemap/$dimension/regions.js
-            rm -rf assets/livemap/tiles/$dimension
+            rm -rf assets/livemap/tiles/$dimension/*
             mv .github/livemap/$dimension/tiles/* assets/livemap/tiles/$dimension
           done
 
