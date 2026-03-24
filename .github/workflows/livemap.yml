@@ -31,16 +31,19 @@ jobs:
 
       - name: Generate map
         run: |
-          ./.github/unmined/unmined-cli web render --world=".github/livemap/worlds/DevenSMP" --output=".github/livemap/overworld" --dimension=overworld --shadows=true --imageformat=webp --zoomout=-1 --zoomin=2
+          ./.github/unmined/unmined-cli web render --world=.github/livemap/worlds/DevenSMP --output=.github/livemap/overworld --dimension=overworld --shadows=true --imageformat=webp --zoomout=-1 --zoomin=2
+          ./.github/unmined/unmined-cli web render --world=.github/livemap/worlds/DevenSMP --output=.github/livemap/nether --dimension=nether --shadows=true --imageformat=webp --zoomout=-1 --zoomin=2
   
       - name: Move files
         run: |
-          rm -f js/livemap/properties.js
-          mv .github/livemap/overworld/unmined.map.properties.js js/livemap/properties.js
-          rm -f js/livemap/regions.js
-          mv .github/livemap/overworld/unmined.map.regions.js js/livemap/regions.js
-          rm -rf assets/images/livemap/tiles/overworld
-          mv .github/livemap/overworld/tiles/* assets/images/livemap/tiles/overworld
+          for dimension in overworld nether; do
+            rm -f js/livemap/$dimension/properties.js
+            mv .github/livemap/$dimension/unmined.map.properties.js js/livemap/$dimension/properties.js
+            rm -f js/livemap/$dimension/regions.js
+            mv .github/livemap/$dimension/unmined.map.regions.js js/livemap/$dimension/regions.js
+            rm -rf assets/images/livemap/tiles/$dimension
+            mv .github/livemap/$dimension/tiles/* assets/images/livemap/tiles/$dimension
+          done
 
       - name: Clean Up Files
         run: |
