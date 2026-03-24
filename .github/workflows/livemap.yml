@@ -15,10 +15,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with: 
-          python-version: '3.11'
-      - run: pip install cloudinary-cli
 
       - name: Download world
         env:
@@ -36,12 +32,6 @@ jobs:
       - name: Generate map
         run: |
           ./.github/unmined/unmined-cli web render --world=".github/livemap/worlds/DevenSMP" --output=".github/livemap/overworld" --dimension=overworld --shadows=true --imageformat=webp --zoomout=-1 --zoomin=2
-
-      - name: Upload tiles
-        env:
-          CLOUDINARY_URL: ${{ secrets.CLOUDINARY_URL }}
-        run: |
-          cld upload_dir -e -f livemap/overworld -p ml_default ".github/livemap/overworld/tiles"
   
       - name: Move files
         run: |
@@ -49,6 +39,8 @@ jobs:
           mv .github/livemap/overworld/unmined.map.properties.js js/livemap/properties.js
           rm -f js/livemap/regions.js
           mv .github/livemap/overworld/unmined.map.regions.js js/livemap/regions.js
+          rm -rf assets/images/livemap/tiles/overworld
+          mv .github/livemap/overworld/tiles/* assets/images/livemap/tiles/overworld
 
       - name: Clean Up Files
         run: |
