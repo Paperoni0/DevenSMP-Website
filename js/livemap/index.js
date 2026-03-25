@@ -493,7 +493,7 @@ class Unmined {
 
     static playerToMarker(player) {
         var marker = Object.assign({}, Unmined.defaultPlayerMarkerStyle);
-        marker.image = player.image || (player.online ? "https://res.cloudinary.com/devensmp/image/upload/livemap/player_online.png" : "https://res.cloudinary.com/devensmp/image/upload/livemap/player_offline.png");
+        marker.image = player.image || (player.online ? "https://cdn.jsdelivr.net/gh/Paperoni0/DevenSMP-Website@main/assets/livemap/player_online.png" : "https://cdn.jsdelivr.net/gh/Paperoni0/DevenSMP-Website@main/assets/livemap/player_offline.png");
         marker.textColor = player.online ? "white" : "gray";
         marker.x = player.x;
         marker.z = player.z;
