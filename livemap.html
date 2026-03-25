@@ -273,13 +273,15 @@
                 const old = document.getElementById(id);
                 if (old) old.remove();
             });
+            window.UnminedMapProperties = undefined;
+            window.UnminedRegions = undefined;
             const base = `js/livemap/${dim}`;
             const props = document.createElement('script');
             props.id = 'dim-properties';
-            props.src = `${base}/properties.js?v=${Date.now()}`;
+            props.src = `${base}/properties.js`;
             const regions = document.createElement('script');
             regions.id = 'dim-regions';
-            regions.src = `${base}/regions.js?v=${Date.now()}`;
+            regions.src = `${base}/regions.js`;
             props.onload = () => {
                 document.head.appendChild(regions);
             };
