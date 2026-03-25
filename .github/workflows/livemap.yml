@@ -35,27 +35,6 @@ jobs:
         run: |
           ./.github/unmined/unmined-cli web render --world=.github/livemap/worlds/DevenSMP --output=.github/livemap/overworld --dimension=overworld --shadows=true --imageformat=webp --zoomout=-1 --zoomin=2
           ./.github/unmined/unmined-cli web render --world=.github/livemap/worlds/DevenSMP --output=.github/livemap/nether --dimension=nether --shadows=true --imageformat=webp --zoomout=-1 --zoomin=2
-
-      - name: Delete old tiles
-        run: |
-          lftp -u "${{ secrets.SFTP_USERNAME }},${{ secrets.SFTP_PASSWORD }}" -p "${{ secrets.SFTP_PORT }}" sftp://${{ secrets.SFTP_HOST }} <<EOF
-          set sftp:auto-confirm yes
-          rm -r /home/container/DevenSMP/server-info/livemap/overworld
-          rm -r /home/container/DevenSMP/server-info/livemap/nether
-          bye
-          EOF
-
-      - name: Upload tiles
-        run: |
-          lftp -u "${{ secrets.SFTP_USERNAME }},${{ secrets.SFTP_PASSWORD }}" -p "${{ secrets.SFTP_PORT }}" sftp://${{ secrets.SFTP_HOST }} <<EOF
-          set sftp:auto-confirm yes
-          set cmd:fail-exit yes
-          mkdir -p /home/container/DevenSMP/server-info/livemap/overworld
-          mkdir -p /home/container/DevenSMP/server-info/livemap/nether
-          mirror -R --delete --verbose .github/livemap/overworld/tiles /home/container/DevenSMP/server-info/livemap/overworld
-          mirror -R --delete --verbose .github/livemap/nether/tiles /home/container/DevenSMP/server-info/livemap/nether
-          bye
-          EOF
   
       - name: Move files
         run: |
@@ -64,6 +43,8 @@ jobs:
             mv .github/livemap/$dimension/unmined.map.properties.js js/livemap/$dimension/properties.js
             rm -f js/livemap/$dimension/regions.js
             mv .github/livemap/$dimension/unmined.map.regions.js js/livemap/$dimension/regions.js
+            rm -rf assets/livemap/tiles/$dimension
+            mv .github/livemap/$dimension/tiles/* assets/livemap/tiles/$dimension
           done
 
       - name: Clean Up Files
