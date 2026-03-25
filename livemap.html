@@ -49,21 +49,6 @@
             text-transform: uppercase;
             opacity: 0.6;
         }
-        .sidebar-close {
-            background: none;
-            border: none;
-            color: inherit;
-            cursor: pointer;
-            font-size: 16px;
-            opacity: 0.5;
-            padding: 4px 6px;
-            border-radius: 4px;
-            transition: opacity 0.2s, background 0.2s;
-        }
-        .sidebar-close:hover {
-            opacity: 1;
-            background: rgba(255, 255, 255, 0.1);
-        }
         .sidebar-content {
             display: flex;
             flex-direction: column;
@@ -93,8 +78,8 @@
         }
         #map-toggle-btn {
             position: fixed;
-            top: 14px;
-            left: 14px;
+            bottom: 14px;
+            right: 14px;
             z-index: 101;
             background: #1a1a2e;
             border: none;
@@ -256,7 +241,6 @@
     <nav id="sidebar">
         <div class="sidebar-header">
             <span class="sidebar-title">Dimensions</span>
-            <button class="sidebar-close" id="close-btn" aria-label="Close sidebar">✕</button>
         </div>
         <div class="sidebar-content">
             <button class="dimension-btn active" data-dim="overworld">Overworld</button>
@@ -288,7 +272,6 @@
             const isOpen = sidebar.classList.toggle('open');
             document.body.classList.toggle('sidebar-open', isOpen);
         }
-        document.getElementById('close-btn').addEventListener('click', toggleSidebar);
         document.querySelectorAll('.dimension-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 document.querySelectorAll('.dimension-btn').forEach(b => b.classList.remove('active'));
