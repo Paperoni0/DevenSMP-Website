@@ -269,7 +269,7 @@
         }
         window.currentDimension = "overworld";
         function loadDimensionJS(dim, callback) {
-            ['dim-properties', 'dim-regions'].forEach(id => {
+            ['dim-properties', 'dim-regions', 'dim-markers'].forEach(id => {
                 const old = document.getElementById(id);
                 if (old) old.remove();
             });
@@ -287,6 +287,10 @@
             };
             regions.onload = callback;
             document.head.appendChild(props);
+            const markers = document.createElement('script');
+            markers.id = 'dim-markers';
+            markers.src = `${base}/markers.js';
+            document.head.appendChild(markers);
         }
         function switchDimension(dim) {
             if (dim === window.currentDimension) return;
