@@ -15,6 +15,13 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - name: Install packages
+        run: sudo apt-get update && sudo apt-get install zip
+
+      - name: Zip bedrock-samples
+        run: zip -r .github/livemap/resource.zip .github/minecraft
 
       - name: Download world
         env:
@@ -31,8 +38,8 @@ jobs:
 
       - name: Generate map
         run: |
-          ./.github/unmined/unmined-cli web render --world=.github/livemap/worlds/DevenSMP --output=.github/livemap/overworld --dimension=overworld --shadows=3d --imageformat=webp --zoomout=-1 --zoomin=2 --bedrock-vanilla-pack=.github/minecraft --textures=true
-          ./.github/unmined/unmined-cli web render --world=.github/livemap/worlds/DevenSMP --output=.github/livemap/nether --dimension=nether --shadows=3d --imageformat=webp --zoomout=-1 --zoomin=2 --topY=80 --gndxray=true --bedrock-vanilla-pack=.github/minecraft --textures=true
+          ./.github/unmined/unmined-cli web render --world=.github/livemap/worlds/DevenSMP --output=.github/livemap/overworld --dimension=overworld --shadows=3d --imageformat=webp --zoomout=-1 --zoomin=2 --bedrock-vanilla-pack=.github/livemap/resource.zip --textures=true
+          ./.github/unmined/unmined-cli web render --world=.github/livemap/worlds/DevenSMP --output=.github/livemap/nether --dimension=nether --shadows=3d --imageformat=webp --zoomout=-1 --zoomin=2 --topY=80 --gndxray=true --bedrock-vanilla-pack=.github/livemap/resource.zip --textures=true
   
       - name: Move files
         run: |
