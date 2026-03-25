@@ -15,6 +15,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+      - name: Install lftp
+        run: sudo apt-get update && sudo apt-get install -y lftp
 
       - name: Download world
         env:
@@ -33,6 +35,24 @@ jobs:
         run: |
           ./.github/unmined/unmined-cli web render --world=.github/livemap/worlds/DevenSMP --output=.github/livemap/overworld --dimension=overworld --shadows=true --imageformat=webp --zoomout=-1 --zoomin=2
           ./.github/unmined/unmined-cli web render --world=.github/livemap/worlds/DevenSMP --output=.github/livemap/nether --dimension=nether --shadows=true --imageformat=webp --zoomout=-1 --zoomin=2
+
+      - name: Delete old tiles
+        run: |
+          lftp -u "${{ secrets.SFTP_USERNAME }},${{ secrets.SFTP_PASSWORD }}" -p "${{ secrets.SFTP_PORT }}" sftp://${{ secrets.SFTP_HOST }} <<EOF
+          set sftp:auto-confirm yes
+          rm -r /home/container/DevenSMP/server-info/livemap/overworld
+          rm -r /home/container/DevenSMP/server-info/livemap/nether
+          bye
+          EOF
+
+      - name: Upload tiles
+        run: |
+          lftp -u "${{ secrets.SFTP_USERNAME }},${{ secrets.SFTP_PASSWORD }}" -p "${{ secrets.SFTP_PORT }}" sftp://${{ secrets.SFTP_HOST }} <<EOF
+          set sftp:auto-confirm yes
+          mirror -R .github/livemap/overworld/tiles/* /home/container/DevenSMP/server-info/livemap/overworld
+          mirror -R .github/livemap/nether/tiles/* /home/container/DevenSMP/server-info/livemap/nether
+          bye
+          EOF
   
       - name: Move files
         run: |
@@ -41,8 +61,6 @@ jobs:
             mv .github/livemap/$dimension/unmined.map.properties.js js/livemap/$dimension/properties.js
             rm -f js/livemap/$dimension/regions.js
             mv .github/livemap/$dimension/unmined.map.regions.js js/livemap/$dimension/regions.js
-            rm -rf assets/livemap/tiles/$dimension/*
-            mv .github/livemap/$dimension/tiles/* assets/livemap/tiles/$dimension
           done
 
       - name: Clean Up Files
