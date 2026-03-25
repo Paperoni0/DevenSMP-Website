@@ -49,8 +49,11 @@ jobs:
         run: |
           lftp -u "${{ secrets.SFTP_USERNAME }},${{ secrets.SFTP_PASSWORD }}" -p "${{ secrets.SFTP_PORT }}" sftp://${{ secrets.SFTP_HOST }} <<EOF
           set sftp:auto-confirm yes
-          mirror -R .github/livemap/overworld/tiles/* /home/container/DevenSMP/server-info/livemap/overworld
-          mirror -R .github/livemap/nether/tiles/* /home/container/DevenSMP/server-info/livemap/nether
+          set cmd:fail-exit yes
+          mkdir -p /home/container/DevenSMP/server-info/livemap/overworld
+          mkdir -p /home/container/DevenSMP/server-info/livemap/nether
+          mirror -R --delete --verbose .github/livemap/overworld/tiles /home/container/DevenSMP/server-info/livemap/overworld
+          mirror -R --delete --verbose .github/livemap/nether/tiles /home/container/DevenSMP/server-info/livemap/nether
           bye
           EOF
   
