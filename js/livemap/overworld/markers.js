@@ -4,7 +4,7 @@ UnminedCustomMarkers = {
         {
             x: -6,
             z: 23,
-            image: "",
+            image: "https://cdn.jsdelivr.net/gh/Paperoni0/DevenSMP-Website@main/assets/livemap/world_spawn.png",
             imageAnchor: [0.5, 0.5],
             imageScale: 0.25,
             text: "World Spawn",
