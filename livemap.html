@@ -267,7 +267,7 @@
             const isOpen = sidebar.classList.toggle('open');
             document.body.classList.toggle('sidebar-open', isOpen);
         }
-        let currentDimension = "overworld";
+        window.currentDimension = "overworld";
         function loadDimensionJS(dim, callback) {
             ['dim-properties', 'dim-regions'].forEach(id => {
                 const old = document.getElementById(id);
@@ -289,11 +289,12 @@
             document.head.appendChild(props);
         }
         function switchDimension(dim) {
-            if (dim === currentDimension) return;
-            currentDimension = dim;
+            if (dim === window.currentDimension) return;
+            window.currentDimension = dim;
             if (window.unmined && window.unmined.olMap) {
                 window.unmined.olMap.setTarget(null);
                 window.unmined = null;
+                document.getElementById("map").innerHTML = '';
             }
             loadDimensionJS(dim, () => window.initMap());
         }
@@ -320,9 +321,7 @@
             }
             const dim = window.currentDimension ?? 'overworld';
             const playerMarkers = buildMarkers(allPlayers, dim);
-            if (playerMarkers.length > 0) {
-                UnminedMapProperties.playerMarkers = Unmined.createPlayerMarkers(playerMarkers);
-            }
+            UnminedMapProperties.playerMarkers = Unmined.createPlayerMarkers(playerMarkers);
             const mapElement = document.getElementById('map');
             window.unmined = new Unmined(mapElement, dim, UnminedMapProperties, UnminedRegions);
         }
@@ -346,7 +345,7 @@
                         allPlayers = data;
                         const dim = window.currentDimension ?? 'overworld';
                         const playerMarkers = buildMarkers(allPlayers, dim);
-                        if (playerMarkers.length > 0 && window.unmined?.playerMarkersLayer) {
+                        if (window.unmined?.playerMarkersLayer) {
                             const markers = Unmined.createPlayerMarkers(playerMarkers);
                             window.unmined.editMarkersLayer(window.unmined.playerMarkersLayer, markers);
                         }
