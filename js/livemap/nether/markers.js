@@ -1,0 +1,19 @@
+UnminedCustomMarkers = {
+    isEnabled: true,
+    markers: [
+        {
+            x: -1,
+            z: 3,
+            image: "https://cdn.jsdelivr.net/gh/Paperoni0/DevenSMP-Website@main/assets/livemap/world_spawn.png",
+            imageAnchor: [0.5, 0.5],
+            imageScale: 0.25,
+            text: "World Spawn",
+            textColor: "lime",
+            offsetX: 0,
+            offsetY: 20,
+            font: '12px "MinecraftFont", Arial',
+            textBackgroundColor: "#00000088",
+            textPadding: [2, 4, 2, 4]
+        }
+    ]
+}
