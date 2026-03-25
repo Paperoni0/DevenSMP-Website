@@ -108,9 +108,6 @@
             border-radius: 2px;
             transition: transform 0.3s, opacity 0.3s;
         }
-        body.sidebar-open #map-toggle-btn {
-            left: 228px;
-        }
         body.sidebar-open #toggle-icon span:nth-child(1) {
             transform: translateY(6px) rotate(45deg);
         }
@@ -245,7 +242,7 @@
         <div class="sidebar-content">
             <button class="dimension-btn active" data-dim="overworld">Overworld</button>
             <button class="dimension-btn" data-dim="nether">Nether</button>
-            <button class="dimension-btn" data-dim="end">The End</button>
+            <button class="dimension-btn" data-dim="end" disabled>The End</button>
         </div>
     </nav>
     <button id="map-toggle-btn" onclick="toggleSidebar()">
