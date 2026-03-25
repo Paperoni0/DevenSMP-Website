@@ -20,9 +20,6 @@ jobs:
       - name: Install packages
         run: sudo apt-get update && sudo apt-get install zip
 
-      - name: Zip bedrock-samples
-        run: zip -r .github/livemap/resource.zip .github/minecraft
-
       - name: Download world
         env:
           SERVER_ID: ${{ secrets.PTERODACTYL_SERVERID }}
@@ -35,6 +32,9 @@ jobs:
           mkdir .github/livemap
           curl -L "$DOWNLOAD_LINK" -o ".github/livemap/world.tar.gz"
           tar -xzf ".github/livemap/world.tar.gz" -C .github/livemap
+
+      - name: Zip bedrock-samples
+        run: zip -r .github/livemap/resource.zip .github/minecraft
 
       - name: Generate map
         run: |
