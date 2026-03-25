@@ -72,93 +72,137 @@
         #map-toggle-btn.open #toggle-icon span:nth-child(1) { transform: translateY(5.5px) rotate(45deg); }
         #map-toggle-btn.open #toggle-icon span:nth-child(2) { opacity: 0; transform: scaleX(0); }
         #map-toggle-btn.open #toggle-icon span:nth-child(3) { transform: translateY(-5.5px) rotate(-45deg); }
+        .sidebar-content {
+            display: flex;
+            flex-direction: column;
+            padding: 12px;
+            gap: 8px;
+        }
+        .dimension-btn {
+            padding: 12px;
+            border-radius: 12px;
+            border: none;
+            background: rgba(255,255,255,0.05);
+            color: #ddd;
+            cursor: pointer;
+            text-align: left;
+            transition: 0.2s;
+        }
+        .dimension-btn:hover {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            transform: translateX(4px);
+        }
+        .dimension-btn.active {
+            background: linear-gradient(135deg, #38bdf8, #6366f1);
+            color: white;
+        }
     </style>
     <style>
-  #maintenance-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle at center, #111827, #020617);
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 99999;
-    animation: fadeIn 0.8s ease;
-  }
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-  .maintenance-box {
-    text-align: center;
-    color: white;
-    padding: 40px 50px;
-    border-radius: 20px;
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 0 60px rgba(0,0,0,0.6);
-    animation: float 4s ease-in-out infinite;
-  }
-  @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-  }
-  .maintenance-box h1 {
-    font-size: 32px;
-    margin-bottom: 10px;
-  }
-  .maintenance-box p {
-    font-size: 16px;
-    opacity: 0.75;
-  }
-  .spinner {
-    margin: 25px auto;
-    width: 50px;
-    height: 50px;
-    border: 5px solid rgba(255,255,255,0.15);
-    border-top: 5px solid #38bdf8;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-  }
-  @keyframes spin {
-    to { transform: rotate(360deg); }
-  }
-  .glow {
-    position: absolute;
-    width: 300px;
-    height: 300px;
-    background: #38bdf8;
-    filter: blur(120px);
-    opacity: 0.2;
-    animation: pulse 5s infinite ease-in-out;
-  }
-  @keyframes pulse {
-    0%, 100% { transform: scale(1); opacity: 0.2; }
-    50% { transform: scale(1.3); opacity: 0.35; }
-  }
-  .particle {
-    position: absolute;
-    width: 3px;
-    height: 3px;
-    background: white;
-    opacity: 0.3;
-    border-radius: 50%;
-    animation: moveUp linear infinite;
-  }
-  @keyframes moveUp {
-    from {
-      transform: translateY(100vh);
-      opacity: 0;
-    }
-    to {
-      transform: translateY(-10vh);
-      opacity: 0.5;
-    }
-  }
-</style>
+        #maintenance-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, #111827, #020617);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 99999;
+            animation: fadeIn 0.8s ease;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+    
+            to {
+                opacity: 1;
+            }
+        }
+        .maintenance-box {
+            text-align: center;
+            color: white;
+            padding: 40px 50px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 60px rgba(0, 0, 0, 0.6);
+            animation: float 4s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        .maintenance-box h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        .maintenance-box p {
+            font-size: 16px;
+            opacity: 0.75;
+        }
+        .spinner {
+            margin: 25px auto;
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255, 255, 255, 0.15);
+            border-top: 5px solid #38bdf8;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        .glow {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: #38bdf8;
+            filter: blur(120px);
+            opacity: 0.2;
+            animation: pulse 5s infinite ease-in-out;
+        }
+        @keyframes pulse {
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 0.2;
+            }
+            50% {
+                transform: scale(1.3);
+                opacity: 0.35;
+            }
+        }
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: white;
+            opacity: 0.3;
+            border-radius: 50%;
+            animation: moveUp linear infinite;
+        }
+        @keyframes moveUp {
+            from {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(-10vh);
+                opacity: 0.5;
+            }
+        }
+    </style>
 </head>
 <body>
     <div id="maintenance-overlay">
@@ -174,39 +218,31 @@
     <div id="sidebar-backdrop"></div>
     <nav id="sidebar">
         <div class="sidebar-header">
-            <span class="sidebar-header-title">Switch Dimension</span>
+            <span class="sidebar-header-title">Dimensions</span>
             <button class="sidebar-close" id="close-btn">✕</button>
         </div>
-        <ul id="sidebar-list">
-                <li> 
-                <a class="dimension-btn" href="?dimension=overworld">
-                <span class="dimension-label">Overworld</span>
-                </a>
-                <a class="dimension-btn" href="?dimension=nether">
-                <span class="dimension-label">Nether</span>
-                </a>
-                <a class="dimension-btn" href="?dimension=end">
-                <span class="dimension-label">The End</span>
-                </a>
-                </li>
-        </ul>
+        <div class="sidebar-content">
+            <button class="dimension-btn" data-dim="overworld">Overworld</button>
+            <button class="dimension-btn" data-dim="nether">Nether</button>
+            <button class="dimension-btn" data-dim="end" disabled>The End</button>
+        </div>
     </nav>
     <button id="map-toggle-btn" onclick="toggleSidebar()">
         <div id="toggle-icon"><span></span><span></span><span></span></div>
     </button>
     <script>
-  const maintenanceMode = false;
-  if (!maintenanceMode) {
-    document.getElementById("maintenance-overlay").style.display = "none";
-  }
-  const particleContainer = document.getElementById("particles");
-  for (let i = 0; i < 40; i++) {
-    const p = document.createElement("div");
-    p.className = "particle";
-    p.style.left = Math.random() * 100 + "vw";
-    p.style.animationDuration = (3 + Math.random() * 5) + "s";
-    p.style.animationDelay = Math.random() * 5 + "s";
-    particleContainer.appendChild(p);
+        const maintenanceMode = false;
+        if (!maintenanceMode) {
+            document.getElementById("maintenance-overlay").style.display = "none";
+        }
+        const particleContainer = document.getElementById("particles");
+        for (let i = 0; i < 40; i++) {
+            const p = document.createElement("div");
+            p.className = "particle";
+            p.style.left = Math.random() * 100 + "vw";
+            p.style.animationDuration = (3 + Math.random() * 5) + "s";
+            p.style.animationDelay = Math.random() * 5 + "s";
+            particleContainer.appendChild(p);
         }
     </script>
     <script>
