@@ -13,7 +13,8 @@ class StyleSheet {
 
 
         builder.style("#water").color("map.water").useBiomeWaterColor();
-        builder.style("#grass").color("map.grass").useBiomeGrassColor();//.adjustLightness(1.15);
+        builder.style("#grass").color("map.grass").useBiomeGrassColor().grassTint();//.adjustLightness(1.15);
+        builder.style("#soil.grass").grassTint();
     }    
 }
 

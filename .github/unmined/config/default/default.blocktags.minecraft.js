@@ -203,7 +203,7 @@ class StyleSheet {
             builder.blockTag("#sprout").isFor("**sprout, **sprouts"),
             builder.blockTag("#flower").isFor([
                 "**flower,**flowers,**flowers?,**flower_?,**flower?,*:plant_?,*:plant?,*:double_plant, **allium, **bluet, **orchid, **dandelion, **lavender, **lilac, lily_of_the_valley, **lily_pad, **hibiscus, **tulip, **lily, **daisy, **peony, **poppy, **rose, **violet, **waterlily",
-                "spore_blossom, *_flowered, *:*flower, *flowers, *_eyeblossom"]),
+                "spore_blossom, *_flowered, *:*flower, *flowers, *_eyeblossom, *_petals"]),
 
             builder.blockTag("#flower.red").isFor("*:red_* #flower, poppy, rose_bush"),
             builder.blockTag("#flower.yellow").isFor("*:yellow_* #flower, dandelion, sunflower, wildflowers, open_eyeblossom"),
@@ -238,10 +238,10 @@ class StyleSheet {
 
         builder.blockTag("#waterlogged").isFor("#kelp, #seagrass");
 
-        builder.blockTag("#shadowless").isFor("#grass,#seagrass,#kelp,#flower,#sapling,#stem,#sprout,#torch,#rail,#carpet");
+        builder.blockTag("#shadowless").isFor("#grass,#seagrass,#kelp,#flower,#sapling,#stem,#sprout,#candle,#torch,#rail,#carpet");
 
         //if (!builder.s[SettingName.shadeGrass])
-        builder.blockTag("#shadeless").isFor("#grass,#seagrass,#kelp,#flower,#sapling,#stem,#sprout");
+        builder.blockTag("#shadeless").isFor("#grass,#seagrass,#kelp,#flower,#sapling,#stem,#sprout,#candle");
 
         //if (!builder.s[SettingName.shadeArtificial])
         builder.blockTag("#shadeless").isFor("#torch,#rail,#carpet");
@@ -314,7 +314,7 @@ class StyleSheet {
         builder.blockTag().blocking().artificial().isForTags([
             builder.blockTag("#door").isFor("*:*_door"),
             builder.blockTag("#fence").isFor("*:*_fence"),
-            builder.blockTag("#fencegate").isFor("*:*_fence_gate"),
+            builder.blockTag("#fencegate").isFor("fence_gate, *:*_fence_gate"),
             builder.blockTag("#planks").isFor("*:*_planks"),
             builder.blockTag("#slab").isFor("*:*_slab"),
             builder.blockTag("#stairs").isFor("*:*_stairs"),

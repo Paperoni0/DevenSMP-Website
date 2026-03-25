@@ -459,7 +459,7 @@ class StyleSheet {
         if (builder.s[SettingName.biomeTints]) {
             if (builder.s[SettingName.biomeTintsWater]) builder.style("#water").useBiomeWaterColor();
             if (builder.s[SettingName.biomeTintsGrass]) builder.style("#grassblock, #grass").useBiomeGrassColor();
-            if (builder.s[SettingName.biomeTintsFoliage]) builder.style("#leaves, #vine, #bush").useBiomeFoliageColor();
+            if (builder.s[SettingName.biomeTintsFoliage]) builder.style("minecraft:* (#leaves, #vine, #bush)").useBiomeFoliageColor();
         }
 
         builder.style("#water").color("map.water");
@@ -502,31 +502,31 @@ class StyleSheet {
 
             if (builder.s[SettingName.biomeColoringSavanna]) {
                 builder.style("#grassblock").color("map.land.savanna").biome(savanna).useBiomeGrassColor(false);
-                builder.style("#leaves, #vine, #bush").color("map.leaves.savanna").biome(savanna).useBiomeFoliageColor(false);;
+                builder.style("minecraft:* (#leaves, #vine, #bush)").color("map.leaves.savanna").biome(savanna).useBiomeFoliageColor(false);;
                 builder.style("#grass").color("map.grass.savanna").biome(savanna).useBiomeGrassColor(false);
             }
 
             if (builder.s[SettingName.biomeColoringTaiga]) {
                 builder.style("#grassblock").color("map.land.taiga").biome(taiga).useBiomeGrassColor(false);
-                builder.style("#leaves, #vine, #bush").color("map.leaves.taiga").biome(taiga).useBiomeFoliageColor(false);;
+                builder.style("minecraft:* (#leaves, #vine, #bush)").color("map.leaves.taiga").biome(taiga).useBiomeFoliageColor(false);;
                 builder.style("#grass").color("map.grass.taiga").biome(taiga).useBiomeGrassColor(false);
             }
 
             if (builder.s[SettingName.biomeColoringDarkForest]) {
                 builder.style("#grassblock").color("map.land.darkforest").biome(darkforest).useBiomeGrassColor(false);
-                builder.style("#leaves, #vine, #bush").color("map.leaves.darkforest").biome(darkforest).useBiomeFoliageColor(false);;
+                builder.style("minecraft:* (#leaves, #vine, #bush)").color("map.leaves.darkforest").biome(darkforest).useBiomeFoliageColor(false);;
                 builder.style("#grass").color("map.grass.darkforest").biome(darkforest).useBiomeGrassColor(false);
             }
 
             if (builder.s[SettingName.biomeColoringSwamp]) {
                 builder.style("#grassblock").color("map.land.swamp").biome(swamp).useBiomeGrassColor(false);
-                builder.style("#leaves, #vine, #bush").color("map.leaves.swamp").biome(swamp).useBiomeFoliageColor(false);
+                builder.style("minecraft:* (#leaves, #vine, #bush)").color("map.leaves.swamp").biome(swamp).useBiomeFoliageColor(false);
                 builder.style("#grass").color("map.grass.swamp").biome(swamp).useBiomeGrassColor(false);
                 builder.style("#water").color("map.water.swamp").biome(swamp).useBiomeWaterColor(false);
             }
 
             if (builder.s[SettingName.biomeColoringBadlands]) {
-                builder.style("#leaves, #vine, #bush").color("map.leaves.badlands").biome(badlands).useBiomeFoliageColor(false);
+                builder.style("minecraft:* (#leaves, #vine, #bush)").color("map.leaves.badlands").biome(badlands).useBiomeFoliageColor(false);
                 builder.style("#grass").color("map.grass.badlands").biome(badlands).useBiomeGrassColor(false);
             }
 
@@ -534,6 +534,8 @@ class StyleSheet {
             builder.style("#grass,#grassblock").color("map.grass.palegarden").colorByElevation("!").biome("minecraft:pale_garden").useBiomeGrassColor(false);
 
         }
+
+        builder.style("#grassblock[snowy:true]").color("map.snow").useBiomeGrassColor(false);
 
         builder.style("#rock, #ore, #crystal").color("map.rock").lightnessByElevation("land.lightness.elevation");        
         builder.style("#sand").color("map.sand").lightnessByElevation("land.lightness.elevation");
