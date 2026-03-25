@@ -14,8 +14,6 @@
     <script type="text/javascript" src="js/livemap/toastify-js.js"></script>
     <script type="text/javascript" src="js/livemap/markers.js"></script>
     <script type="text/javascript" src="js/livemap/index.js"></script>
-    <script type="text/javascript" src="js/livemap/overworld/properties.js"></script>
-    <script type="text/javascript" src="js/livemap/overworld/regions.js"></script>
     <style>
         #sidebar {
             position: fixed;
@@ -269,38 +267,70 @@
             const isOpen = sidebar.classList.toggle('open');
             document.body.classList.toggle('sidebar-open', isOpen);
         }
+        let currentDimension = "overworld";
+        function loadDimensionJS(dim, callback) {
+            ['dim-properties', 'dim-regions'].forEach(id => {
+                const old = document.getElementById(id);
+                if (old) old.remove();
+            });
+            const base = `js/livemap/${dim}`;
+            const props = document.createElement('script');
+            props.id = 'dim-properties';
+            props.src = `${base}/properties.js`;
+            const regions = document.createElement('script');
+            regions.id = 'dim-regions';
+            regions.src = `${base}/regions.js`;
+            props.onload = () => {
+                document.head.appendChild(regions);
+            };
+            regions.onload = callback;
+            document.head.appendChild(props);
+        }
+        function switchDimension(dim) {
+            if (dim === currentDimension) return;
+            currentDimension = dim;
+            if (window.unmined && window.unmined.map) {
+                window.unmined.map.setTarget(null);
+                window.unmined = null;
+            }
+            loadDimensionJS(dim, () => window.initMap());
+        }
         document.querySelectorAll('.dimension-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 document.querySelectorAll('.dimension-btn').forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
-                // dimension-switch logic here, e.g.:
-                // switchDimension(btn.dataset.dim);
+                switchDimension(btn.dataset.dim);
             });
         });
     </script>
     <script type="module">
         import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
         const supabase = createClient('https://mqprtorkbjflarpbjdrr.supabase.co', 'sb_publishable_mzn0G0K6Y1QGwi83TVweug_uETtafBU');
-        const dimension = new URLSearchParams(window.location.search).get("dimension");
-        if (UnminedCustomMarkers && UnminedCustomMarkers.isEnabled && UnminedCustomMarkers.markers) {
-            UnminedMapProperties.markers = UnminedMapProperties.markers.concat(UnminedCustomMarkers.markers);
-        }
-        function buildMarkers(data) {
+        let allPlayers = [];
+        function buildMarkers(data, dim) {
             return data
-                .filter(p => p.username && p.username !== 'null' && p.x != null && p.z != null)
+                .filter(p => p.username && p.username !== 'null' && p.x != null && p.z != null && p.dimension == dim)
                 .map(p => ({ name: p.username, x: p.x, z: p.z, image: p.image, online: p.online }));
         }
-        async function init() {
-            const { data, error } = await supabase
-                .from('players')
-                .select('username, x, z, image, online');
-            if (error) return console.error(error);
-            const playerMarkers = buildMarkers(data);
+        window.initMap = function () {
+            if (UnminedCustomMarkers && UnminedCustomMarkers.isEnabled && UnminedCustomMarkers.markers) {
+                UnminedMapProperties.markers = UnminedMapProperties.markers.concat(UnminedCustomMarkers.markers);
+            }
+            const dim = window.currentDimension ?? 'overworld';
+            const playerMarkers = buildMarkers(allPlayers, dim);
             if (playerMarkers.length > 0) {
                 UnminedMapProperties.playerMarkers = Unmined.createPlayerMarkers(playerMarkers);
             }
             const mapElement = document.getElementById('map');
             window.unmined = new Unmined(mapElement, UnminedMapProperties, UnminedRegions);
+        }
+        async function init() {
+            const { data, error } = await supabase
+                .from('players')
+                .select('username, x, z, image, online, dimension');
+            if (error) return console.error(error);
+            allPlayers = data;
+            loadDimensionJS('overworld', () => window.initMap());
             supabase
                 .channel('players-changes')
                 .on(
@@ -309,9 +339,11 @@
                     async () => {
                         const { data, error } = await supabase
                             .from('players')
-                            .select('username, x, z, image, online');
+                            .select('username, x, z, image, online, dimension');
                         if (error) return console.error(error);
-                        const playerMarkers = buildMarkers(data);
+                        allPlayers = data;
+                        const dim = window.currentDimension ?? 'overworld';
+                        const playerMarkers = buildMarkers(allPlayers, dim);
                         if (playerMarkers.length > 0 && window.unmined?.playerMarkersLayer) {
                             const markers = Unmined.createPlayerMarkers(playerMarkers);
                             window.unmined.editMarkersLayer(window.unmined.playerMarkersLayer, markers);
