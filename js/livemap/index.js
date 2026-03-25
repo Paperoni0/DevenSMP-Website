@@ -174,6 +174,7 @@ class Unmined {
     regionMap = null;
     markersLayer = null;
     playerMarkersLayer = null;
+    dimension = null;
 
     #scaleLine = null;
     #options = null;
@@ -190,7 +191,9 @@ class Unmined {
         centerZ: 0
     }
 
-    constructor(mapElement, options, regions) {
+    constructor(mapElement, dim, options, regions) {
+
+        this.dimension = dim;
 
         const worldTileSize = 256;
 
@@ -254,7 +257,7 @@ class Unmined {
                         const worldZoom = -(mapZoomLevels - coordinate[0]) + this.#options.maxZoom;
 
                         if (this.regionMap.hasTile(tileX, tileY, worldZoom)) {
-                            const url = ('https://cdn.jsdelivr.net/gh/Paperoni0/DevenSMP-Website@main/assets/livemap/tiles/overworld/zoom.{z}/{xd}/{yd}/tile.{x}.{y}.' + this.#options.imageFormat)
+                            url = (`https://cdn.jsdelivr.net/gh/Paperoni0/DevenSMP-Website@main/assets/livemap/tiles/${dim}/zoom.{z}/{xd}/{yd}/tile.{x}.{y}.` + this.#options.imageFormat)
                                 .replace('{z}', worldZoom)
                                 .replace('{yd}', Math.floor(tileY / 10))
                                 .replace('{xd}', Math.floor(tileX / 10))
