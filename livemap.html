@@ -289,8 +289,8 @@
         function switchDimension(dim) {
             if (dim === currentDimension) return;
             currentDimension = dim;
-            if (window.unmined && window.unmined.map) {
-                window.unmined.map.setTarget(null);
+            if (window.unmined && window.unmined.olMap) {
+                window.unmined.olMap.setTarget(null);
                 window.unmined = null;
             }
             loadDimensionJS(dim, () => window.initMap());
@@ -322,7 +322,7 @@
                 UnminedMapProperties.playerMarkers = Unmined.createPlayerMarkers(playerMarkers);
             }
             const mapElement = document.getElementById('map');
-            window.unmined = new Unmined(mapElement, UnminedMapProperties, UnminedRegions);
+            window.unmined = new Unmined(mapElement, dim, UnminedMapProperties, UnminedRegions);
         }
         async function init() {
             const { data, error } = await supabase
