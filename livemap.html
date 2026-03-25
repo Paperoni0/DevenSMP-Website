@@ -276,10 +276,10 @@
             const base = `js/livemap/${dim}`;
             const props = document.createElement('script');
             props.id = 'dim-properties';
-            props.src = `${base}/properties.js`;
+            props.src = `${base}/properties.js?v=${Date.now()}`;
             const regions = document.createElement('script');
             regions.id = 'dim-regions';
-            regions.src = `${base}/regions.js`;
+            regions.src = `${base}/regions.js?v=${Date.now()}`;
             props.onload = () => {
                 document.head.appendChild(regions);
             };
