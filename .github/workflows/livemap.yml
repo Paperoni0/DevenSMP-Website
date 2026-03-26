@@ -38,10 +38,11 @@ jobs:
         run: |
           ./.github/unmined/unmined-cli web render --world=.github/livemap/worlds/DevenSMP --output=.github/livemap/overworld --dimension=overworld --shadows=3d --imageformat=webp --zoomout=-1 --zoomin=2 --bedrock-vanilla-pack=.github/livemap/resource.zip --textures=true
           ./.github/unmined/unmined-cli web render --world=.github/livemap/worlds/DevenSMP --output=.github/livemap/nether --dimension=nether --shadows=3d --imageformat=webp --zoomout=-1 --zoomin=2 --mapsettings=.github/unmined/nether.json --bedrock-vanilla-pack=.github/livemap/resource.zip --textures=true
+          ./.github/unmined/unmined-cli web render --world=.github/livemap/worlds/DevenSMP --output=.github/livemap/the_end --dimension=end --shadows=3d --imageformat=webp --zoomout=-1 --zoomin=2 --bedrock-vanilla-pack=.github/livemap/resource.zip --textures=true
   
       - name: Move files
         run: |
-          for dimension in overworld nether; do
+          for dimension in overworld nether the_end; do
             rm -f js/livemap/$dimension/properties.js
             mv .github/livemap/$dimension/unmined.map.properties.js js/livemap/$dimension/properties.js
             rm -f js/livemap/$dimension/regions.js
