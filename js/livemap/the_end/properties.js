@@ -6,7 +6,7 @@ var UnminedMapProperties = {
     imageFormat: "webp",
     minRegionX: -17,
     minRegionZ: -13,
-    maxRegionX: 3,
+    maxRegionX: 6,
     maxRegionZ: 0,
     worldName: "DevenSMP S13",
     background: "",
