@@ -37,7 +37,7 @@ jobs:
       - name: Generate map
         run: |
           ./.github/unmined/unmined-cli web render --world=.github/livemap/worlds/DevenSMP --output=.github/livemap/overworld --dimension=overworld --shadows=3d --imageformat=webp --zoomout=1 --zoomin=2 --bedrock-vanilla-pack=.github/livemap/resource.zip --textures=true
-          ./.github/unmined/unmined-cli web render --world=.github/livemap/worlds/DevenSMP --output=.github/livemap/nether --dimension=nether --shadows=3d --imageformat=webp --zoomout=0 --zoomin=2 --force=true --gndxray=true --topY=72 --bedrock-vanilla-pack=.github/livemap/resource.zip --textures=true
+          ./.github/unmined/unmined-cli web render --world=.github/livemap/worlds/DevenSMP --output=.github/livemap/nether --dimension=nether --shadows=3d --imageformat=webp --zoomout=0 --zoomin=2 --gndxray=true --topY=72 --bedrock-vanilla-pack=.github/livemap/resource.zip --textures=true
           ./.github/unmined/unmined-cli web render --world=.github/livemap/worlds/DevenSMP --output=.github/livemap/the_end --dimension=end --shadows=3d --imageformat=webp --zoomout=2 --zoomin=1 --bedrock-vanilla-pack=.github/livemap/resource.zip --textures=true
   
       - name: Move files
