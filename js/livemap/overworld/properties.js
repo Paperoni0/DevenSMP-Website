@@ -5,7 +5,7 @@ var UnminedMapProperties = {
     defaultZoom: 0,
     imageFormat: "webp",
     minRegionX: -34,
-    minRegionZ: -10,
+    minRegionZ: -29,
     maxRegionX: 36,
     maxRegionZ: 41,
     worldName: "DevenSMP S13",
