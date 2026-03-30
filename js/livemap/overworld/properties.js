@@ -7,7 +7,7 @@ var UnminedMapProperties = {
     minRegionX: -34,
     minRegionZ: -29,
     maxRegionX: 36,
-    maxRegionZ: 41,
+    maxRegionZ: 42,
     worldName: "DevenSMP S13",
     background: "",
     markers: new Array(),
