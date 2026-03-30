@@ -309,6 +309,13 @@
                 switchDimension(btn.dataset.dim);
             });
         });
+        document.getElementById('map').addEventListener(function() {
+            const sidebar = document.getElementById('sidebar');
+            if (sidebar.classList.contains('open')) {
+                sidebar.classList.remove('open');
+                document.body.classList.remove('sidebar-open');
+            }
+        });
     </script>
     <script type="module">
         import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
