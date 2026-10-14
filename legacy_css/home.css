@@ -1,0 +1,76 @@
+@keyframes rainbow {
+    0% { color: red; }
+    14.28% { color: orange; }
+    28.56% { color: yellow; }
+    42.84% { color: green; }
+    57.12% { color: blue; }
+    71.4% { color: indigo; }
+    85.68% { color: violet; }
+    100% { color: red; }
+}
+#title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 6rem 1rem 1rem;
+    text-align: center;
+}
+#titleImage {
+    max-width: 100%;
+    height: auto;
+    max-height: 200px;
+}
+#textSection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 1rem;
+    text-align: center;
+}
+#text {
+    animation: rainbow 5s linear infinite;
+    font-size: 2.5rem;
+    color: #fff;
+}
+#see {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 0.5rem;
+    border-radius: 10px;
+    margin: 2rem auto;
+    max-width: 600px;
+    width: 90%;
+    text-align: center;
+}
+#see ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+#see li {
+    margin: 1rem 0;
+}
+#see a {
+    color: #0cc0df;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: all 0.3s;
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+}
+#see a:hover {
+    color: white;
+    background-color: rgba(12, 192, 223, 0.3);
+    text-decoration: underline;
+}
+@media (max-width: 768px) {
+    #text {
+        font-size: 1.5rem;
+    }
+    #titleImage {
+        max-height: 120px;
+    }
+    #see a {
+        font-size: 1rem;
+    }
+}

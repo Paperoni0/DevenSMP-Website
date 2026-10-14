@@ -1,0 +1,120 @@
+.button,
+button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  padding: 0.75rem 1.1rem;
+  color: #101611;
+  font: inherit;
+  font-weight: 700;
+  text-decoration: none;
+  background: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+  cursor: pointer;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    transform 160ms ease;
+}
+
+.button:hover,
+.button:focus-visible,
+button:hover,
+button:focus-visible {
+  background: var(--accent-light);
+  border-color: var(--accent-light);
+  transform: translateY(-2px);
+}
+
+.button.secondary {
+  margin-left: 0.75rem;
+  color: var(--text);
+  background: transparent;
+  border-color: var(--border);
+}
+
+.button.secondary:hover,
+.button.secondary:focus-visible {
+  color: var(--accent);
+  background: var(--surface);
+  border-color: var(--accent);
+}
+
+.grid,
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  height: 100%;
+  padding: 1.5rem;
+  background: var(--card-background);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  transition:
+    border-color 160ms ease,
+    transform 160ms ease,
+    background-color 160ms ease;
+}
+
+.card:hover {
+  background: var(--surface-light);
+  border-color: var(--accent);
+  transform: translateY(-4px);
+}
+
+.card h2,
+.card h3 {
+  margin-top: 0;
+  color: var(--accent);
+}
+
+.card p {
+  color: var(--muted);
+  font-family: system-ui, sans-serif;
+}
+
+footer {
+  padding: 2rem 1rem;
+  color: var(--muted);
+  text-align: center;
+  background: var(--footer-background);
+  border-top: 1px solid var(--border);
+}
+
+footer a {
+  color: var(--accent);
+}
+
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+
+@media (max-width: 760px) {
+  .grid,
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .button,
+  .button.secondary {
+    width: 100%;
+    margin: 0.5rem 0 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}

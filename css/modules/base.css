@@ -1,0 +1,28 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  padding-top: var(--header-height);
+  color: var(--text);
+  background:
+    radial-gradient(circle at top right, var(--background-glow), transparent 32rem),
+    linear-gradient(135deg, var(--background) 0%, var(--background-middle) 50%, var(--background-dark) 100%);
+  font-family: "Minecraft", system-ui, sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+}

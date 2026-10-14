@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="icon" href="assets/images/icons/favicon.ico" type="image/x-icon">
+    <title>Countdown | DevenSMP</title>
+    <link rel="stylesheet" href="css/all.css">
+    <link rel="stylesheet" href="css/countdown.css">
+    <script src="js/all.js" defer></script>
+</head>
+<body data-background="countdown">
+    <header class="site-header">
+    <div class="header-inner">
+      <button
+    id="menuToggle"
+    type="button"
+    aria-label="Open navigation menu"
+    aria-controls="menu"
+    aria-expanded="false"
+      >
+        <img
+          src="assets/images/main_menu.png"
+          alt=""
+          aria-hidden="true"
+        >
+      </button>
+
+      <a class="home-logo" href="home" aria-label="DevenSMP home">
+        <img
+          src="assets/images/logo.png"
+          alt="DevenSMP"
+          id="topLogo"
+        >
+      </a>
+    </div>
+
+    <nav id="menu" class="side-menu" aria-label="Main navigation" aria-hidden="true">
+      <a class="menu-logo-link" href="home" tabindex="-1">
+        <img
+          src="assets/images/logo.png"
+          alt="DevenSMP home"
+          id="menuLogo"
+        >
+      </a>
+
+      <div id="links" class="menu-links">
+        <a href="about">About Us</a>
+        <a href="project">Projects</a>
+        <a href="server">Server</a>
+        <a href="legal">Legal</a>
+        <a href="setting">Settings</a>
+      </div>
+    </nav>
+
+    <div id="menuBackdrop" class="menu-backdrop" aria-hidden="true"></div>
+  </header>
+  
+    <main>
+        <div id="title">DevenSMP's 3rd Anniversary</div>
+        <div id="timer">
+            <div><span id="days">-</span></div>
+            <div><span id="hours">-</span></div>
+            <div><span id="minutes">-</span></div>
+            <div><span id="seconds">-</span></div>
+        </div>
+        <button id="reminder">Set Reminder</button>
+    </main>
+    <script src="js/countdown.js"></script>
+</body>

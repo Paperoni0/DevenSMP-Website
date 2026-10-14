@@ -1,0 +1,3 @@
+[submodule ".github/minecraft"]
+	path = .github/minecraft
+	url = https://github.com/Mojang/bedrock-samples

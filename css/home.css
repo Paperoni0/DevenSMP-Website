@@ -1,0 +1,243 @@
+@import url("modules/project-cards.css");
+
+main {
+  width: min(100% - 2rem, var(--content-width));
+  margin: 0 auto;
+}
+
+.hero {
+  display: grid;
+  min-height: calc(100vh - var(--header-height));
+  align-items: center;
+  padding: 5rem 0;
+}
+
+.hero-content {
+  max-width: 800px;
+}
+
+#titleImage {
+  display: block;
+  width: min(100%, 520px);
+  margin-bottom: 1.5rem;
+}
+
+.hero-label,
+.section-label {
+  margin: 0 0 0.75rem;
+  color: var(--accent);
+  font-family: "Minecraft", system-ui, sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  max-width: 800px;
+  margin: 0 0 1.25rem;
+  color: var(--text);
+  font-family: "Minecraft", system-ui, sans-serif;
+  font-size: clamp(2.2rem, 7vw, 5.3rem);
+  font-weight: 400;
+  line-height: 1.06;
+}
+
+#text {
+  max-width: 680px;
+  margin: 0 0 2rem;
+  color: var(--muted);
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  line-height: 1.75;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.button {
+  display: inline-flex;
+  min-height: 46px;
+  padding: 0.75rem 1.15rem;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  text-decoration: none;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  transition:
+    background 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease,
+    transform 160ms ease;
+}
+
+.primary-button {
+  color: #101611;
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.primary-button:hover,
+.primary-button:focus-visible {
+  background: var(--accent-light);
+  border-color: var(--accent-light);
+  transform: translateY(-2px);
+}
+
+.secondary-button {
+  color: var(--text);
+  background: transparent;
+  border-color: var(--border);
+}
+
+.secondary-button:hover,
+.secondary-button:focus-visible {
+  color: var(--accent);
+  background: var(--surface);
+  border-color: var(--accent);
+}
+
+.intro-section,
+.projects-section,
+.cta-section {
+  padding: 5rem 0;
+}
+
+.intro-section h2,
+.projects-section h2,
+.cta-section h2 {
+  max-width: 700px;
+  margin: 0 0 1rem;
+  font-family: "Minecraft", system-ui, sans-serif;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+.section-description {
+  max-width: 650px;
+  margin: 0 0 2rem;
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.feature-card {
+  padding: 1.5rem;
+  background: var(--card-background);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.feature-number {
+  display: block;
+  margin-bottom: 2rem;
+  color: var(--accent);
+  font-family: "Minecraft", system-ui, sans-serif;
+}
+
+.feature-card h3 {
+  margin: 0 0 0.5rem;
+  color: var(--text);
+  font-family: "Minecraft", system-ui, sans-serif;
+  font-size: 1.25rem;
+  font-weight: 400;
+}
+
+.feature-card p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.section-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.text-link {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.text-link:hover,
+.text-link:focus-visible {
+  color: var(--accent-light);
+}
+
+.cta-section {
+  margin: 2rem 0 5rem;
+  padding: clamp(2rem, 5vw, 4rem);
+  text-align: center;
+  background:
+    linear-gradient(
+      135deg,
+      var(--background-glow),
+      var(--card-background)
+    );
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.cta-section p:not(.section-label) {
+  max-width: 560px;
+  margin: 0 auto 1.5rem;
+  color: var(--muted);
+}
+
+footer p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 760px) {
+  main {
+    width: min(100% - 1.25rem, var(--content-width));
+  }
+
+  .hero {
+    min-height: calc(100vh - var(--header-height));
+    padding: 3rem 0;
+  }
+
+  .hero h1 {
+    font-size: clamp(2rem, 12vw, 4rem);
+  }
+
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section-heading {
+    display: block;
+  }
+
+  .text-link {
+    display: inline-block;
+    margin-top: 0.5rem;
+  }
+
+  .hero-actions {
+    display: grid;
+  }
+
+  .button {
+    width: 100%;
+  }
+
+  .intro-section,
+  .projects-section,
+  .cta-section {
+    padding: 3.5rem 0;
+  }
+}

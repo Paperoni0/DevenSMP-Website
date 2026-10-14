@@ -1,0 +1,144 @@
+.teachmefy-page {
+    padding: 70px 20px 40px; /* account for fixed header */
+    font-family: inherit;
+    color: #222;
+    background: transparent;
+}
+
+.teachmefy-container {
+    max-width: 980px;
+    margin: 0 auto;
+}
+
+.teachmefy-hero {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 48px 28px;
+    border-radius: 8px;
+    background: linear-gradient(180deg, rgba(230,246,255,0.6), rgba(255,255,255,0.4));
+    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+}
+
+.teachmefy-hero .copy {
+    flex: 1 1 60%;
+}
+
+.teachmefy-hero h1 {
+    margin: 0 0 8px 0;
+    font-size: 2rem;
+    line-height: 1.05;
+}
+
+.teachmefy-hero p.lead {
+    margin: 0 0 14px 0;
+    color: #333;
+    font-size: 1rem;
+}
+
+.cta-primary {
+    display: inline-block;
+    padding: 12px 18px;
+    background: #1976d2;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+    border: 2px solid rgba(0,0,0,0.04);
+}
+
+.cta-primary:hover,
+.cta-primary:focus {
+    background: #1059a8;
+    transform: translateY(-1px);
+    outline: none;
+}
+
+.cta-secondary {
+    margin-left: 12px;
+    color: #1976d2;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.teachmefy-features {
+    margin-top: 28px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    align-items: start;
+}
+
+.feature {
+    padding: 14px;
+    border-radius: 6px;
+    background: rgba(255,255,255,0.85);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+}
+
+.feature h3 {
+    margin: 0 0 6px 0;
+    font-size: 1rem;
+}
+
+.feature p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: #333;
+}
+
+.teachmefy-screenshots {
+    margin-top: 32px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.teachmefy-screenshots img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 6px;
+    border: 1px solid rgba(0,0,0,0.06);
+}
+
+/* Small notes and privacy box */
+.note {
+    margin-top: 18px;
+    padding: 12px;
+    border-left: 3px solid #1976d2;
+    background: rgba(25,118,210,0.04);
+    color: #13384d;
+}
+
+.muted {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* Accessibility */
+.cta-primary:focus-visible,
+.cta-secondary:focus-visible {
+    outline: 3px solid rgba(25,118,210,0.25);
+    outline-offset: 2px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .teachmefy-hero { flex-direction: column; text-align: center; }
+    .teachmefy-hero .copy { flex-basis: auto; }
+    .teachmefy-features { grid-template-columns: repeat(2, 1fr); }
+    .teachmefy-screenshots { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 520px) {
+    .teachmefy-features { grid-template-columns: 1fr; }
+    .teachmefy-screenshots { grid-template-columns: 1fr; }
+    .teachmefy-hero { padding: 28px 18px; }
+    .teachmefy-hero h1 { font-size: 1.45rem; }
+}
+
+/* Utility spacing helpers */
+.mb-8 { margin-bottom: 8px; }
+.mb-16 { margin-bottom: 16px; }

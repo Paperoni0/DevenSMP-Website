@@ -1,0 +1,91 @@
+body[data-background] {
+  background-color: var(--bg);
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+body.light[data-background="404"] {
+  background-image:
+    linear-gradient(var(--background-image-overlay), var(--background-image-overlay)),
+    url("../../assets/images/backgrounds/light/404.webp");
+}
+
+body.dark[data-background="404"] {
+  background-image:
+    linear-gradient(var(--background-image-overlay), var(--background-image-overlay)),
+    url("../../assets/images/backgrounds/dark/404.webp");
+}
+
+body.light[data-background="countdown"] {
+  background-image:
+    linear-gradient(var(--background-image-overlay), var(--background-image-overlay)),
+    url("../../assets/images/backgrounds/light/countdown.webp");
+}
+
+body.dark[data-background="countdown"] {
+  background-image:
+    linear-gradient(var(--background-image-overlay), var(--background-image-overlay)),
+    url("../../assets/images/backgrounds/dark/countdown.webp");
+}
+
+body.light[data-background="credit"] {
+  background-image:
+    linear-gradient(var(--background-image-overlay), var(--background-image-overlay)),
+    url("../../assets/images/backgrounds/light/credit.webp");
+}
+
+body.dark[data-background="credit"] {
+  background-image:
+    linear-gradient(var(--background-image-overlay), var(--background-image-overlay)),
+    url("../../assets/images/backgrounds/dark/credit.webp");
+}
+
+body.light[data-background="home"] {
+  background-image:
+    linear-gradient(var(--background-image-overlay), var(--background-image-overlay)),
+    url("../../assets/images/backgrounds/light/home.webp");
+}
+
+body.dark[data-background="home"] {
+  background-image:
+    linear-gradient(var(--background-image-overlay), var(--background-image-overlay)),
+    url("../../assets/images/backgrounds/dark/home.webp");
+}
+
+body.light[data-background="redeem"] {
+  background-image:
+    linear-gradient(var(--background-image-overlay), var(--background-image-overlay)),
+    url("../../assets/images/backgrounds/light/redeem.webp");
+}
+
+body.dark[data-background="redeem"] {
+  background-image:
+    linear-gradient(var(--background-image-overlay), var(--background-image-overlay)),
+    url("../../assets/images/backgrounds/dark/redeem.webp");
+}
+
+body.light[data-background="server"] {
+  background-image:
+    linear-gradient(var(--background-image-overlay), var(--background-image-overlay)),
+    url("../../assets/images/backgrounds/light/server.webp");
+}
+
+body.dark[data-background="server"] {
+  background-image:
+    linear-gradient(var(--background-image-overlay), var(--background-image-overlay)),
+    url("../../assets/images/backgrounds/dark/server.webp");
+}
+
+body.light[data-background="setting"] {
+  background-image:
+    linear-gradient(var(--background-image-overlay), var(--background-image-overlay)),
+    url("../../assets/images/backgrounds/light/setting.webp");
+}
+
+body.dark[data-background="setting"] {
+  background-image:
+    linear-gradient(var(--background-image-overlay), var(--background-image-overlay)),
+    url("../../assets/images/backgrounds/dark/setting.webp");
+}

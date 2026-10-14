@@ -1,0 +1,55 @@
+@font-face {
+  font-family: "Minecraft";
+  src: url("../../assets/fonts/minecraft.ttf") format("truetype");
+  font-display: swap;
+}
+
+:root {
+  color-scheme: dark;
+  --bg: #101611;
+  --background: #101611;
+  --background-dark: #0a0e0b;
+  --surface: #18221a;
+  --surface-light: #223023;
+  --surface-hover: #223323;
+  --border: rgba(255, 255, 255, 0.12);
+  --text: #f2f7ef;
+  --muted: #aebbaa;
+  --accent: #8bd646;
+  --accent-dark: #5b9f27;
+  --accent-light: #b4ef76;
+  --header-background: rgba(16, 22, 17, 0.9);
+  --menu-background: rgba(24, 34, 26, 0.98);
+  --card-background: rgba(24, 34, 26, 0.8);
+  --footer-background: #0b100c;
+  --background-middle: #142018;
+  --background-glow: rgba(139, 214, 70, 0.12);
+  --background-image-overlay: rgba(0, 0, 0, 0.28);
+  --header-height: 64px;
+  --content-width: 1180px;
+  --radius: 12px;
+  --shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+}
+
+body.light {
+  color-scheme: light;
+  --bg: #edf2e9;
+  --background: #edf2e9;
+  --background-dark: #d9e4d2;
+  --surface: #ffffff;
+  --surface-light: #e5ecdf;
+  --surface-hover: #e5eddf;
+  --border: rgba(24, 34, 26, 0.18);
+  --text: #18221a;
+  --muted: #4d5a4b;
+  --accent: #4f8c22;
+  --accent-dark: #3d7019;
+  --accent-light: #6fae36;
+  --header-background: rgba(255, 255, 255, 0.9);
+  --menu-background: rgba(255, 255, 255, 0.98);
+  --card-background: rgba(255, 255, 255, 0.88);
+  --footer-background: #e2eadc;
+  --background-middle: #e5ecdf;
+  --background-glow: rgba(105, 157, 57, 0.12);
+  --background-image-overlay: transparent;
+}

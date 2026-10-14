@@ -1,0 +1,143 @@
+/* General Styles */
+body {
+    font-family: 'Minecraft', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #ffffff;
+    background-color: #1a1a1a;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Sections */
+.section {
+    min-height: 100vh;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-bottom: 1px solid #333;
+}
+
+.section h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #55ff55;
+}
+
+.section h2 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: #ffaa00;
+}
+
+/* Images */
+.section img {
+    max-width: 100%;
+    height: auto;
+    max-height: 300px;
+    margin: 20px 0;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Lists */
+.team-list {
+    text-align: left;
+    list-style-type: none;
+    padding: 0;
+    max-width: 500px;
+    margin: 20px auto;
+}
+
+.team-list li {
+    margin-bottom: 10px;
+    padding: 8px;
+    background-color: #2d2d2d;
+    border-left: 3px solid #55ff55;
+}
+
+ol {
+    text-align: left;
+    max-width: 700px;
+    margin: 20px auto;
+}
+
+ol li {
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: #252525;
+    border-radius: 5px;
+}
+
+/* Social Links */
+.social-links {
+    margin: 30px 0;
+    padding: 20px;
+    background-color: #2d2d2d;
+    border-radius: 10px;
+    max-width: 600px;
+}
+
+.social-links a {
+    color: #55aaff;
+    text-decoration: none;
+}
+
+.social-links a:hover {
+    text-decoration: underline;
+}
+
+/* Join Button */
+.join-button {
+    display: inline-block;
+    margin: 30px 0;
+    padding: 15px 30px;
+    background-color: #55ff55;
+    color: #1a1a1a;
+    border-radius: 5px;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.join-button:hover {
+    background-color: #44dd44;
+    transform: scale(1.05);
+}
+
+/* Footer */
+footer {
+    margin-top: 50px;
+    padding: 20px;
+    font-size: 0.9rem;
+    color: #888;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .section {
+        padding: 20px 10px;
+    }
+    
+    .section h1 {
+        font-size: 2rem;
+    }
+    
+    .section h2 {
+        font-size: 1.5rem;
+    }
+    
+    .join-button {
+        padding: 12px 25px;
+        font-size: 1rem;
+    }
+}

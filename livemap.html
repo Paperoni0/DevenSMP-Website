@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="icon" href="assets/images/icons/favicon.ico" type="image/x-icon">
+    <title>Live Map | DevenSMP</title>
+    <link rel="stylesheet" type="text/css" href="css/livemap/ol.css">
+    <link rel="stylesheet" href="css/livemap/ol-contextmenu.css">
+    <link rel="stylesheet" type="text/css" href="css/livemap/toastify-js.min.css">
+    <link rel="stylesheet" type="text/css" href="css/livemap/index.css">
+    <script src="js/livemap/ol.js"></script>
+    <script src="js/livemap/ol-contextmenu.iife.js"></script>
+    <script type="text/javascript" src="js/livemap/toastify-js.js"></script>
+    <script type="text/javascript" src="js/livemap/markers.js"></script>
+    <script type="text/javascript" src="js/livemap/index.js"></script>
+    <style>
+        #sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 220px;
+            background: var(--sidebar-bg, #1a1a2e);
+            color: var(--sidebar-text, #e0e0e0);
+            display: flex;
+            flex-direction: column;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+            z-index: 100;
+            box-shadow: 2px 0 12px rgba(0, 0, 0, 0.3);
+        }
+        #sidebar.open {
+            transform: translateX(0);
+        }
+        .sidebar-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .sidebar-title {
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            opacity: 0.6;
+        }
+        .sidebar-content {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            padding: 12px 8px;
+        }
+        .dimension-btn {
+            background: none;
+            border: none;
+            color: inherit;
+            cursor: pointer;
+            text-align: left;
+            padding: 10px 12px;
+            border-radius: 8px;
+            font-size: 14px;
+            opacity: 0.65;
+            transition: opacity 0.2s, background 0.2s;
+        }
+        .dimension-btn:hover {
+            background: rgba(255, 255, 255, 0.08);
+            opacity: 1;
+        }
+        .dimension-btn.active {
+            background: rgba(255, 255, 255, 0.12);
+            opacity: 1;
+            font-weight: 500;
+        }
+        #map-toggle-btn {
+            position: fixed;
+            bottom: 14px;
+            right: 14px;
+            z-index: 101;
+            background: #1a1a2e;
+            border: none;
+            border-radius: 8px;
+            padding: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            transition: background 0.2s, transform 0.3s;
+        }
+        #map-toggle-btn:hover {
+            background: #252545;
+        }
+        #toggle-icon {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        #toggle-icon span {
+            display: block;
+            width: 18px;
+            height: 2px;
+            background: #e0e0e0;
+            border-radius: 2px;
+            transition: transform 0.3s, opacity 0.3s;
+        }
+        body.sidebar-open #toggle-icon span:nth-child(1) {
+            transform: translateY(6px) rotate(45deg);
+        }
+        body.sidebar-open #toggle-icon span:nth-child(2) {
+            opacity: 0;
+        }
+        body.sidebar-open #toggle-icon span:nth-child(3) {
+            transform: translateY(-6px) rotate(-45deg);
+        }
+    </style>
+    <style>
+        #maintenance-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, #111827, #020617);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 99999;
+            animation: fadeIn 0.8s ease;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+    
+            to {
+                opacity: 1;
+            }
+        }
+        .maintenance-box {
+            text-align: center;
+            color: white;
+            padding: 40px 50px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 60px rgba(0, 0, 0, 0.6);
+            animation: float 4s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        .maintenance-box h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        .maintenance-box p {
+            font-size: 16px;
+            opacity: 0.75;
+        }
+        .spinner {
+            margin: 25px auto;
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255, 255, 255, 0.15);
+            border-top: 5px solid #38bdf8;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        .glow {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: #38bdf8;
+            filter: blur(120px);
+            opacity: 0.2;
+            animation: pulse 5s infinite ease-in-out;
+        }
+        @keyframes pulse {
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 0.2;
+            }
+            50% {
+                transform: scale(1.3);
+                opacity: 0.35;
+            }
+        }
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: white;
+            opacity: 0.3;
+            border-radius: 50%;
+            animation: moveUp linear infinite;
+        }
+        @keyframes moveUp {
+            from {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(-10vh);
+                opacity: 0.5;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="maintenance-overlay">
+        <div class="glow"></div>
+        <div id="particles"></div>
+        <div class="maintenance-box">
+            <h1>🚧 Under Maintenance</h1>
+            <div class="spinner"></div>
+            <p>We're upgrading the site.<br>Please come back later!</p>
+        </div>
+    </div>
+    <div id="map"></div>
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <span class="sidebar-title">Dimensions</span>
+        </div>
+        <div class="sidebar-content">
+            <button class="dimension-btn active" data-dim="overworld">Overworld</button>
+            <button class="dimension-btn" data-dim="nether">Nether</button>
+            <button class="dimension-btn" data-dim="the_end">The End</button>
+        </div>
+    </nav>
+    <button id="map-toggle-btn" onclick="toggleSidebar()">
+        <div id="toggle-icon"><span></span><span></span><span></span></div>
+    </button>
+    <script>
+        const maintenanceMode = true;
+        if (!maintenanceMode) {
+            document.getElementById("maintenance-overlay").style.display = "none";
+        }
+        const particleContainer = document.getElementById("particles");
+        for (let i = 0; i < 40; i++) {
+            const p = document.createElement("div");
+            p.className = "particle";
+            p.style.left = Math.random() * 100 + "vw";
+            p.style.animationDuration = (3 + Math.random() * 5) + "s";
+            p.style.animationDelay = Math.random() * 5 + "s";
+            particleContainer.appendChild(p);
+        }
+    </script>
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const isOpen = sidebar.classList.toggle('open');
+            document.body.classList.toggle('sidebar-open', isOpen);
+        }
+        window.currentDimension = "overworld";
+        function loadDimensionJS(dim, callback) {
+            ['dim-properties', 'dim-regions', 'dim-markers'].forEach(id => {
+                const old = document.getElementById(id);
+                if (old) old.remove();
+            });
+            window.UnminedMapProperties = undefined;
+            window.UnminedRegions = undefined;
+            const base = `js/livemap/${dim}`;
+            const props = document.createElement('script');
+            props.id = 'dim-properties';
+            props.src = `${base}/properties.js`;
+            const regions = document.createElement('script');
+            regions.id = 'dim-regions';
+            regions.src = `${base}/regions.js`;
+            props.onload = () => {
+                document.head.appendChild(regions);
+            };
+            regions.onload = callback;
+            document.head.appendChild(props);
+            const markers = document.createElement('script');
+            markers.id = 'dim-markers';
+            markers.src = `${base}/markers.js`;
+            document.head.appendChild(markers);
+        }
+        function switchDimension(dim) {
+            if (dim === window.currentDimension) return;
+            window.currentDimension = dim;
+            if (window.unmined && window.unmined.olMap) {
+                window.unmined.olMap.setTarget(null);
+                window.unmined = null;
+                document.getElementById("map").innerHTML = '';
+            }
+            loadDimensionJS(dim, () => window.initMap());
+        }
+        document.querySelectorAll('.dimension-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.dimension-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                switchDimension(btn.dataset.dim);
+            });
+        });
+        document.getElementById('map').addEventListener(function() {
+            const sidebar = document.getElementById('sidebar');
+            if (sidebar.classList.contains('open')) {
+                sidebar.classList.remove('open');
+                document.body.classList.remove('sidebar-open');
+            }
+        });
+    </script>
+    <script type="module">
+        import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+        const supabase = createClient('https://mqprtorkbjflarpbjdrr.supabase.co', 'sb_publishable_mzn0G0K6Y1QGwi83TVweug_uETtafBU');
+        let allPlayers = [];
+        function buildMarkers(data, dim) {
+            return data
+                .filter(p => p.username && p.username !== 'null' && p.x != null && p.z != null && p.dimension == dim)
+                .map(p => ({ name: p.username, x: p.x, z: p.z, image: p.image, online: p.online }));
+        }
+        window.initMap = function () {
+            if (UnminedCustomMarkers && UnminedCustomMarkers.isEnabled && UnminedCustomMarkers.markers) {
+                UnminedMapProperties.markers = UnminedMapProperties.markers.concat(UnminedCustomMarkers.markers);
+            }
+            const dim = window.currentDimension ?? 'overworld';
+            const playerMarkers = buildMarkers(allPlayers, dim);
+            UnminedMapProperties.playerMarkers = Unmined.createPlayerMarkers(playerMarkers);
+            const mapElement = document.getElementById('map');
+            window.unmined = new Unmined(mapElement, dim, UnminedMapProperties, UnminedRegions);
+        }
+        async function init() {
+            const { data, error } = await supabase
+                .from('players')
+                .select('username, x, z, image, online, dimension');
+            if (error) return console.error(error);
+            allPlayers = data;
+            loadDimensionJS('overworld', () => window.initMap());
+            supabase
+                .channel('players-changes')
+                .on(
+                    'postgres_changes',
+                    { event: '*', schema: 'public', table: 'players' },
+                    async () => {
+                        const { data, error } = await supabase
+                            .from('players')
+                            .select('username, x, z, image, online, dimension');
+                        if (error) return console.error(error);
+                        allPlayers = data;
+                        const dim = window.currentDimension ?? 'overworld';
+                        const playerMarkers = buildMarkers(allPlayers, dim);
+                        if (window.unmined?.playerMarkersLayer) {
+                            const markers = Unmined.createPlayerMarkers(playerMarkers);
+                            window.unmined.editMarkersLayer(window.unmined.playerMarkersLayer, markers);
+                        }
+                    }
+                )
+                .subscribe();
+        }
+        init();
+    </script>
+</body>
+</html>

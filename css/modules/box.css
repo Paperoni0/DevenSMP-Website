@@ -1,0 +1,187 @@
+.box-page .box-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 290px), 1fr));
+  gap: 1.25rem;
+}
+
+.box-page .box-card {
+  position: relative;
+  display: flex;
+  min-height: 0;
+  padding: 0;
+  flex-direction: column;
+  overflow: hidden;
+  text-decoration: none;
+  background: var(--card-background);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  transition:
+    background 160ms ease,
+    border-color 160ms ease,
+    transform 160ms ease;
+}
+
+.box-page .box-card:hover,
+.box-page .box-card:focus-visible {
+  background: var(--surface-hover);
+  border-color: var(--accent);
+  transform: translateY(-4px);
+}
+
+.box-page .box-card h3 {
+  margin: 0 0 0.65rem;
+  color: var(--text);
+  font-family: "Minecraft", system-ui, sans-serif;
+  font-size: 1.35rem;
+  font-weight: 400;
+}
+
+.box-page .status-badge {
+  display: inline-block;
+  margin-bottom: 1rem;
+  padding: 0.3rem 0.55rem;
+  color: var(--accent);
+  font-size: 0.75rem;
+  font-weight: 700;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+}
+
+.box-page main {
+  padding-top: clamp(3rem, 8vw, 6rem);
+}
+
+.box-intro {
+  max-width: 760px;
+  margin: 0 auto 5rem;
+  text-align: center;
+}
+
+.box-eyebrow {
+  margin: 0 0 0.75rem;
+  color: var(--accent);
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.box-intro h1 {
+  margin: 0;
+  color: var(--text);
+  font-size: clamp(2.75rem, 8vw, 5.5rem);
+  font-weight: 400;
+  line-height: 1.05;
+}
+
+.box-summary {
+  max-width: 580px;
+  margin: 1.25rem auto 0;
+  color: var(--muted);
+  font-family: system-ui, sans-serif;
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  line-height: 1.7;
+}
+
+.box-section {
+  margin-bottom: 2rem;
+}
+
+.box-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.box-heading .box-eyebrow {
+  margin-bottom: 0.4rem;
+}
+
+.box-heading h2 {
+  margin: 0;
+  color: var(--text);
+  font-size: clamp(1.6rem, 4vw, 2.25rem);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.box-count {
+  padding: 0.35rem 0.7rem;
+  color: var(--muted);
+  font-size: 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.box-card__image {
+  display: block;
+  width: 100%;
+  height: 210px;
+  padding: 1rem;
+  object-fit: cover;
+  background: var(--surface-light);
+}
+
+.box-card__content {
+  display: flex;
+  min-height: 235px;
+  padding: 1.4rem;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.box-page .box-card p {
+  color: var(--muted);
+  font-family: system-ui, sans-serif;
+  line-height: 1.6;
+}
+
+.box-card__link {
+  display: flex;
+  width: 100%;
+  margin-top: auto;
+  padding-top: 1.4rem;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.box-card__link span {
+  font-size: 1.25rem;
+  transition: transform 160ms ease;
+}
+
+.box-page .box-card:hover .box-card__link span,
+.box-page .box-card:focus-visible .box-card__link span {
+  transform: translate(3px, -2px);
+}
+
+@media (max-width: 600px) {
+  .box-intro {
+    margin-bottom: 3.5rem;
+    text-align: left;
+  }
+
+  .box-summary {
+    margin-left: 0;
+  }
+
+  .box-heading {
+    align-items: flex-start;
+  }
+
+  .box-card__image {
+    height: 190px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .box-card__link span {
+    transition: none;
+  }
+}

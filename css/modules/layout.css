@@ -1,0 +1,229 @@
+header,
+#topBar {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 1000;
+  width: 100%;
+  height: var(--header-height);
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1rem;
+  background: var(--header-background);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(12px);
+}
+
+#topBar {
+  pointer-events: none;
+  border: 0;
+  box-shadow: none;
+}
+
+#topBar #menuToggle {
+  pointer-events: auto;
+}
+
+.site-header {
+  height: var(--header-height);
+}
+
+.header-inner {
+  position: relative;
+  display: flex;
+  width: min(100% - 2rem, var(--content-width));
+  height: 100%;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: center;
+}
+
+#topLogo {
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  display: block;
+  width: 44px;
+  height: 44px;
+  margin: 0;
+  object-fit: contain;
+  transform: translateY(-50%);
+}
+
+#topLogo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+#menuToggle,
+.menu-toggle {
+  position: absolute;
+  top: 50%;
+  left: 1rem;
+  display: grid;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  place-items: center;
+  color: var(--text);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  transform: translateY(-50%);
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    transform 160ms ease;
+}
+
+.menu-toggle {
+  left: 0;
+  padding: 8px;
+}
+
+#menuToggle:hover,
+#menuToggle:focus-visible,
+.menu-toggle:hover,
+.menu-toggle:focus-visible {
+  background: var(--surface-light);
+  border-color: var(--accent);
+}
+
+#menuToggle:active,
+.menu-toggle:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+.menu-toggle img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.home-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#menu,
+.side-menu {
+  position: fixed;
+  inset: var(--header-height) auto 0 0;
+  z-index: 1100;
+  display: flex;
+  width: min(290px, 85vw);
+  height: calc(100dvh - var(--header-height));
+  padding: 1.5rem 1rem;
+  flex-direction: column;
+  visibility: hidden;
+  background: var(--menu-background);
+  border-right: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  opacity: 0;
+  transform: translateX(-100%);
+  transition:
+    transform 220ms ease,
+    opacity 220ms ease,
+    visibility 220ms ease;
+}
+
+#menu.is-open,
+.side-menu.is-open {
+  visibility: visible;
+  opacity: 1;
+  transform: translateX(0);
+}
+
+#menuLogo {
+  display: block;
+  width: 68px;
+  height: 68px;
+  margin: 0 auto 2rem;
+  object-fit: contain;
+}
+
+.menu-logo-link {
+  display: flex;
+  margin-bottom: 2rem;
+  justify-content: center;
+}
+
+.menu-links,
+#links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+  margin: 0;
+}
+
+.menu-links a,
+#links a {
+  display: flex;
+  align-items: center;
+  min-height: 46px;
+  padding: 0.75rem 1rem;
+  color: var(--text);
+  text-decoration: none;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  transition:
+    color 160ms ease,
+    background-color 160ms ease,
+    border-color 160ms ease;
+}
+
+.menu-links a:hover,
+.menu-links a:focus-visible,
+#links a:hover,
+#links a:focus-visible {
+  color: var(--accent);
+  background: var(--background-glow);
+  border-color: var(--border);
+}
+
+.menu-backdrop {
+  position: fixed;
+  inset: var(--header-height) 0 0;
+  z-index: 1050;
+  visibility: hidden;
+  background: rgba(0, 0, 0, 0.48);
+  opacity: 0;
+  transition:
+    opacity 220ms ease,
+    visibility 220ms ease;
+}
+
+.menu-backdrop.is-visible {
+  visibility: visible;
+  opacity: 1;
+}
+
+main {
+  width: min(100% - 2rem, var(--content-width));
+  margin: 0 auto;
+  padding: 4rem 0;
+}
+
+section {
+  margin: 0 auto 5rem;
+}
+
+@media (max-width: 760px) {
+  :root {
+    --header-height: 58px;
+  }
+
+  main {
+    width: min(100% - 1.25rem, var(--content-width));
+    padding-top: 2rem;
+  }
+}
